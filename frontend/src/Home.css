@@ -1,0 +1,16 @@
+.top-section {
+    width: 100%;
+}
+
+img {
+    object-fit: cover;
+    width: 400px;
+    height: 500px;
+}
+
+.intro {
+    padding: 20px 40px;
+    font-family: 'Montagu Slab', serif;
+}
+
+.intro h3 {}
