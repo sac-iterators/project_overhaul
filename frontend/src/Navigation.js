@@ -1,5 +1,8 @@
 import React from 'react'
+
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
+import ReservationButton from './components/ReservationButton';
+import ReservationFunc from "./components/ReservationButton";
 
 function Navigation() {
     return (
@@ -16,15 +19,15 @@ function Navigation() {
         <Nav.Link href="#action1">Home</Nav.Link>
         <Nav.Link href="#action2">About</Nav.Link>
         <Nav.Link href="#action2">Order</Nav.Link>
-        <NavDropdown title="Reservations" id="navbarScrollingDropdown">
+        {/* <NavDropdown title="Reservations" id="navbarScrollingDropdown">
           <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
           <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#action5">
             Something else here
           </NavDropdown.Item>
-        </NavDropdown>
-
+        </NavDropdown> */}
+      <ReservationButton />
       </Nav>
       <Form className="d-flex">
         <FormControl

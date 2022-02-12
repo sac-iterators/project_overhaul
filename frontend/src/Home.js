@@ -1,5 +1,6 @@
 import React from 'react'
 import Navigation from './Navigation';
+import Modal from 'react-bootstrap/Modal'
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img-1.jpeg';
 import img2 from './img-2.jpeg';

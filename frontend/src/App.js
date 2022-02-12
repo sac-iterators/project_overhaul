@@ -3,6 +3,7 @@ import Modal from "./components/Modal";
 import axios from "axios";
 import Home from "./Home";
 import Navigation from './Navigation';
+import ReservationFunc from "./components/ReservationButton";
 
 class App extends Component {
   constructor(props) {
