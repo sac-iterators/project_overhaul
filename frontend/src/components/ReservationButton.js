@@ -1,6 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
 import {Button} from 'react-bootstrap';
 import { useState, ReactDOM} from 'react';
+import ReservationForm from './ReservationForm';
 
 function ReservationButton() {
     const [show, setShow] = useState(false);
@@ -18,7 +19,11 @@ function ReservationButton() {
           <Modal.Header closeButton>
             <Modal.Title>Reservation Sign Up</Modal.Title>
           </Modal.Header>
-          <Modal.Body>This is the resevation form :) </Modal.Body>
+
+          <Modal.Body>
+            <ReservationForm />
+          </Modal.Body>
+
           <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Cancel
