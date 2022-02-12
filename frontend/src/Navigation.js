@@ -2,7 +2,7 @@ import React from 'react'
 
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
-import ReservationFunc from "./components/ReservationButton";
+import SignInButton from './components/SignInButton';
 
 function Navigation() {
     return (
@@ -29,7 +29,8 @@ function Navigation() {
         </NavDropdown> */}
       <ReservationButton />
       </Nav>
-      <Form className="d-flex">
+      <SignInButton />
+      {/* <Form className="d-flex">
         <FormControl
           type="search"
           placeholder="Search"
@@ -37,7 +38,7 @@ function Navigation() {
           aria-label="Search"
         />
         <Button variant="outline-success">Search</Button>
-      </Form>
+      </Form> */}
     </Navbar.Collapse>
   </Container>
 </Navbar>
