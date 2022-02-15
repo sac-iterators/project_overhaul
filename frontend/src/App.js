@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
 
 class App extends Component {
-  constructor(props) {
+  /*constructor(props) {
     super(props);
     this.state = {
       viewCompleted: false,
@@ -85,7 +85,7 @@ class App extends Component {
           Food Items
         </span>
         <span
-        /* True used to be: this.state.viewCompleted*/
+        // True used to be: this.state.viewCompleted
           className={true ? "nav-link" : "nav-link active"}
           onClick={() => this.displayCompleted(false)}
         >
@@ -163,7 +163,10 @@ class App extends Component {
             onSave={this.handleSubmit}
           />
         ) : null}
-      </main>
+      </main>*/
+  render(){
+    return(
+      <Home/>
     );
   }
 }
