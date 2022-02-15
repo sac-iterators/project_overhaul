@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 const SingleQuestion = ({ title, info }) => {
   const [expanded, setExpanded] = useState(false)
 
@@ -10,7 +9,7 @@ const SingleQuestion = ({ title, info }) => {
           {title}
         </h6>
         <button className='btn'>
-          {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
+          {expanded ? <i class="fa-solid fa-minus"></i> : <i class="fa-solid fa-plus"></i>}
         </button>
       </header>
       {expanded && <p>{info}</p>}
