@@ -15,27 +15,73 @@ import './Home.css';
 function Home() {
     return (
         <div className="home">
-            <Navigation />
+     
             <div className="top-section">
-                <Carousel fade style={{ maxHeight: '600px' }}>
-                    <Carousel.Item>
-                        <img className="w-100 cover-img" src={img4} alt="First slide" fluid/>
-                        <Carousel.Caption>
-                            <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img className=" w-100 cover-img" src={img1} alt="Second slide" />
-                        <Carousel.Caption>
-                            <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
-                    <Carousel.Item>
-                        <img className="d-block w-100 cover-img" src={img3} alt="Third slide" />
-                        <Carousel.Caption>
-                            <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
-                        </Carousel.Caption>
-                    </Carousel.Item>
+                            
+            {/* <main className="container">
+        <h1 className="text-uppercase text-center my-4">Asian N Cajun 2 app</h1>
+        <div className="row">
+          <div className="col-md-6 col-sm-10 mx-auto p-0">
+            <div className="card p-3">
+              <div className="mb-4">
+                <button
+                  className="btn btn-primary"
+                  onClick={this.createItem}
+                >
+                  Add task
+                </button>
+              </div>
+              {this.renderTabList()}
+              <ul className="list-group list-group-flush border-top-0">
+                {this.renderItems()}
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        {this.state.modal ? (
+          <Modal
+            activeItem={this.state.activeItem}
+            toggle={this.toggle}
+            onSave={this.handleSubmit}
+          />
+        ) : null}
+      </main>  */}
+                            <Carousel fade style={{ maxHeight: '600px' }}>
+                <Carousel.Item>
+                    <img
+                    className="w-100"
+                    src={img4}
+                    alt="First slide"
+                    fluid
+                    />
+                    <Carousel.Caption>
+                    <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className=" w-100"
+                    src={img1}
+                    alt="Second slide"
+                    />
+
+                    <Carousel.Caption>
+                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100"
+                    src={img3}
+                    alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                    <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
+
+                    </Carousel.Caption>
+                </Carousel.Item>
                 </Carousel>
             </div>
             <div className="intro">
