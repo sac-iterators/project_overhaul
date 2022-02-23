@@ -6,6 +6,11 @@ import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
+import Fire from './components/firebase-init'
+
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "firebase/app";
+import { getAnalytics } from "firebase/analytics";
 
  class App extends Component {
   // constructor(props) {
@@ -143,6 +148,7 @@ import About from './About';
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/fire" element={<Fire />} />
         </Routes>
         
       </div>
