@@ -1,5 +1,9 @@
 import React from 'react'
+
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
+import ReservationButton from './components/ReservationButton';
+import SignInButton from './components/SignInButton';
+import { Link } from "react-router-dom";
 
 function Navigation() {
     return (
@@ -13,20 +17,21 @@ function Navigation() {
         style={{ maxHeight: '100px' }}
         navbarScroll
       >
-        <Nav.Link href="#action1">Home</Nav.Link>
-        <Nav.Link href="#action2">About</Nav.Link>
-        <Nav.Link href="#action2">Order</Nav.Link>
-        <NavDropdown title="Reservations" id="navbarScrollingDropdown">
+           <Nav.Link><Link to="/">Home</Link></Nav.Link>
+        <Nav.Link><Link to="/about">About</Link></Nav.Link>
+        <Nav.Link><Link to="/">Order</Link></Nav.Link>
+        {/* <NavDropdown title="Reservations" id="navbarScrollingDropdown">
           <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
           <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
           <NavDropdown.Divider />
           <NavDropdown.Item href="#action5">
             Something else here
           </NavDropdown.Item>
-        </NavDropdown>
-
+        </NavDropdown> */}
+      <ReservationButton />
       </Nav>
-      <Form className="d-flex">
+      <SignInButton />
+      {/* <Form className="d-flex">
         <FormControl
           type="search"
           placeholder="Search"
@@ -34,7 +39,7 @@ function Navigation() {
           aria-label="Search"
         />
         <Button variant="outline-success">Search</Button>
-      </Form>
+      </Form> */}
     </Navbar.Collapse>
   </Container>
 </Navbar>
