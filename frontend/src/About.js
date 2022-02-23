@@ -1,13 +1,13 @@
 import React from 'react'
 import Navigation from './Navigation';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
-import img1 from './img-1.jpeg';
-import img2 from './img-2.jpeg';
-import img3 from './img-3.png';
-import img4 from './img-4.jpeg';
-import img5 from './img-5.jpeg';
-import img6 from './img-6.jpg';
-import img7 from './img-7.jpeg';
+import img1 from './img/img-1.jpeg';
+import img2 from './img/img-2.jpeg';
+import img3 from './img/img-3.png';
+import img4 from './img/img-4.jpeg';
+import img5 from './img/img-5.jpeg';
+import img6 from './img/img-6.jpg';
+import img7 from './img/img-7.jpeg';
 import './Home.css';
 
 function About() {
