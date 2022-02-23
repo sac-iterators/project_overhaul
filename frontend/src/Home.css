@@ -2,10 +2,14 @@
     width: 100%;
 }
 
-img {
+.cover-img {
     object-fit: cover;
-    width: 400px;
+    width: 100%;
     height: 500px;
+}
+
+.logo{
+    width: 100%;
 }
 
 .intro {
@@ -13,4 +17,34 @@ img {
     font-family: 'Montagu Slab', serif;
 }
 
+.social-links{
+    text-align: center;
+    margin: 5px;
+}
+
+.social{
+    font-size: 40px;
+    padding: 10px;
+}
+
 .intro h3 {}
+
+.question {
+  border: 2px solid rgb(240, 240, 240);
+  padding: 7px;
+}
+.question h6 {
+  text-transform: none;
+  margin: 0;
+}
+.question p {
+  color: var(--clr-grey-3);
+  margin-top: 5px;
+  margin-bottom: 0;
+}
+.question header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
