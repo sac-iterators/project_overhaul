@@ -19,13 +19,27 @@ function Footer() {
               <li class="list-inline-item"><a href="http://www.facebook.com/asianncajun2" target="_blank" title="facebook"><i class="fa fa-facebook social"></i></a></li>
               <li class="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i class="fa fa-instagram social"></i></a></li>
             </ul>
+            <ul class="list-inline services">
+              <li class=""><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src="https://cdn.cdnlogo.com/logos/g/61/grubhub.svg" class="icons"/></a></li>
+              <li class=""><a href="#" target="_blank"><img src="https://img.icons8.com/color/48/000000/uber-eats-app.png" class="icons"/></a></li>
+              <li class=""><a href="#" target="_blank"><img src="https://iconape.com/wp-content/files/rd/245476/png/postmates-logo.png" class="icons"/></a></li>
+            </ul>
           </div>
           <div class="col-lg-2 col-md-6 mb-4 mb-lg-0">
-          <h6 class="text-uppercase font-weight-bold mb-4">Delivery Services</h6>
-          <ul class="list-unstyled mb-0">
-            <li class="mb-4"><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src="https://cdn.cdnlogo.com/logos/g/61/grubhub.svg" className=" w-75"/></a></li>
-            <li class="mb-2"><a href="#" target="_blank"><img src="https://cdn.cdnlogo.com/logos/u/49/uber-eats.svg" className=" w-75"/></a></li>
-            <li class="mb-4"><a href="#" target="_blank"><img src="https://www.vectorlogo.zone/logos/postmates/postmates-ar21.svg" className=" w-75"/></a></li>
+          <h6 class="text-uppercase font-weight-bold mb-4">Store Hours</h6>
+          <ul class="list-unstyled mb-4 hours">
+            <li><p class="text-muted mb-2">Mon-Fri 11am - 9pm</p></li>
+            <li><p class="text-muted mb-2">Sat         11am - 9pm</p></li>
+            <li><p class="text-muted mb-2">Sun        11am - 9pm</p></li>
+          </ul>
+          <h6 class="text-uppercase font-weight-bold mb-4">Location</h6>
+          <ul class="list-unstyled mb-0 location">
+            <li>
+              <a href="https://www.google.com/maps/place/8121+Greenback+Ln,+Fair+Oaks,+CA+95628" target="_blank">
+                8121 Greenback Ln
+                Fair Oaks, CA 95628
+              </a>
+            </li>
           </ul>
           </div>
           <div class="col-lg-4 col-md-6 mb-lg-0">

@@ -2,6 +2,7 @@ import React from 'react'
 import Navigation from './Navigation';
 import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
+import OrderButton from './components/OrderButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
@@ -50,18 +51,18 @@ function Home() {
                             <Carousel fade style={{ maxHeight: '600px' }}>
                 <Carousel.Item>
                     <img
-                    className="w-100"
+                    className="w-100 cover-img"
                     src={img4}
                     alt="First slide"
                     fluid
                     />
                     <Carousel.Caption>
-                    <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
+                    <h3><OrderButton/>{' '}</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className=" w-100"
+                    className="w-100 cover-img"
                     src={img1}
                     alt="Second slide"
                     />
@@ -72,13 +73,13 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="d-block w-100"
+                    className="d-block w-100 cover-img"
                     src={img3}
                     alt="Third slide"
                     />
 
                     <Carousel.Caption>
-                    <h3><Button variant="outline-light" size="lg">Order Now</Button>{' '}</h3>
+                    <h3><OrderButton/>{' '}</h3>
 
                     </Carousel.Caption>
                 </Carousel.Item>
