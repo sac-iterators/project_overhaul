@@ -28,15 +28,23 @@ import { getAnalytics } from "firebase/analytics";
         const foodCol = collection(db, 'food_test');
         const foodSnapshot = await getDocs(foodCol);
         const foodList = foodSnapshot.docs.map(doc => doc.data());
-        return foodList;
+        console.log(foodList);
+
+        return (
+        <div>
+            <h1>Hello</h1>
+            {foodList.map(item => (
+                <p>{item.name}</p>
+            ))}
+        </div>
+        );
     }
 
 function fire() {
 
     return (
         <div>
-            <h1>Hello</h1>
-            <p>{getFood}</p>
+            {getFood(db)}
         </div>
     );
 }

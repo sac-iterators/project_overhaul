@@ -6,7 +6,7 @@ import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
-import Fire from './components/firebase-init'
+import Fire from './firebase/firebase-init'
 
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
