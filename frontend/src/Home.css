@@ -27,6 +27,19 @@
     padding: 10px;
 }
 
+footer div:nth-child(4){
+    text-align: right;
+}
+
+a{
+    color: gray;
+    text-decoration: none;
+}
+
+a:hover{
+    color: black;
+}
+
 .intro h3 {}
 
 .question {

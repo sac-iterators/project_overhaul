@@ -10,9 +10,9 @@ function SignInButton() {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
+            <a href='#' onClick={handleShow}>
                 Sign In
-            </Button>
+            </a>
             
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
