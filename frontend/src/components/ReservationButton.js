@@ -28,14 +28,14 @@ function ReservationButton() {
             <ReservationForm />
           </Modal.Body>
 
-          <Modal.Footer>
+          {/* <Modal.Footer>
             <Button variant="secondary" onClick={handleClose}>
               Cancel
             </Button>
             <Button variant="primary" onClick={ReservationForm.createReserv}>
               Reserve
             </Button>
-          </Modal.Footer>
+          </Modal.Footer> */}
         </Modal>
       </>
     );
