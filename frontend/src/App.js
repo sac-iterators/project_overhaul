@@ -8,9 +8,6 @@ import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
 import Fire from './firebase/firebase-test'
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 
  class App extends Component {
   // constructor(props) {
