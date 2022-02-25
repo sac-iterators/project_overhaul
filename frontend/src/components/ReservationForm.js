@@ -20,13 +20,14 @@ function ReservationForm(props){
     const [email, setEmail] = useState("");
     const [guests, setGuests] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState(0);
+    const [notes, setNotes] = useState("");
 
     const reservCollectionRef = collection(db, "reservations_Test");
 
 
     //Creates Reservation Document to database
     const createReserv = async() =>{
-        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber})
+        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber, notes: notes})
     };
 
     
@@ -50,7 +51,7 @@ function ReservationForm(props){
 
             <div class = "reservation-group">
                 <label for = "email"> Email Address</label>
-                <input type = "email" class="form-control" id="email" placeholder="Enter your preffered email address." 
+                <input patterm = "email" type = "email" class="form-control" id="email" placeholder="Enter your preffered email address." 
                     onChange={(event) => setEmail(event.target.value)}></input>
             </div>
 
@@ -59,14 +60,15 @@ function ReservationForm(props){
                 <input type = "phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter your preffered phone number." 
                     onChange={(event) => setPhoneNumber(event.target.value)}></input>
                 <small id = "numberAreacode" class="form-text text-muted">Please incldude your area code.</small>
+
             </div>
 
             <div class = "reservation-group">
                 <label for = "Total Number of Guests"> Total Number of Guests</label>
-                <select class="form-control" id="totalGuests" placeholder="Total Number of Guests">
-                    <option onChange={(event) => setGuests(event.target.value)}>1</option>
-                    <option onChange={(event) => setGuests(event.target.value)}>2</option>
-                    <option onChange={(event) => setGuests(event.target.value)}>3</option>
+                <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+                    <option>1</option>
+                    <option>2</option>
+                    <option>3</option>
                     <option>4</option>
                     <option>5</option>
                     <option>6</option>
@@ -84,7 +86,8 @@ function ReservationForm(props){
 
             <div class = "reservation-group">
                 <label for = "specialNotes">Other: </label>
-                <input type = "notes" class="form-control" id="specialNotes" placeholder='Let us know if there are any accomedations needed.'></input>
+                <input pattern ="\s*\S+.*" type = "text" class="form-control" id="specialNotes" 
+                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
             </div>
 
             </Modal.Body>
