@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 import { food_db } from "./firebaseConfig";
-import { collection, getDocs} from 'firebase/firestore';
+import { getDocs } from 'firebase/firestore';
 
 
 function Fire() {
     const [food, setFood] = useState([]);
-    //const foodCollectionRef = collection(db, 'food_test');
 
     useEffect(() => {
         const getFood = async () => {
@@ -17,6 +16,7 @@ function Fire() {
         getFood();
     }, []);
 
+    // * Returns all of the documents in the food_test
     return (
         <div className="food_test">
             {food.map((item) => 
