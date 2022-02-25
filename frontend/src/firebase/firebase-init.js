@@ -1,52 +1,32 @@
-import react, { Component } from "react";
+import { useState, useEffect } from "react";
+import { food_db } from "./firebaseConfig";
+import { collection, getDocs} from 'firebase/firestore';
 
-// Import the functions you need from the SDKs you need
-import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
-import { getAnalytics } from "firebase/analytics";
 
-// TODO: Add SDKs for Firebase products that we want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
+function Fire() {
+    const [food, setFood] = useState([]);
+    //const foodCollectionRef = collection(db, 'food_test');
 
-// Firebase configuration
-    const firebaseConfig = {
-    apiKey: "AIzaSyATvRiZLnPk-PnOI7G65eI8ZMor1zasffU",
-    authDomain: "asian-n-cajun-db.firebaseapp.com",
-    projectId: "asian-n-cajun-db",
-    storageBucket: "asian-n-cajun-db.appspot.com",
-    messagingSenderId: "695099380391",
-    appId: "1:695099380391:web:be2b64ee01bc71f32a8182",
-    measurementId: "G-K7J5DR7H62"
-    };
+    useEffect(() => {
+        const getFood = async () => {
+            const data = await getDocs(food_db);
+            console.log(data);
+            setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+        };
 
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig);
-    const db = getFirestore(app);
-    const analytics = getAnalytics(app);
-
-    async function getFood(db) {
-        const foodCol = collection(db, 'food_test');
-        const foodSnapshot = await getDocs(foodCol);
-        const foodList = foodSnapshot.docs.map(doc => doc.data());
-        console.log(foodList);
-
-        return (
-        <div>
-            <h1>Hello</h1>
-            {foodList.map(item => (
-                <p>{item.name}</p>
-            ))}
-        </div>
-        );
-    }
-
-function fire() {
+        getFood();
+    }, []);
 
     return (
-        <div>
-            {getFood(db)}
+        <div className="food_test">
+            {food.map((item) => 
+            { return <div key={item.id}> 
+            <h1>Name: {item.name}</h1>
+            <h1>Cost: {item.cost}</h1>
+            </div>
+            })}
         </div>
     );
 }
 
-export default fire;
+export default Fire;
