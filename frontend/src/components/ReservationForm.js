@@ -3,27 +3,44 @@ import {Button} from 'react-bootstrap';
 import { useState, ReactDOM} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
+import {db} from './firebase-config';
+import {collection, addDoc, getDocs} from 'firebase/firestore';
+
 
 function ReservationForm(){
 
     const [value, onChange] = useState(new Date());
+
+    //Define 
+    const [fname, setFname] = useState("");
+    const [lname, setLname] = useState("");
+    const [email, setEmail] = useState("");
+    const [guests, setGuests] = useState(0);
+    const reservCollectionRef = collection(db, "reservations_Test");
+
+    const createReserv = async() =>{
+        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email})
+    };
+
+    
 
     return(
         <form>
 
             <div class = "reservation-group">
                 <label for = "firstName"> First Name</label>
-                <input type = "firstName" class="form-control" id="firstname" placeholder="Enter your First Name."></input>
+                <input type = "firstName" class="form-control" id="firstname" placeholder="Enter your First Name." onChange={(event) => setFname(event.target.value)}>   
+                </input>
             </div>
 
             <div class = "reservation-group">
                 <label for = "lastName"> Last Name</label>
-                <input type = "lastName" class="form-control" id="lastname" placeholder="Enter your Last Name."></input>
+                <input type = "lastName" class="form-control" id="lastname" placeholder="Enter your Last Name." onChange={(event) => setLname(event.target.value)}></input>
             </div>
 
             <div class = "reservation-group">
                 <label for = "email"> Email Address</label>
-                <input type = "email" class="form-control" id="email" placeholder="Enter your preffered email address."></input>
+                <input type = "email" class="form-control" id="email" placeholder="Enter your preffered email address." onChange={(event) => setEmail(event.target.value)}></input>
             </div>
 
             <div class = "reservation-group">
@@ -58,9 +75,14 @@ function ReservationForm(){
                 <input type = "notes" class="form-control" id="specialNotes" placeholder='Let us know if there are any accomedations needed.'></input>
             </div>
 
+            { <Button variant="primary" onClick={createReserv}> 
+                Reserve
+            </Button> }
         </form>
+        
+        
     );
 
 }
 
-export default ReservationForm;
+export default ReservationForm; 
