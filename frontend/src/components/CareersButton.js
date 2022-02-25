@@ -1,27 +1,29 @@
 import Modal from 'react-bootstrap/Modal'
 import {Button} from 'react-bootstrap';
 import { useState, ReactDOM} from 'react';
-import ReservationForm from './ReservationForm';
+import AccordionMenu from './AccordionMenu';
+import CareersForm from './CareersForm';
 
-function ReservationButton() {
+function CareersButton() {
     const [show, setShow] = useState(false);
-  
+
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-  
+
     return (
       <>
         <a href='#' onClick={handleShow}>
-          Reservations
+          Careers
         </a>
-  
+
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
-            <Modal.Title>Reservation Sign Up</Modal.Title>
+            <Modal.Title>Career Sign Up</Modal.Title>
           </Modal.Header>
 
           <Modal.Body>
-            <ReservationForm />
+            <AccordionMenu/>
+            <CareersForm />
           </Modal.Body>
 
           <Modal.Footer>
@@ -29,13 +31,13 @@ function ReservationButton() {
               Cancel
             </Button>
             <Button variant="primary" onClick={handleClose}>
-              Reserve
+              Submit
             </Button>
           </Modal.Footer>
         </Modal>
       </>
     );
   }
-  
+
 // render(<ReservationButton />);
-export default ReservationButton;
+export default CareersButton; 
