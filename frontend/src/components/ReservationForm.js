@@ -34,7 +34,12 @@ function ReservationForm(props){
     
 
     return(
-        <>
+        <div
+            onKeyDown={e => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
+            onFocus={e => e.stopPropagation()}
+            onMouseOver={e => e.stopPropagation()}
+        >
         <Modal.Body show = {show} onHide={handleClose}>
 
             <div class = "reservation-group">
@@ -100,7 +105,7 @@ function ReservationForm(props){
                         Reserve
                     </Button>
             </Modal.Footer>
-        </>
+        </div>
             
     );
 }
