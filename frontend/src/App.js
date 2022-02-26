@@ -1,4 +1,5 @@
-import React, { Component } from "react";
+import React, { Component,
+useState } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 import Home from "./Home";
@@ -7,8 +8,10 @@ import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
 import Menu from './Menu';
+import items from "./data";
+import Categories from "./Categories";
 
- class App extends Component {
+ //class App extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -136,7 +139,7 @@ import Menu from './Menu';
   //   ));
   // };
 
-  render() {
+  /*render() {
     return (
       <BrowserRouter>
       <div className="App">
@@ -151,6 +154,58 @@ import Menu from './Menu';
     </BrowserRouter>
     );
   }
+}
+*/
+
+const App = () => {
+  return (
+    <BrowserRouter>
+    <div className="App">
+      <Navigation />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/menu" element={<MenuApp />} />
+      </Routes>
+    </div>
+  </BrowserRouter>
+  
+  );
+}
+
+// Saul's implementation
+const allCategories = ["all", ...new Set(items.map((item) => item.category))];
+
+const MenuApp = () => {
+  const [menuItems, setMenuItems] = useState(items);
+  const [activeCategory, setActiveCategory] = useState("");
+  const [categories, setCategories] = useState(allCategories);
+
+  const filterItems = (category) => {
+    setActiveCategory(category);
+    if (category === "all") {
+      setMenuItems(items);
+      return;
+    }
+    const newItems = items.filter((item) => item.category === category);
+    setMenuItems(newItems);
+  };
+  return (
+    <main>
+      <section className="menu section">
+        <div className="title">
+          <h2>Menu List</h2>
+          <div className="underline"></div>
+        </div>
+        <Categories
+          categories={categories}
+          activeCategory={activeCategory}
+          filterItems={filterItems}
+        />
+        <Menu items={menuItems} />
+      </section>
+    </main>
+  );
 }
 
 export default App;
