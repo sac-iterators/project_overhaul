@@ -21,13 +21,14 @@ function ReservationForm(props){
     const [guests, setGuests] = useState(0);
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
+    const [date, setDate] = useState()
 
     const reservCollectionRef = collection(db, "reservations_Test");
 
 
     //Creates Reservation Document to database
     const createReserv = async() =>{
-        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber, notes: notes})
+        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber, notes: notes, guests: guests})
     };
 
     
@@ -66,27 +67,27 @@ function ReservationForm(props){
             <div class = "reservation-group">
                 <label for = "Total Number of Guests"> Total Number of Guests</label>
                 <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
+                    <option value = "1"> 1</option>
+                    <option value = "2"> 2</option>
+                    <option value = "3"> 3</option>
+                    <option value = "4"> 4</option>
+                    <option value = "5"> 5</option>
+                    <option value = "6"> 6</option>
+                    <option value = "7"> 7</option>
+                    <option value = "8"> 8</option>
+                    <option value = "9"> 9</option>
+                    <option value = "10"> 10</option>
                 </select>
             </div>
 
             <div class = "reservation-calendar">
                 <label for="calendar"> Select a date & time for your reservation.</label>
-                <Calendar onChange={onChange} value={value} />
+                <Calendar onChange = {(onChange) => setDate(onChange.target.value)} value = {value}/>
             </div>
 
             <div class = "reservation-group">
                 <label for = "specialNotes">Other: </label>
-                <input pattern ="\s*\S+.*" type = "text" class="form-control" id="specialNotes" 
+                <input type = "text" class="form-control" id="specialNotes" 
                 placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
             </div>
 
