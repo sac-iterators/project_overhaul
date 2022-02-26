@@ -4,7 +4,7 @@ const menu = [
         title: 'honey walnut shrimp',
         category: 'Entrees',
         price: 13.59,
-        img: './images/honeyWalnutShrimp.PNG',
+        img: '',
         desc: `DESCRIPTION OF FOOD`
     },
 

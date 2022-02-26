@@ -1,11 +1,10 @@
-import React, { Component,
-useState } from "react";
+import React, { useState } from "react";
 import Modal from "./components/Modal";
 import axios from "axios";
 import Home from "./Home";
 import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
-import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import About from './About';
 import Menu from './Menu';
 import items from "./data";
