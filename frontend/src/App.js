@@ -7,6 +7,7 @@ import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
 import Fire from './firebase/firebase-test'
+import Menu from './Menu';
 
 
  class App extends Component {
@@ -146,6 +147,8 @@ import Fire from './firebase/firebase-test'
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/fire" element={<Fire />} />
+          <Route path="/menu" element={<Menu />} />
+
         </Routes>
         
       </div>
