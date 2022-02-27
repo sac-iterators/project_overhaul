@@ -6,7 +6,9 @@ import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Switch, Route, Routes} from 'react-router-dom';
 import About from './About';
+import Fire from './firebase/firebase-test'
 import Menu from './Menu';
+
 
  class App extends Component {
   // constructor(props) {
@@ -144,7 +146,9 @@ import Menu from './Menu';
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/fire" element={<Fire />} />
           <Route path="/menu" element={<Menu />} />
+
         </Routes>
         
       </div>
