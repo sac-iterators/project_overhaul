@@ -3,7 +3,7 @@ import {Button} from 'react-bootstrap';
 import { useState, ReactDOM} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import {db} from './firebase-config';
+import { reservation_db } from '../firebase/firebaseConfig';
 import {collection, addDoc, getDocs} from 'firebase/firestore';
 
 
@@ -23,12 +23,11 @@ function ReservationForm(props){
     const [notes, setNotes] = useState("");
     const [date, setDate] = useState()
 
-    const reservCollectionRef = collection(db, "reservations_Test");
 
 
     //Creates Reservation Document to database
     const createReserv = async() =>{
-        await addDoc(reservCollectionRef, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber, notes: notes, guests: guests})
+        await addDoc(reservation_db, {fname: fname, lname: lname, email: email, phoneNum: phoneNumber, notes: notes, guests: guests})
     };
 
     
