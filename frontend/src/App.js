@@ -4,7 +4,7 @@ import axios from "axios";
 import Home from "./Home";
 import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
-import {BrowserRouter, Route, Routes} from 'react-router-dom';
+import {BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import About from './About';
 import Menu from './Menu';
 import items from "./data";
