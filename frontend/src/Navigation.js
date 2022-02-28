@@ -3,6 +3,7 @@ import React from 'react'
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
 import SignInButton from './components/SignInButton';
+import Menu from './Menu';
 import { Link } from "react-router-dom";
 
 function Navigation() {
@@ -19,7 +20,7 @@ function Navigation() {
               >
                 <Nav.Link><Link to="/">Home</Link></Nav.Link>
                 <Nav.Link><Link to="/about">About</Link></Nav.Link>
-                <Nav.Link><Link to="/menu">Order</Link></Nav.Link>
+                <Nav.Link><Link to="/menu">Menu</Link></Nav.Link>
                 {/* <NavDropdown title="Reservations" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
