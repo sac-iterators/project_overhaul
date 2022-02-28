@@ -48,7 +48,7 @@ function Home() {
           />
         ) : null}
       </main>  */}
-                            <Carousel fade style={{ maxHeight: '600px' }}>
+            <Carousel fade style={{ maxHeight: '700px' }}>
                 <Carousel.Item>
                     <img
                     className="w-100 cover-img"
