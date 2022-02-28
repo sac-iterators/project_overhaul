@@ -12,7 +12,7 @@ function CareersButton() {
 
     return (
       <>
-        <a href='#' class="text-muted" onClick={handleShow}>
+        <a href='#' onClick={handleShow}>
           Careers
         </a>
 
