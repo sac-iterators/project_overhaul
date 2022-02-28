@@ -4,13 +4,15 @@ import { getDocs } from 'firebase/firestore';
 
 
 function Fire() {
+    // Variable used to store items/information from the database
     const [food, setFood] = useState([]);
 
+    // This function runs when the page is loaded
     useEffect(() => {
+        // Const getFood will grab the documents from the database provided in getDocs()
         const getFood = async () => {
             const data = await getDocs(menu_Chow_Mein);
-            console.log(data);
-            setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+            setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    // Maps the database data to food variable
         };
 
         getFood();
