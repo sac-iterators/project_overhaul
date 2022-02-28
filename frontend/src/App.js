@@ -6,6 +6,7 @@ import Navigation from './Navigation';
 import ReservationFunc from "./components/ReservationButton";
 import {BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import About from './About';
+import Fire from './firebase/firebase-test'
 import Menu from './Menu';
 import items from "./data";
 import Categories from "./Categories";
@@ -138,7 +139,6 @@ import Categories from "./Categories";
   //   ));
   // };
 
-  /*render() {
     return (
       <BrowserRouter>
       <div className="App">
@@ -146,13 +146,14 @@ import Categories from "./Categories";
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/fire" element={<Fire />} />
           <Route path="/menu" element={<Menu />} />
+
         </Routes>
         
       </div>
     </BrowserRouter>
     );
-  }
 }
 */
 
@@ -206,5 +207,7 @@ const MenuApp = () => {
     </main>
   );
 }
+
+//}
 
 export default App;
