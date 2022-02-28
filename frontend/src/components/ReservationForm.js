@@ -18,7 +18,7 @@ function ReservationForm(props){
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
-    const [guests, setGuests] = useState(0);
+    const [guests, setGuests] = useState(1);
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
     const [date, setDate] = useState()

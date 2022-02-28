@@ -139,25 +139,7 @@ import Categories from "./Categories";
   //   ));
   // };
 
-    return (
-      <BrowserRouter>
-      <div className="App">
-        <Navigation />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/fire" element={<Fire />} />
-          <Route path="/menu" element={<Menu />} />
-
-        </Routes>
-        
-      </div>
-    </BrowserRouter>
-    );
-}
-*/
-
-const App = () => {
+  function App () {
   return (
     <BrowserRouter>
     <div className="App">
@@ -166,6 +148,7 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<MenuApp />} />
+        <Route path= "/fire" element={<Fire />}/>
       </Routes>
     </div>
   </BrowserRouter>
