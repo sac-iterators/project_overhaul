@@ -10,7 +10,7 @@ import Fire from './firebase/firebase-test'
 import Menu from './Menu';
 
 
- class App extends Component {
+ //class App extends Component {
   // constructor(props) {
   //   super(props);
   //   this.state = {
@@ -137,8 +137,7 @@ import Menu from './Menu';
   //     </li>
   //   ));
   // };
-
-  render() {
+function App(){
     return (
       <BrowserRouter>
       <div className="App">
@@ -154,7 +153,8 @@ import Menu from './Menu';
       </div>
     </BrowserRouter>
     );
-  }
 }
+
+//}
 
 export default App;
