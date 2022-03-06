@@ -11,7 +11,7 @@ function Footer() {
     document.body.appendChild(script);
 
   return (
-    <footer class="bg-white">
+    <footer class="bg-black">
       <div class="container">
         <div class="row py-4">
           <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src={logo} alt="Second slide" class="logo"/>

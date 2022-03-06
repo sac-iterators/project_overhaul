@@ -1,26 +1,26 @@
 import React from 'react'
-
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
 import SignInButton from './components/SignInButton';
 import Menu from './Menu';
 import { Link } from "react-router-dom";
+import './Navigation.css';
 
 function Navigation() {
     return (
-        <Navbar bg="light" expand="lg" sticky="top" className="navbar">
+        <Navbar scrolling  dark expand="md" fixed="top" className="navbar">
           <Container fluid>
-            <Navbar.Brand href="#">Asian N Cajun</Navbar.Brand>
+             <Navbar.Brand className="nav_title" href="#">Asian N Cajun</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
-                className="me-auto my-2 my-lg-0"
-                style={{ maxHeight: '100px' }}
+                className="ms-auto my-2 my-lg-0"
+                style={{ maxHeight: '150px' }}
                 navbarScroll
               >
-                <Nav.Link><Link to="/">Home</Link></Nav.Link>
-                <Nav.Link><Link to="/about">About</Link></Nav.Link>
-                <Nav.Link><Link to="/menu">Menu</Link></Nav.Link>
+                <Nav.Link><Link className="nav_list" to="/">Home</Link></Nav.Link>
+                <Nav.Link><Link className="nav_list"  to="/about">About</Link></Nav.Link>
+                <Nav.Link><Link  className="nav_list" to="/menu">Menu</Link></Nav.Link>
                 {/* <NavDropdown title="Reservations" id="navbarScrollingDropdown">
                   <NavDropdown.Item href="#action3">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#action4">Another action</NavDropdown.Item>
@@ -29,9 +29,10 @@ function Navigation() {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown> */}
-                <Nav.Link><ReservationButton /></Nav.Link>
+                <Nav.Link className="nav_list" ><ReservationButton /></Nav.Link>
+                <Nav.Link className="nav_list" >  <SignInButton /></Nav.Link>
               </Nav>
-              <SignInButton />
+             
               {/* <Form className="d-flex">
                 <FormControl
                   type="search"

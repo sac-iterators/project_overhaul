@@ -1,5 +1,6 @@
 .top-section {
     width: 100%;
+    height: 90vh;
 }
 
 .cover-img {
@@ -13,9 +14,65 @@
 }
 
 .intro {
-    padding: 20px 40px;
+    margin-top:20px ;
+    padding: 100px 0px;
     font-family: 'Montagu Slab', serif;
+    text-align: center;
+    color: #f3f0e2;
+    background-color: black;
 }
+.intro h1{
+    color: #dfc984;
+
+}
+.intro p{
+    font-family: "Lato",sans-serif,Times,Serif;
+    line-height: 1.7;
+    font-size: 17px;
+    height: 100%;
+    font-weight: normal;
+    position: relative;
+
+    color: #f3f0e2;
+}
+
+
+.news {
+
+    padding: 100px 0px;
+    font-family: 'Montagu Slab', serif;
+    text-align: center;
+    color: #f3f0e2;
+    background-color: black;
+}
+.news h1{
+    color: #dfc984;
+
+}
+.news p{
+    font-family: "Lato",sans-serif,Times,Serif;
+    line-height: 1.7;
+    font-size: 17px;
+    height: 100%;
+    font-weight: normal;
+    position: relative;
+
+    color: #f3f0e2;
+}
+
+.map{
+    height: 500px;
+    background: black;
+    padding: 10px;
+    
+}
+
+.map .leaflet-container{
+    height: 100%;
+    
+}
+
+
 
 .social-links{
     text-align: center;
@@ -37,7 +94,16 @@ a{
 }
 
 a:hover{
+    //color: black;
+}
+
+.menu_options{
+    padding: 80px 60px;
+    font-family: 'Montagu Slab', serif;
+    text-align: center;
     color: black;
+    background-color: #dfc984;
+
 }
 
 .intro h3 {}
