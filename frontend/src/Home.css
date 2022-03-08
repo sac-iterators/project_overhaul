@@ -35,20 +35,20 @@ a:hover{
     color: black;
 }
 
-.question {
+.item {
   border: 2px solid rgb(240, 240, 240);
   padding: 7px;
 }
-.question h6 {
+.item h6 {
   text-transform: none;
   margin: 0;
 }
-.question p {
-  color: var(--clr-grey-3);
+.item .content {
+  color: gray;
   margin-top: 5px;
   margin-bottom: 0;
 }
-.question header {
+.item header {
   display: flex;
   justify-content: space-between;
   align-items: center;
