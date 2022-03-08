@@ -45,7 +45,7 @@ function CareersButton() {
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-              <Button type="submit" variant="primary" onClick={handleClose}>Submit</Button>
+              <Button type="submit" variant="primary" accept=".docx, .doc, .pdf" onClick={handleClose}>Submit</Button>
             </Modal.Footer>
           </Modal>
         </Form>

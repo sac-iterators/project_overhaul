@@ -1,18 +1,18 @@
 function SignInForm() {
     return(
-        <form>
-
-            <div class = "user-account">
-                <label for="username" id="username" name="username">Username</label>
-                <input type="username" class="form-control" id="username" placeholder="Please enter your username."></input>
+        <>
+            <div className="user-account">
+                <label htmlFor="username">Username</label>
+                <input type="text" className="form-control" id="username" name="username" placeholder="Please enter your username."
+                maxLength="30" required></input>
             </div>
 
-            <div class = "user-account">
-                <label for="password" id="password" name="password">Password</label>
-                <input type="password" class="form-control" id="password" placeholder="Please enter your password."></input>
+            <div className="user-account">
+                <label htmlFor="password">Password</label>
+                <input type="password" className="form-control" id="password" name="password" placeholder="Please enter your password." 
+                maxLength="30" required></input>
             </div>
-
-        </form>
+        </>
     );
 }
 
