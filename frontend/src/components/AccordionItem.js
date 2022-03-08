@@ -10,7 +10,7 @@ const Item = ({ title, content }) => {
           {title}
         </h6>
         <button className='btn'>
-          {expanded ? <i class="fa-solid fa-minus"></i> : <i class="fa-solid fa-plus"></i>}
+          {expanded ? <i className="fa-solid fa-minus"></i> : <i className="fa-solid fa-plus"></i>}
         </button>
       </header>
       {expanded && <div className='content'>{content}</div>}

@@ -5,6 +5,10 @@ import AccordionMenu from './AccordionMenu';
 import CareerInfo from './CareerInfo.js'
 import { FormLabel } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
+import { applications_db, storage } from '../firebase/firebaseConfig';
+import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
+import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
+import { async } from '@firebase/util';
 
 function CareersButton() {
     const [show, setShow] = useState(false);
@@ -14,16 +18,52 @@ function CareersButton() {
     const handleShow = () => setShow(true);
     const handleChange = (val) => setValue(val);
 
+    const submit = async(e) =>{
+      e.preventDefault();
+      var positions = [];
+      for (var checkbox of document.querySelectorAll('input[type="checkbox"]:checked')) 
+        positions.push(checkbox.nextSibling.textContent);
+      
+      const fname = document.getElementById('firstname').value;
+      const lname = document.getElementById('lastname').value;
+        
+      const filename = 'gs://asian-n-cajun-db.appspot.com/resumes_test/' + lname + "_" + fname;
+      const storageRef = ref(storage, filename);
+      let result = await new Promise((resolve, reject) => {
+        try{
+          uploadBytes(storageRef, document.getElementById('resumeAttachment').files[0]);
+          resolve(true);
+        }catch(err){
+          console.log(err);
+          reject(false);
+        }
+      });
+      console.log(result);
+      if(result){
+        addDoc(applications_db, {
+          firstname: fname,
+          lastname: lname,
+          positions: positions,
+        });
+      }
+    }
+
+    function validate(){
+      document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
+      document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
+    }
+
     return (
       <>
         <a href='#' onClick={handleShow}>
           Careers
         </a>
-        <Form>
-          <Modal show={show} onHide={handleClose} className="orderModal">
-            <Modal.Header closeButton>
-              <Modal.Title>Career Sign Up</Modal.Title>
-            </Modal.Header>
+        
+        <Modal show={show} onHide={handleClose} className="orderModal">
+          <Modal.Header closeButton>
+            <Modal.Title>Career Sign Up</Modal.Title>
+          </Modal.Header>
+          <Form onSubmit={(event) => {submit(event); handleClose();}}>
             <Modal.Body>
               <AccordionMenu data={CareerInfo}/>
               <hr></hr>
@@ -39,17 +79,24 @@ function CareersButton() {
                       <FormControl type="hidden"></FormControl>
                   </div>
                   <div>
-                      <FormLabel for="resume">Resume: </FormLabel>
-                      <FormControl type="file" class="form-control" id="resumeAttachment"></FormControl>
+                  <FormLabel htmlFor="firstName">First Name: </FormLabel>
+                      <FormControl type="text" className="form-control" id="firstname" name="firstName" placeholder='John'
+                      pattern="[A-Za-z]*" maxLength="20" required></FormControl>
+
+                      <FormLabel htmlFor="lastName">Last Name: </FormLabel>
+                      <FormControl type="text" className="form-control" id="lastname" name="lastName" placeholder='Doe'
+                      pattern="[A-Za-z]*" maxLength="20" required></FormControl>
+
+                      <FormLabel htmlFor="resume">Resume: </FormLabel>
+                      <FormControl type="file" className="form-control" id="resumeAttachment" accept=".docx, .doc, .pdf" required></FormControl>
                   </div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-              <Button type="submit" variant="primary" accept=".docx, .doc, .pdf" onClick={handleClose}>Submit</Button>
+              <Button type="submit" variant="primary" onClick={validate}>Submit</Button>
             </Modal.Footer>
-          </Modal>
-        </Form>
-        
+          </Form>
+        </Modal>
       </>
     );
   }
