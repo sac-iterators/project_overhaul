@@ -25,5 +25,11 @@ const food_db = collection(db, 'food_test');
 // Create a reference to the food_test collection
 const reservation_db = collection(db, 'reservation_Test');
 
+// Reference to Chow Mein Portion of Menu
+const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
+
+const menu_Add_Ins = collection(db, "menu_Add_Ins");
+
+
 // Gather files for export
-export {food_db, reservation_db};
+export {food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein};
