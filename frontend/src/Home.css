@@ -90,7 +90,8 @@ footer .services{
 }
 
 footer .services .icons{
-    width: 75px;
+    width: 100%;
+    max-width: 75px;
 }
 
 footer .sitemap{

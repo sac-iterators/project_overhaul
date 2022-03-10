@@ -27,10 +27,10 @@ function Footer() {
             </ul>
             <hr></hr>
             <ul className="list-inline services">
-              <li><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src={grubhub} className="icons"/></a></li>
-              <li><a href="#" target="_blank"><img src={ubereats} className="icons"/></a></li>
-              <li><a href="#" target="_blank"><img src={postmates} className="icons"/></a></li>
-              <li><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank"><img src={yelp} className="icons"/></a></li>
+              <li className="list-inline-item"><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src={grubhub} className="icons"/></a></li>
+              <li className="list-inline-item"><a href="#" target="_blank"><img src={ubereats} className="icons"/></a></li>
+              <li className="list-inline-item"><a href="#" target="_blank"><img src={postmates} className="icons"/></a></li>
+              <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank"><img src={yelp} className="icons"/></a></li>
             </ul>
           </div>
           <div className="col-lg-2 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col storeinfo">
