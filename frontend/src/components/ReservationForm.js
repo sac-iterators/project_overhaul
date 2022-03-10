@@ -40,6 +40,9 @@ function ReservationForm(props){
             onMouseOver={e => e.stopPropagation()}
         >
         <Modal.Body show = {show} onHide={handleClose}>
+            <div class = "sub-header"> 
+                <large id = "reseravtion-disclaimer" class="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
+            </div>
 
             <div class = "reservation-group">
                 <label for = "firstName"> First Name</label>
@@ -70,7 +73,7 @@ function ReservationForm(props){
 
             <div class = "reservation-group">
                 <label for = "Total Number of Guests"> Total Number of Guests</label>
-                <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+                {/* <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
                     <option value = "1"> 1</option>
                     <option value = "2"> 2</option>
                     <option value = "3"> 3</option>
@@ -81,7 +84,9 @@ function ReservationForm(props){
                     <option value = "8"> 8</option>
                     <option value = "9"> 9</option>
                     <option value = "10"> 10</option>
-                </select>
+                </select> */}
+                <input type = "numberOfGuests" class="form-control" id="totalGuests"  
+                    onChange={(event) => setGuests(event.target.value)}></input>
             </div>
 
             <div class = "reservation-calendar">

@@ -3,6 +3,7 @@ import Navigation from './Navigation';
 import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
 import OrderButton from './components/OrderButton';
+import ReservationButton from './components/ReservationButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
@@ -67,8 +68,9 @@ function Home() {
                     alt="Second slide"
                     />
 
-                    <Carousel.Caption>
-                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                    <Carousel.Caption> 
+                    {/* <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3> */}
+                    <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>

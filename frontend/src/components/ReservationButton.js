@@ -14,8 +14,8 @@ function ReservationButton() {
     return (
       <>
         <a href='#' onClick={handleShow}>
-          Reservations
-        </a>
+          Reserve
+        </a> 
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
