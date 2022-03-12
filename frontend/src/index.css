@@ -85,7 +85,7 @@ p {
 }
 
 .active {
-  border-bottom: 2px solid;
+  color: black;
 }
 
 .section-center {

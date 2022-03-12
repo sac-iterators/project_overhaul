@@ -2,6 +2,7 @@ import React from 'react'
 import Navigation from './Navigation';
 import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
+import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
 import ReservationButton from './components/ReservationButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
@@ -55,7 +56,6 @@ function Home() {
                     className="w-100 cover-img"
                     src={img4}
                     alt="First slide"
-                    fluid
                     />
                     <Carousel.Caption>
                     <h3><OrderButton/>{' '}</h3>
@@ -71,6 +71,7 @@ function Home() {
                     <Carousel.Caption> 
                     {/* <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3> */}
                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
+
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>

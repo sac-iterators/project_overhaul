@@ -5,13 +5,12 @@ import React from 'react';
 import {Button} from 'react-bootstrap';
 
 
-function ReservationButton() {
+function ReservationButton(props) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-  
+    
     return (
       <>
         {/* <a href='#' onClick={handleShow}>
@@ -30,6 +29,10 @@ function ReservationButton() {
       </>
     );
   }
+
+  ReservationButton.defaultProps = {
+    text: "Reservations",
+  };
   
 // render(<ReservationButton />);
 export default ReservationButton;
