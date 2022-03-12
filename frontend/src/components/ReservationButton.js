@@ -4,19 +4,15 @@ import ReservationForm from './ReservationForm';
 import React from 'react';
 
 
-function ReservationButton() {
+function ReservationButton(props) {
     const [show, setShow] = useState(false);
   
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
-
-  
+    
     return (
       <>
-        <a href='#' onClick={handleShow}>
-          Reservations
-        </a>
-  
+        <a href="#" onClick={handleShow}>{props.text}</a>
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
             <Modal.Title>Reservation Sign Up</Modal.Title>
@@ -28,6 +24,10 @@ function ReservationButton() {
       </>
     );
   }
+
+  ReservationButton.defaultProps = {
+    text: "Reservations",
+  };
   
 // render(<ReservationButton />);
 export default ReservationButton;
