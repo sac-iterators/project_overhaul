@@ -4,7 +4,6 @@ import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
 import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
-import ReservationButton from './components/ReservationButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
