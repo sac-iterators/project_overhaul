@@ -25,12 +25,13 @@ function Footer() {
               <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank" title="yelp"><i className="fa-brands fa-yelp social"></i></a></li>
               <li className="list-inline-item"><a href="mailto:sac.iterators@gmail.com" target="_blank" title="email"><i className="fa-solid fa-envelope social"></i></a></li>
             </ul>
-            <hr></hr>
-            <ul className="list-inline services">
-              <li className="list-inline-item"><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src={grubhub} className="icons"/></a></li>
-              <li className="list-inline-item"><a href="#" target="_blank"><img src={ubereats} className="icons"/></a></li>
-              <li className="list-inline-item"><a href="#" target="_blank"><img src={postmates} className="icons"/></a></li>
-              <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank"><img src={yelp} className="icons"/></a></li>
+
+            <ul class="list-inline services">
+              <li class=""><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank"><img src="https://cdn.cdnlogo.com/logos/g/61/grubhub.svg" class="icons"/></a></li>
+              <li class=""><a href="https://www.ubereats.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMkFzaWFuJTIwTiclMjBDYWp1biUyMiUyQyUyMnJlZmVyZW5jZSUyMiUzQSUyMmM4YzlhY2FkLTRjZjEtMTg1ZS1iMDE5LWVmMmFlZmFiYWIxNSUyMiUyQyUyMnJlZmVyZW5jZVR5cGUlMjIlM0ElMjJ1YmVyX3BsYWNlcyUyMiUyQyUyMmxhdGl0dWRlJTIyJTNBMzguNjQ5MDYlMkMlMjJsb25naXR1ZGUlMjIlM0EtMTIxLjUxMDA5NjclN0Q%3D" 
+                target="_blank"><img src="https://img.icons8.com/color/48/000000/uber-eats-app.png" class="icons"/></a></li>
+              <li class=""><a href="https://postmates.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank"><img src="https://iconape.com/wp-content/files/rd/245476/png/postmates-logo.png" class="icons"/></a></li>
+
             </ul>
           </div>
           <div className="col-lg-2 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col storeinfo">

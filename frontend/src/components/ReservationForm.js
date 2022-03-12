@@ -60,8 +60,13 @@ function ReservationForm(props){
             onFocus={e => e.stopPropagation()}
             onMouseOver={e => e.stopPropagation()}
         >
+
             <Form>
                 <Modal.Body>
+                      
+                  <div class = "sub-header"> 
+                     <large id = "reseravtion-disclaimer" class="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
+                  </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="firstName"> First Name</label>
@@ -96,9 +101,10 @@ function ReservationForm(props){
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
             </div>
 
-                    <div className = "reservation-group">
-                        <label htmlFor = "Total Number of Guests"> Total Number of Guests</label>
-                        <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+            <div class = "reservation-group">
+                <label for = "Total Number of Guests"> Total Number of Guests</label>
+                {/* <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+
                     <option value = "1"> 1</option>
                     <option value = "2"> 2</option>
                     <option value = "3"> 3</option>
@@ -109,7 +115,9 @@ function ReservationForm(props){
                     <option value = "8"> 8</option>
                     <option value = "9"> 9</option>
                     <option value = "10"> 10</option>
-                </select>
+                </select> */}
+                <input type = "numberOfGuests" class="form-control" id="totalGuests"  
+                    onChange={(event) => setGuests(event.target.value)}></input>
             </div>
 
                     <div className = "reservation-calendar">
