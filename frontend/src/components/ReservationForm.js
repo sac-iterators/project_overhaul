@@ -6,17 +6,21 @@ import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { reservation_db } from '../firebase/firebaseConfig';
 import {collection, addDoc, getDocs} from 'firebase/firestore';
-import { async } from '@firebase/util';
 
+// ? Questions to decided upon
+// ? -------------------------
+// ? Research into if I need useEffect
+// ? Get date variable to not reset after clicking on a field that is not a date
+// ? 
+
+// TODO: 
 
 function ReservationForm(props){
-
-    const [value, onChange] = useState(new Date());
-
+    // TODO: Check the show states and make comments
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
 
-    //Define set variables for database
+    // * Define set variables for database
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
@@ -24,42 +28,36 @@ function ReservationForm(props){
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
 
-
+    // * Sets the date variable that is going to be sent to the database
     const [date, setDate] = useState(new Date());
 
-    //const [startDate, setStartDate] = useState(new Date());
-
-    //
+    // * UseState variable that is for storing all of the reservations
     const [reservations, setReservations] = useState([]);
 
-    // * This is the available times for each day that is selected
+    // * This is the times for each day that is selected
     const [openReservations, setOpenReservations] = useState([]);
     const [bookedReservations, setBookedReservations] = useState([]);
+
+    // Variable for setting reservations to empty
     const [emptyReservations, setEmptyReservations] = useState([]);
 
-    //
+    const today = new Date(); // Todays date
 
-    const today = new Date();
+    const maxDate = new Date(today); // Variable for storing the max date that a user is able to reserve
+    maxDate.setDate(maxDate.getDate() + 7); //  * This sets how far out a user is able to click on the dates
 
-    // ! Marked for deletion
-    // const minDate = new Date(today)
-    // minDate.setDate(minDate.getDate() - 1)
-    // console.log("Min date: " + minDate)
-
-    // ? This sets how far out a user is able to click on the dates
-    const maxDate = new Date(today);
-    maxDate.setDate(maxDate.getDate() + 7)
-
-    //
+    // Variable for a day with no reservations
     const [fullAvailability, setFullAvailability] = useState([]);
 
-
+    // * Variable for storing the time slots of a day at the restaurant
     const times = new Date(today);
-    times.setTime(times.setSeconds(0));
-    times.setTime(times.setMinutes(0));
-    times.setTime(times.setHours(8));
+    times.setTime(times.setSeconds(0)); // Sets time slot seconds to 0
+    times.setTime(times.setMinutes(0)); // Sets time slot minutes to 0
 
+    // ! Make sure that this time is not essential and then delete
+    // ! times.setTime(times.setHours(8));
 
+    // * Time blocks that are used to store the time of the daily time slots
     const elevenBlock = new Date(times.setHours(11));
     const oneBlock = new Date(times.setTime(times.setHours(13)));
     const threeBlock = new Date(times.setTime(times.setHours(15)));
@@ -68,7 +66,7 @@ function ReservationForm(props){
     const eightBlock = new Date(times.setTime(times.setHours(20)));
     const twelve = new Date(times.setTime(times.setHours(0)));
 
-
+    // * Array to store the time slots
     const timeBlocks = [
         elevenBlock,
         oneBlock,
@@ -79,38 +77,31 @@ function ReservationForm(props){
         twelve
     ];
     
-
+    // * Function to initiate the availability of a day with no reservations 
     function initTime() {
-
-        timeBlocks.forEach(time => {
-            setFullAvailability(fullAvailability => [...fullAvailability, time]);
+        timeBlocks.forEach(time => { // Iterates through each time block
+            setFullAvailability(fullAvailability => [...fullAvailability, time]); // * Sets full availability to time slots
         });
-
     }
 
+    // * If fullAvailability does not exist, then create it
     if (fullAvailability.length === 0) initTime();
 
-    //Function that runs when date is changed
+    // * Function that runs when date is changed
     function onDateChange(newDate) {
-        setOpenReservations(emptyReservations);
+        setOpenReservations(emptyReservations); // Set open resrvations to empty
+        setDate(newDate); // Set date (that is returned to database) to the date clicked/changed-to
 
-        setDate(newDate);
-        
-        //Call funtion to check date 
-        //If date has availibility pop-up hours option
-        //  If not tell user that day is fully booked
-
-        checkDate(newDate);
+        checkDate(newDate); // Pass date clicked/changed-to to the checkDate() function
         console.log(openReservations);
         console.log(fullAvailability);
         console.log(bookedReservations);
     }
 
-    
+    // * Functon that runs to check date
     function checkDate(date) {
-        //Check for dates
-        // TODO: Handle holidays/edge cases
-
+        // TODO: Handle holidays/edge 
+        
         // ? Consider moving this code to onDateChange to decrease loading amount
         const getReservations = async () => {
             const data = await getDocs(reservation_db);
@@ -121,37 +112,24 @@ function ReservationForm(props){
 
         setBookedReservations(emptyReservations);
 
-        // * Loops through all reservations
-        reservations.forEach(item => {
+        reservations.forEach(item => { // Loops through all reservations 
 
-            //setOpenReservations(fullAvailability);
-            
-            // If there is a reservation already on the same date
+            // ? If there is a reservation already on the same date
             if (item.date === date.toDateString()) {
-                console.log(date.toDateString());
-                
-                // TODO: Create pop up with list of remaining availibilities
-                // * GIVE: pop up props list of closed availibilities
-                // * GET: time choice
+                console.log("DEBUG | Clicked date: " + date.toDateString()); // Debug message
 
-                
+                // Set booked reservations to each reservation item that exists that equals a reservation date
                 setBookedReservations(bookedReservations => [...bookedReservations, item.time]);
-                
+
+                // ? Do I need this todo?
                 // TODO: Store time choice to the date variable
-
-                return;
             } 
-            else { // No reservations exist on the same day
-                // TODO: Create pop up with full availibility
-                // * GET: time chioce
-
-                
-
-
+            else { // * No reservations exist on the same day
+                // TODO: Decide if I want to deal with this case
             }
         });
 
-        // TODO : Use the bookedReservations to remove from open
+        // * Uses the bookedReservations to remove from fullAvailability and store it to bookedReservations
         fullAvailability.forEach(slot => {
             if (!bookedReservations.includes(slot)) {
                 setOpenReservations(openReservations => [...openReservations, slot]);
@@ -159,13 +137,7 @@ function ReservationForm(props){
         });
     }
 
-
-    //Function that runs to check times on clicked day
-    //If
-
-
-
-    //Creates Reservation Document to database
+    // * Creates Reservation Document that is sent to database
     const createReserv = async() => {
         await addDoc(reservation_db, {
             fname: fname, 
@@ -181,17 +153,15 @@ function ReservationForm(props){
         })
     };
 
-    // * If time is clicked
+    // * If time slot for date is clicked
     function timeClick(clicked_time) {
-        // TODO: Store time choice & reset booked reservations
-        setBookedReservations(emptyReservations);
-        const val = new Date(clicked_time.target.value);
+        setBookedReservations(emptyReservations); // Resets bookedReservations
+        const val = new Date(clicked_time.target.value); // Val = clicked time value
 
-        console.log(val.toLocaleTimeString());
-        console.log(date.toLocaleTimeString());
-
-        // New date 
-        date.setTime(val.getTime());
+        console.log(val.toLocaleTimeString()); // Debug
+        console.log(date.toLocaleTimeString()); // Debug
+ 
+        date.setTime(val.getTime()); // Date's time is set to val
         console.log(date);
     }
 
@@ -230,7 +200,6 @@ function ReservationForm(props){
                 <input type = "phoneNumber" class="form-control" id="phoneNumber" placeholder="Enter your preffered phone number." 
                     onChange={(event) => setPhoneNumber(event.target.value)}></input>
                 <small id = "numberAreacode" class="form-text text-muted">Please incldude your area code.</small>
-
             </div>
 
             <div class = "reservation-group">
@@ -262,30 +231,13 @@ function ReservationForm(props){
 
                 <label for="time"> Choose an available time </label>
                 
-                {/*/ isFull ? x : y*/}
-
+                {/* To check for full availability
+                / isFull ? x : y*/}
                 {openReservations.map((time) => {
                     return <div>
                         <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
                     </div>
                 })}
-
-                {/* <div className='res_teset'>
-                    {reservations.map((item) => 
-                        { return <div key={item.id}> 
-                        <p>email: {item.email}</p>
-                        <p>fname: {item.fname}</p>
-                        <p>guests: {item.guests}</p>
-                        <p>lname: {item.lname}</p>
-                        <p>notes: {item.notes}</p>
-                        <p>phoneNum: {item.phoneNum}</p>
-                        <p>date: {item.date}</p>
-                        <p>time: {item.time}</p>
-                        </div>
-                    })}
-                </div> */}
-
-
             </div>
 
             <div class = "reservation-group">
