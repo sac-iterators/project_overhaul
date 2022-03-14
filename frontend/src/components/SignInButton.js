@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
-import SignInForm from "./SignInForm";
+import { Modal, Button, Form } from "react-bootstrap";
+import SignInForm from "./SignInForm"
 
 function SignInButton() {
     const [show, setShow] = useState(false);
@@ -18,19 +18,20 @@ function SignInButton() {
                 <Modal.Header closeButton>
                     <Modal.Title>Sign in</Modal.Title>
                 </Modal.Header>
+                <Form>
+                    <Modal.Body>
+                        <SignInForm/>
+                    </Modal.Body>
 
-                <Modal.Body>
-                    <SignInForm />
-                </Modal.Body>
-
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Cancel
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Sign in
-                    </Button>
-                </Modal.Footer>
+                    <Modal.Footer>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cancel
+                        </Button>
+                        <Button type="submit" variant="primary" >
+                            Sign in
+                        </Button>
+                    </Modal.Footer>
+                </Form>
             </Modal>
         </>
     );
