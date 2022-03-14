@@ -35,6 +35,8 @@ const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
 
 const menu_Add_Ins = collection(db, "menu_Add_Ins");
 
+// Reference to Job listings collection
+const job_listings = collection(db, "job_listings");
 
 // Gather files for export
-export {food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage};
+export {food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings};

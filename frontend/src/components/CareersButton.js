@@ -1,22 +1,32 @@
 import Modal from 'react-bootstrap/Modal'
 import {Form, ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap';
-import { useState, ReactDOM} from 'react';
+import { useState, useEffect, ReactDOM} from 'react';
 import AccordionMenu from './AccordionMenu';
-import CareerInfo from './CareerInfo.js'
 import { FormLabel } from 'react-bootstrap';
 import { FormControl } from 'react-bootstrap';
 import { applications_db, storage } from '../firebase/firebaseConfig';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
 import { async } from '@firebase/util';
+import { job_listings } from '../firebase/firebaseConfig';
 
 function CareersButton() {
     const [show, setShow] = useState(false);
     const [value, setValue] = useState();
+    const [pos, setPos] = useState([]);
+    const [info, setInfo] = useState([]);
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleChange = (val) => setValue(val);
+
+    useEffect(() => {
+      const getPos = async () => {
+          const data = await getDocs(job_listings);
+          setPos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+        };
+      getPos();
+    }, []);
 
     const submit = async(e) =>{
       e.preventDefault();
@@ -38,7 +48,6 @@ function CareersButton() {
           reject(false);
         }
       });
-      console.log(result);
       if(result){
         addDoc(applications_db, {
           firstname: fname,
@@ -65,17 +74,20 @@ function CareersButton() {
           </Modal.Header>
           <Form onSubmit={(event) => {submit(event); handleClose();}}>
             <Modal.Body>
-              <AccordionMenu data={CareerInfo}/>
+              <AccordionMenu data={pos}/>
               <hr></hr>
                   <div>
                       <FormLabel>What positions are your interested in?</FormLabel>
-                      <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
-                        <ToggleButton id="tbg-btn-1" variant="outline-dark" size="sm" className='mx-1' value={1}>Pos1</ToggleButton>
-                        <ToggleButton id="tbg-btn-2" variant="outline-dark" size="sm" className='mx-1' value={2}>Pos2</ToggleButton>
-                        <ToggleButton id="tbg-btn-3" variant="outline-dark" size="sm" className='mx-1' value={3}>Pos3</ToggleButton>
-                        <ToggleButton id="tbg-btn-4" variant="outline-dark" size="sm" className='mx-1' value={4}>Pos4</ToggleButton>
-                        <ToggleButton id="tbg-btn-5" variant="outline-dark" size="sm" className='mx-1' value={5}>Pos5</ToggleButton>
-                      </ToggleButtonGroup>
+                        <ToggleButtonGroup type="checkbox" value={value} onChange={handleChange}>
+                          {pos.map((item) => {
+                            return (
+                              <ToggleButton id={`tbg-btn-${item.id}`} key={item.id} variant="outline-dark" size="sm" 
+                              className='mx-1' value={item.id}>
+                                {item.title}
+                              </ToggleButton>
+                            );
+                          })}
+                        </ToggleButtonGroup>
                       <FormControl type="hidden"></FormControl>
                   </div>
                   <div>
@@ -88,7 +100,7 @@ function CareersButton() {
                       pattern="[A-Za-z]*" maxLength="20" required></FormControl>
 
                       <FormLabel htmlFor="resume">Resume: </FormLabel>
-                      <FormControl type="file" className="form-control" id="resumeAttachment" accept=".docx, .doc, .pdf" required></FormControl>
+                      <FormControl type="file" className="form-control" id="resumeAttachment" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required></FormControl>
                   </div>
             </Modal.Body>
             <Modal.Footer>
