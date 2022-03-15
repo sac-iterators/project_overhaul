@@ -91,9 +91,9 @@ function ReservationForm(props){
         setDate(newDate); // Set date (that is returned to database) to the date clicked/changed-to
 
         checkDate(newDate); // Pass date clicked/changed-to to the checkDate() function
-        console.log(openReservations);
-        console.log(fullAvailability);
-        console.log(bookedReservations);
+        // ! DEBUG: console.log(openReservations);
+        // ! DEBUG: console.log(fullAvailability);
+        // ! DEBUG: console.log(bookedReservations);
     }
 
     // * Functon that runs to check date
@@ -220,12 +220,6 @@ function ReservationForm(props){
                 </select>
             </div>
 
-            <div class = "reservation-group">
-                <label for = "specialNotes">Other: </label>
-                <input type = "text" class="form-control" id="specialNotes" 
-                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
-            </div>
-
             <div class = "reservation-calendar">
                 <label for="calendar"> Select a date & time for your reservation.</label>
                 <Calendar 
@@ -246,6 +240,12 @@ function ReservationForm(props){
                         <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
                     </div>
                 })}
+            </div>
+
+            <div class = "reservation-group">
+                <label for = "specialNotes">Other: </label>
+                <input type = "text" class="form-control" id="specialNotes" 
+                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
             </div>
 
             </Modal.Body>
