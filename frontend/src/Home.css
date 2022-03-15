@@ -9,7 +9,11 @@
 }
 
 .logo{
-    width: 100%;
+    width: 100%; 
+}
+
+.menu .logo{
+    width: 30%;
 }
 
 .intro {
