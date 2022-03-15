@@ -14,15 +14,13 @@ function Footer() {
   script.crossOrigin = 'anonymous';
   document.body.appendChild(script);
   return (
-    <footer className="bg-white">
-      <div className="container">
-        <div className="row py-4">
-          <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col">
-            <img src={logo} alt="Second slide" className="w-100 logo"/>
-            <ul className="list-inline text-center">
-              <li className="list-inline-item"><a href="http://www.facebook.com/asianncajun2" target="_blank" title="facebook"><i className="fa fa-facebook social"></i></a></li>
-              <li className="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i className="fa fa-instagram social"></i></a></li>
-              <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank" title="yelp"><i className="fa-brands fa-yelp social"></i></a></li>
+    <footer class="bg-black">
+      <div class="container">
+        <div class="row py-4">
+          <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src={logo} alt="Second slide" class="logo"/>
+            <ul class="list-inline social-links">
+              <li class="list-inline-item"><a href="http://www.facebook.com/asianncajun2" target="_blank" title="facebook"><i class="fa fa-facebook social"></i></a></li>
+              <li class="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i class="fa fa-instagram social"></i></a></li>
               <li className="list-inline-item"><a href="mailto:sac.iterators@gmail.com" target="_blank" title="email"><i className="fa-solid fa-envelope social"></i></a></li>
             </ul>
 
