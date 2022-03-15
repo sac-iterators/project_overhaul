@@ -64,7 +64,6 @@ function ReservationForm(props){
     const fiveBlock = new Date(times.setTime(times.setHours(17)));
     const sevenBlock = new Date(times.setTime(times.setHours(19)));
     const eightBlock = new Date(times.setTime(times.setHours(20)));
-    const twelve = new Date(times.setTime(times.setHours(0)));
 
     // * Array to store the time slots
     const timeBlocks = [
@@ -74,7 +73,6 @@ function ReservationForm(props){
         fiveBlock,
         sevenBlock,
         eightBlock,
-        twelve
     ];
     
     // * Function to initiate the availability of a day with no reservations 
@@ -114,6 +112,8 @@ function ReservationForm(props){
 
         reservations.forEach(item => { // Loops through all reservations 
 
+            console.log('ITEM: ' + item.date);
+            console.log("date " + date.toDateString());
             // ? If there is a reservation already on the same date
             if (item.date === date.toDateString()) {
                 console.log("DEBUG | Clicked date: " + date.toDateString()); // Debug message
@@ -131,7 +131,9 @@ function ReservationForm(props){
 
         // * Uses the bookedReservations to remove from fullAvailability and store it to bookedReservations
         fullAvailability.forEach(slot => {
-            if (!bookedReservations.includes(slot)) {
+            console.log(slot.toLocaleTimeString());
+            console.log(bookedReservations);
+            if (!bookedReservations.includes(slot.toLocaleTimeString())) {
                 setOpenReservations(openReservations => [...openReservations, slot]);
             }
         });
@@ -146,10 +148,8 @@ function ReservationForm(props){
             phoneNum: phoneNumber, 
             notes: notes, 
             guests: guests,
-            timestamp: {
-                date: date.toDateString(),
-                time: date.toLocaleTimeString()
-            }
+            date: date.toDateString(),
+            time: date.toLocaleTimeString()
         })
     };
 
@@ -160,15 +160,17 @@ function ReservationForm(props){
 
         console.log(val.toLocaleTimeString()); // Debug
         console.log(date.toLocaleTimeString()); // Debug
+        console.log(date);
+
  
-        date.setTime(val.getTime()); // Date's time is set to val
+        date.setHours(val.getHours()); // Date's time is set to val
         console.log(date);
     }
 
     
 
-    return(
-        <div
+        return(
+            <div
             onKeyDown={e => e.stopPropagation()}
             onClick={e => e.stopPropagation()}
             onFocus={e => e.stopPropagation()}
@@ -218,6 +220,12 @@ function ReservationForm(props){
                 </select>
             </div>
 
+            <div class = "reservation-group">
+                <label for = "specialNotes">Other: </label>
+                <input type = "text" class="form-control" id="specialNotes" 
+                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
+            </div>
+
             <div class = "reservation-calendar">
                 <label for="calendar"> Select a date & time for your reservation.</label>
                 <Calendar 
@@ -238,12 +246,6 @@ function ReservationForm(props){
                         <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
                     </div>
                 })}
-            </div>
-
-            <div class = "reservation-group">
-                <label for = "specialNotes">Other: </label>
-                <input type = "text" class="form-control" id="specialNotes" 
-                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
             </div>
 
             </Modal.Body>
