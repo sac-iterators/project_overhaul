@@ -2,6 +2,7 @@ import React from 'react'
 import Navigation from './Navigation';
 import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
+import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
@@ -12,6 +13,9 @@ import img5 from './img/img-5.jpeg';
 import img6 from './img/img-6.jpg';
 import img7 from './img/img-7.jpeg';
 import './Home.css';
+import Map from './components/Map';
+import 'leaflet/dist/leaflet.css';
+
 
 function Home() {
     return (
@@ -48,13 +52,12 @@ function Home() {
           />
         ) : null}
       </main>  */}
-            <Carousel fade style={{ maxHeight: '700px' }}>
+            <Carousel fade style={{ minHeight: '90vh' }}>
                 <Carousel.Item>
                     <img
-                    className="w-100 cover-img"
-                    src={img4}
+                    className="d-block w-100"
+                    src={img1}
                     alt="First slide"
-                    fluid
                     />
                     <Carousel.Caption>
                     <h3><OrderButton/>{' '}</h3>
@@ -62,19 +65,21 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="w-100 cover-img"
+                    className="w-100 d-block"
                     src={img1}
                     alt="Second slide"
                     />
 
-                    <Carousel.Caption>
-                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                    <Carousel.Caption> 
+                    {/* <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3> */}
+                    <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
+
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="d-block w-100 cover-img"
-                    src={img3}
+                    className="d-block w-100 "
+                    src={img1}
                     alt="Third slide"
                     />
 
@@ -86,77 +91,88 @@ function Home() {
                 </Carousel>
             </div>
             <div className="intro">
-                <h2>Welcome to Asian N Cajun</h2>
+                <h1>Welcome to Asian N Cajun</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    
+                </p>
+                <p>
                     At consectetur lorem donec massa sapien. Euismod lacinia at quis 
+                    risus sed vulputate odio ut. At consectetur lorem donec massa sapien. <br />Euismod lacinia at quis 
                     risus sed vulputate odio ut.
                 </p>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                </p>
+                <p>
                     At consectetur lorem donec massa sapien. Euismod lacinia at quis 
                     risus sed vulputate odio ut.
                 </p>
+                <p>
+                    At consectetur lorem donec massa sapien. Euismod lacinia at quis 
+                    risus sed vulputate odio ut.
+                    At consectetur lorem donec massa sapien. <br />Euismod lacinia at quis 
+                    risus sed vulputate odio ut.
+                </p>
             </div>
-            <div>
-                <Card className="text-center">
-                    <Card.Header>Featured</Card.Header>
-                    <Card.Body>
-                        <Card.Title>Menu</Card.Title>
-                        <Card.Text>
-                            orem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. At consectetur lorem donec massa sapien. Euismod lacinia at quis risus sed vulputate odio ut.
-                        </Card.Text>
-                        <Button variant="primary">View Full Menu</Button>
-                    </Card.Body>
-                    <Card.Footer className="text-muted"></Card.Footer>
-                </Card>
+            <div className="menu_options">
+                <CardGroup>
+                    <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
+                        <Card.Body>
+                            <Card.Title>MENU</Card.Title>
+                            <Card.Link href="#">View Menus &#8594; </Card.Link>
+                   
+                        </Card.Body>
+                    </Card>
+                    <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
+                        <Card.Body>
+                            <Card.Title>Book A Table</Card.Title>
+                            <Card.Link href="#">Reserve &#8594;</Card.Link>
+                            
+                        </Card.Body>
+                    </Card>
+                </CardGroup>
             </div>
-            <div>
+
+
+             <div>
                 <CardGroup>
                     <Card>
                         <Card.Img variant="top" src={img7} className="cover-img"/>
-                        <Card.Body>
-                            <Card.Title>Soup</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This content is a little bit longer.
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            {/* <small className="text-muted">Last updated 3 mins ago</small> */}
-                        </Card.Footer>
+            
                     </Card>
                     <Card>
                         <Card.Img variant="top" src={img6} className="cover-img"/>
-                        <Card.Body>
-                            <Card.Title>Dessert</Card.Title>
-                            <Card.Text>
-                                This card has supporting text below as a natural lead-in to additional
-                                content.{' '}
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            {/* <small className="text-muted">Last updated 3 mins ago</small> */}
-                        </Card.Footer>
+              
                     </Card>
                     <Card>
                         <Card.Img variant="top" src={img5} className="cover-img"/>
-                        <Card.Body>
-                            <Card.Title>Pizza</Card.Title>
-                            <Card.Text>
-                                This is a wider card with supporting text below as a natural lead-in to
-                                additional content. This card has even longer content than the first to
-                                show that equal height action.
-                            </Card.Text>
-                        </Card.Body>
-                        <Card.Footer>
-                            {/* <small className="text-muted">Last updated 3 mins ago</small> */}
-                        </Card.Footer>
+            
                     </Card>
                 </CardGroup>
+            </div> 
+            <div className="news">
+                <h1>Sign Up to our Newsletter</h1>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
+                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                    
+                </p>
+                <Button variant="secondary" size="lg">
+                    Submit
+                </Button>
+
+               
             </div>   
+            <div className="map">
+
+                  <Map />
+
+            </div>
+            
+            
             <Footer/>         
         </div>
     )
