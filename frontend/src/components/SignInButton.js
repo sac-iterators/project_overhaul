@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { Modal, Button } from "react-bootstrap";
-import SignInForm from "./SignInForm";
+import { Modal, Button, Form } from "react-bootstrap";
+import SignInForm from "./SignInForm"
 
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle, signInWithFacebook } from "../firebase/firebaseConfig";
@@ -29,6 +29,10 @@ function SignInButton() {
                 <Modal.Header closeButton>
                     <Modal.Title>Sign In</Modal.Title>
                 </Modal.Header>
+                <Form>
+                    <Modal.Body>
+                        <SignInForm/>
+                    </Modal.Body>
 
                 <Modal.Body>
                     <div className="login">

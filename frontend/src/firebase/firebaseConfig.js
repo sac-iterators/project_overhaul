@@ -1,7 +1,8 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore, query, getDocs,  collection, where, addDoc } from '@firebase/firestore';
+import { getFirestore, query, getDocs,  collection, where, addDoc, doc, setDoc } from '@firebase/firestore';
 import { GoogleAuthProvider, FacebookAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
 import "firebase/auth"
+import { getStorage } from '@firebase/storage';
 
 // Configuration file for firebase
 const firebaseConfig = {
@@ -23,12 +24,16 @@ const auth = getAuth(app)
 
 // Get a reference to the database service
 const db = getFirestore(app);
+const storage = getStorage(app);
 
 // Create a reference to the food_test collection
 const food_db = collection(db, 'food_test');
 
 // Create a reference to the food_test collection
 const reservation_db = collection(db, 'reservation_Test');
+
+// Create a reference to the applications collection
+const applications_db = collection(db, 'applications');
 
 // Reference to Chow Mein Portion of Menu
 const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
