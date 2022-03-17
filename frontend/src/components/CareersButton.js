@@ -8,7 +8,8 @@ import { applications_db, storage } from '../firebase/firebaseConfig';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
 import { async } from '@firebase/util';
-import { job_listings } from '../firebase/firebaseConfig';
+import { job_listings, job_listings_test } from '../firebase/firebaseConfig';
+import application from '../resources/EmploymentApplication.docx'
 
 function CareersButton() {
     const [show, setShow] = useState(false);
@@ -26,6 +27,12 @@ function CareersButton() {
           setPos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
         };
       getPos();
+      
+      const getInfo = async () => {
+        const data = await getDocs(job_listings_test);
+        setInfo(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+      };
+      getInfo();
     }, []);
 
     const submit = async(e) =>{
@@ -58,8 +65,9 @@ function CareersButton() {
     }
 
     function validate(){
-      document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
+      /*document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
       document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
+      */
     }
 
     return (
@@ -74,7 +82,7 @@ function CareersButton() {
           </Modal.Header>
           <Form onSubmit={(event) => {submit(event); handleClose();}}>
             <Modal.Body>
-              <AccordionMenu data={pos}/>
+              <AccordionMenu data={info}/>
               <hr></hr>
                   <div>
                       <FormLabel>What positions are your interested in?</FormLabel>
@@ -99,8 +107,10 @@ function CareersButton() {
                       <FormControl type="text" className="form-control" id="lastname" name="lastName" placeholder='Doe'
                       pattern="[A-Za-z]*" maxLength="20" required></FormControl>
 
-                      <FormLabel htmlFor="resume">Resume: </FormLabel>
-                      <FormControl type="file" className="form-control" id="resumeAttachment" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" required></FormControl>
+                      <FormLabel htmlFor="resume">
+                        Please fill out the <a href={application} download="EmploymentApplication.doc" className='hypertext'>Employment Application</a> and attach below.
+                      </FormLabel>
+                      <FormControl type="file" className="form-control" id="resumeAttachment" name="resume" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple required></FormControl>
                   </div>
             </Modal.Body>
             <Modal.Footer>

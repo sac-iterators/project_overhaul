@@ -42,6 +42,8 @@ const menu_Add_Ins = collection(db, "menu_Add_Ins");
 
 const job_listings = collection(db, "job_listings");
 
+const job_listings_test = collection(db, "job_listings_test");
+
 const googleProvider = new GoogleAuthProvider();
 
 const facebookProvider = new FacebookAuthProvider();
@@ -94,5 +96,5 @@ const logout = () => {
 
 
 // Gather files for export
-export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings};
+export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, job_listings_test};
 
