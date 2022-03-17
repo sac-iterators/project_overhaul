@@ -40,9 +40,6 @@
     color: #f3f0e2;
 }
 
-<<<<<<< HEAD
-=======
-
 .news {
 
     padding: 100px 0px;
@@ -85,7 +82,6 @@
     margin: 5px;
 }
 
->>>>>>> harjap
 .social{
     font-size: 40px;
     padding: 10px;
@@ -97,7 +93,7 @@ a{
 }
 
 a:hover{
-    //color: black;
+    /*color: black;*/
 }
 
 .menu_options{
