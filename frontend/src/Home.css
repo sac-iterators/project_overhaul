@@ -1,5 +1,10 @@
+.navbar a{
+    padding: 0 10px;
+}
+
 .top-section {
     width: 100%;
+    height: 90vh;
 }
 
 .cover-img {
@@ -8,18 +13,78 @@
     height: 50vh;
 }
 
+
+.carousel button a{
+    color: inherit;
+}
 .logo{
     width: 100%; 
 }
 
 .menu .logo{
     width: 30%;
+
 }
 
 .intro {
-    padding: 20px 40px;
+    margin-top:20px ;
+    padding: 100px 0px;
     font-family: 'Montagu Slab', serif;
+    text-align: center;
+    color: #f3f0e2;
+    background-color: black;
 }
+.intro h1{
+    color: #dfc984;
+
+}
+.intro p{
+    font-family: "Lato",sans-serif,Times,Serif;
+    line-height: 1.7;
+    font-size: 17px;
+    height: 100%;
+    font-weight: normal;
+    position: relative;
+
+    color: #f3f0e2;
+}
+
+.news {
+
+    padding: 100px 0px;
+    font-family: 'Montagu Slab', serif;
+    text-align: center;
+    color: #f3f0e2;
+    background-color: black;
+}
+.news h1{
+    color: #dfc984;
+
+}
+.news p{
+    font-family: "Lato",sans-serif,Times,Serif;
+    line-height: 1.7;
+    font-size: 17px;
+    height: 100%;
+    font-weight: normal;
+    position: relative;
+
+    color: #f3f0e2;
+}
+
+.map{
+    height: 500px;
+    background: black;
+    padding: 10px;
+    
+}
+
+.map .leaflet-container{
+    height: 100%;
+    
+}
+
+
 
 .social-links{
     text-align: center;
@@ -31,35 +96,38 @@
     padding: 10px;
 }
 
-footer div:nth-child(4){
-    text-align: right;
-}
-
 a{
     color: gray;
     text-decoration: none;
 }
 
 a:hover{
-    color: black;
+    /*color: black;*/
 }
 
-.intro h3 {}
+.menu_options{
+    padding: 80px 60px;
+    font-family: 'Montagu Slab', serif;
+    text-align: center;
+    color: black;
+    background-color: #dfc984;
 
-.question {
+}
+
+.item {
   border: 2px solid rgb(240, 240, 240);
   padding: 7px;
 }
-.question h6 {
+.item h6 {
   text-transform: none;
   margin: 0;
 }
-.question p {
-  color: var(--clr-grey-3);
+.item .content {
+  color: gray;
   margin-top: 5px;
   margin-bottom: 0;
 }
-.question header {
+.item header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -68,59 +136,83 @@ a:hover{
 
 .about .top-section{
     background: url('./img/img-1.jpeg');
-    height: 92vh;
-}
-
-.about .top-section .panel{
-    width: 50vw;
-    height: 80vh;
-    background-color: rgba(255, 255, 255, 0.5);
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.panel .intro{
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.about .top-section .panel .intro h2{
-    text-align: center;
-}
-
-.services{
+    min-height: 92vh;
+    padding: auto;
     display: flex;
-    text-align: center;
-    justify-content: space-between;
     align-items: center;
-    height: 60px;
+    justify-content: center;
 }
 
-.services .icons{
-    width: 50px;
+.panel{
+    width: 50vw;
+    margin: 20px 0;
+    background-color: rgb(255, 255, 255, 0.5);
+    padding: 5vh 5vw;
+}
+
+.panel h2{
+    text-align: center;
+}
+
+.panel p{
+    color: black;
 }
 
 .services .icons:hover{
-    filter: drop-shadow(0 10px 10px black);
+    filter: drop-shadow(0 5px 5px black);
+}
+
+footer .services{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .services .icons{
+    width: 100%;
+    max-width: 75px;
+}
+
+footer .sitemap{
+    text-align: right;
 }
 
 .hours{
     white-space: pre;
 }
 
-.service-select li{
-    text-align: center;
-}
-
-.service-select li:hover{
-    filter: drop-shadow(0 10px 10px gray);
-}
-
-.obviousLink{
+.hypertext{
     text-decoration: underline;
     font-weight: 500;
+    color: blue;
+}
+
+/************************************************** Bootstrap col-md */
+@media only screen and (max-width: 991px) {
+    .panel{
+        width: 90vw;
+    }
+    
+    footer .logo{
+        text-align: left;
+    }
+
+    footer .storeinfo{
+        text-align: right;
+    }
+
+    
+}
+
+/************************************************** Bootstrap col-sm */
+@media only screen and (max-width: 767px) {
+
+    footer .logo{
+        display: none;
+    }
+
+    footer .container .col{
+        text-align: center;
+        padding-bottom: 5%;
+    }
 }
