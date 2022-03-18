@@ -7,6 +7,7 @@ import Fire from './firebase/firebase-test'
 import Menu from './Menu';
 import items from "./data";
 import Categories from "./Categories";
+import logo from "./img/logo.jpg"; // this could be a placeholder until we get their official logo
 
 function App () {
   return (
@@ -47,6 +48,7 @@ const MenuApp = () => {
     <main>
       <section className="menu section">
         <div className="title">
+          <img src={logo} className="logo" />
           <h2>Menu List</h2>
           <div className="underline"></div>
         </div>
