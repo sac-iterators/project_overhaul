@@ -13,8 +13,17 @@
     height: 50vh;
 }
 
+
 .carousel button a{
     color: inherit;
+}
+.logo{
+    width: 100%; 
+}
+
+.menu .logo{
+    width: 30%;
+
 }
 
 .intro {
