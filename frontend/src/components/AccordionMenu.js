@@ -1,16 +1,16 @@
 import { useState, ReactDOM} from 'react';
-import SingleQuestion from './SingleQuestion';
-import data from './CareerInfo'
+import AccordionItem from './AccordionItem';
 
-function AccordionMenu(){
+function AccordionMenu(props){
 
-    const [CareerInfo, setQuestions] = useState(data)
+    const [menu, setItem] = useState(props.data)
 
     return(
         <div className='container'>
             <section className='info'>
-                {CareerInfo.map((question) => (
-                    <SingleQuestion key={question.id} {...question} />
+            {console.log(props)}
+                {menu.map((item) => (
+                    <AccordionItem key={item.id}{...item} />
                 ))}
             </section>
         </div>
