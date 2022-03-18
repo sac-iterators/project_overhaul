@@ -13,8 +13,17 @@
     height: 50vh;
 }
 
+
 .carousel button a{
     color: inherit;
+}
+.logo{
+    width: 100%; 
+}
+
+.menu .logo{
+    width: 30%;
+
 }
 
 .intro {
@@ -39,9 +48,6 @@
 
     color: #f3f0e2;
 }
-
-<<<<<<< HEAD
-=======
 
 .news {
 
@@ -85,7 +91,6 @@
     margin: 5px;
 }
 
->>>>>>> harjap
 .social{
     font-size: 40px;
     padding: 10px;
@@ -97,7 +102,7 @@ a{
 }
 
 a:hover{
-    //color: black;
+    /*color: black;*/
 }
 
 .menu_options{

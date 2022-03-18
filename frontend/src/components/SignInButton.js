@@ -51,6 +51,7 @@ function SignInButton() {
                         Sign in
                     </Button> */}
                 </Modal.Footer>
+                </Form>
             </Modal>
         </>
     );
