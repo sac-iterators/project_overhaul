@@ -8,6 +8,7 @@ function AccordionMenu(props){
     return(
         <div className='container'>
             <section className='info'>
+            {console.log(props)}
                 {menu.map((item) => (
                     <AccordionItem key={item.id}{...item} />
                 ))}
