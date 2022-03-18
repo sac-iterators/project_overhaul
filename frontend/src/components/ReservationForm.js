@@ -201,8 +201,8 @@ function ReservationForm(props){
             <Form>
                 <Modal.Body>
                       
-                  <div class = "sub-header"> 
-                     <large id = "reseravtion-disclaimer" class="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
+                  <div className = "sub-header"> 
+                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
                   </div>
 
                     <div className = "reservation-group">
@@ -238,9 +238,9 @@ function ReservationForm(props){
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
             </div>
 
-            <div class = "reservation-group">
+            <div className = "reservation-group">
                 <label for = "Total Number of Guests"> Total Number of Guests</label>
-                {/* <select class="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+                {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
 
                     <option value = "1"> 1</option>
                     <option value = "2"> 2</option>
@@ -253,11 +253,11 @@ function ReservationForm(props){
                     <option value = "9"> 9</option>
                     <option value = "10"> 10</option>
                 </select> */}
-                <input type = "numberOfGuests" class="form-control" id="totalGuests"  
+                <input type = "numberOfGuests" className="form-control" id="totalGuests"  
                     onChange={(event) => setGuests(event.target.value)}></input>
             </div>
 
-            <div class = "reservation-calendar">
+            <div className = "reservation-calendar">
                 <label for="calendar"> Select a date & time for your reservation.</label>
                 <Calendar 
                     onClickDay= {(e) => {
