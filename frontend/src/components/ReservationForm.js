@@ -167,10 +167,37 @@ function ReservationForm(props){
         console.log(date);
     }
 
+
     function validate(){
-        document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
-        document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
-        document.getElementById('phoneNumber').oninvalid.setCustomValidity('test');
+        // document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
+        // document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
+        // document.getElementById('phoneNumber').oninvalid.setCustomValidity('test');
+
+        const valid = true;
+        if (fname ==''){
+            const valid = false;
+            console.log("No first name");
+        }
+        else if (lname ==''){
+            const valid = false;
+            console.log("No last name");
+        }
+        else if(phoneNumber <= 10){
+            const valid =  false;
+            console.log("Phone number is not at least 10 numbers");
+        }
+        else if(guests <= 7){
+            const valid = false;
+            console.log("Number of guests is less than 8")
+        }
+        else if (guests > 10){
+            const valid = false;
+            alert("Please call  Asian N Cajun 2 to reserve for your party.");
+        }
+        else if(valid == true){
+            createReserv();
+        }
+
     }
     
     const phoneNumberFormatter = (e) => {
@@ -202,7 +229,7 @@ function ReservationForm(props){
                 <Modal.Body>
                       
                   <div className = "sub-header"> 
-                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
+                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
                   </div>
 
                     <div className = "reservation-group">
@@ -225,7 +252,7 @@ function ReservationForm(props){
                         <label htmlFor="email"> Email Address</label>
                         <input type="email" className="form-control" id="email" name="email" placeholder="john.doe@email.com" 
                             onChange={(event) => setEmail(event.target.value)}
-                            maxLength="50">
+                            maxLength="50" required>
                         </input>
             </div>
 
@@ -254,7 +281,7 @@ function ReservationForm(props){
                     <option value = "10"> 10</option>
                 </select> */}
                 <input type = "numberOfGuests" className="form-control" id="totalGuests"  
-                    onChange={(event) => setGuests(event.target.value)}></input>
+                    onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
             </div>
 
             <div className = "reservation-calendar">
@@ -290,8 +317,8 @@ function ReservationForm(props){
             <Modal.Footer> 
                     <Button variant="secondary" onClick={props.close}>
                         Cancel
-                    </Button>
-                        <Button type="submit" variant="primary" onClick={() => {createReserv(); validate()}}>
+                    </Button> 
+                        <Button type="submit" variant="primary" onClick={() => {validate()}}>
                         Reserve
                     </Button>
             </Modal.Footer>
