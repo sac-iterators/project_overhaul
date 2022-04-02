@@ -57,10 +57,7 @@ function ReservationForm(props){
 
         reservations.forEach(item => { // Loops through all reservations 
             if (item.date === reservationDate.toDateString()) {
-
                 console.log("DEBUG | Reservation found on this date")
-    
-                // Set booked reservations to each reservation item that exists that equals a reservation date
                 bookedReservations.push(item.time);
             } 
         });
@@ -145,20 +142,18 @@ function ReservationForm(props){
         inputField.value = formattedInputValue;
     }
 
-        return(
-            <div
+    return(
+        <div
             onKeyDown={e => e.stopPropagation()}
             onClick={e => e.stopPropagation()}
             onFocus={e => e.stopPropagation()}
             onMouseOver={e => e.stopPropagation()}
         >
-
             <Form>
                 <Modal.Body>
-                      
-                  <div className = "sub-header"> 
-                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
-                  </div>
+                    <div className = "sub-header"> 
+                        <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="firstName"> First Name</label>
@@ -193,70 +188,67 @@ function ReservationForm(props){
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
                     </div>
 
-            <div className = "reservation-group">
-                <label for = "Total Number of Guests"> Total Number of Guests</label>
-                {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+                    <div className = "reservation-group">
+                        <label for = "Total Number of Guests"> Total Number of Guests</label>
+                        {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
 
-                    <option value = "1"> 1</option>
-                    <option value = "2"> 2</option>
-                    <option value = "3"> 3</option>
-                    <option value = "4"> 4</option>
-                    <option value = "5"> 5</option>
-                    <option value = "6"> 6</option>
-                    <option value = "7"> 7</option>
-                    <option value = "8"> 8</option>
-                    <option value = "9"> 9</option>
-                    <option value = "10"> 10</option>
-                </select> */}
-                <input type = "numberOfGuests" className="form-control" id="totalGuests"  
-                    onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
-            </div>
+                            <option value = "1"> 1</option>
+                            <option value = "2"> 2</option>
+                            <option value = "3"> 3</option>
+                            <option value = "4"> 4</option>
+                            <option value = "5"> 5</option>
+                            <option value = "6"> 6</option>
+                            <option value = "7"> 7</option>
+                            <option value = "8"> 8</option>
+                            <option value = "9"> 9</option>
+                            <option value = "10"> 10</option>
+                        </select> */}
+                        <input type = "numberOfGuests" className="form-control" id="totalGuests"  
+                            onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
+                    </div>
 
-            <div className = "reservation-calendar">
-                <label for="calendar"> Select a date & time for your reservation.</label>
-                <Calendar 
-                    onClickDay= {(e) => {
-                        onDateChange(e)
-                        reservationCheck(e)
-                    }}
-                    value= {date}
-                    minDate= {today}
-                    maxDate= {maxReservationDate}
-                />
+                    <div className = "reservation-calendar">
+                        <label for="calendar"> Select a date & time for your reservation.</label>
+                        <Calendar 
+                            onClickDay= {(e) => {
+                                onDateChange(e)
+                                reservationCheck(e)
+                            }}
+                            value= {date}
+                            minDate= {today}
+                            maxDate= {maxReservationDate}
+                        />
 
-                <label for="time"> Choose an available time </label>
-
-                <div>
-                    {openReservations.map((time) => {
-                        return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
-                    })}
-                </div>
-
-            </div>
+                        <label for="time"> Choose an available time </label>
+                        <div>
+                            {openReservations.map((time) => {
+                                return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
+                            })}
+                        </div>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="specialNotes">Other: </label>
                         <input type="text" className="form-control" id="specialNotes" maxLength="100"
-                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
-            </div>
-
-            </Modal.Body>
-            <Modal.Footer> 
-                    <Button variant="secondary" onClick={props.close}>
-                        Cancel
-
-                    </Button>
-                    <Button type="submit" variant="primary" onClick={() => {
-                        // TODO: Only create reservation if information is filled (check)
-                        // TODO: Create notification/popup that tells the user if the reservation succeded or failed
-                        validate();
-                    }}>
-                        Reserve
-                    </Button>
-            </Modal.Footer>
+                            placeholder='Let us know if there are any accomedations needed.' 
+                            onChange={(event) => setNotes(event.target.value)}>
+                        </input>
+                    </div>
+                </Modal.Body>
+                <Modal.Footer> 
+                        <Button variant="secondary" onClick={props.close}>
+                            Cancel
+                        </Button>
+                        <Button type="submit" variant="primary" onClick={() => {
+                            // TODO: Only create reservation if information is filled (check)
+                            // TODO: Create notification/popup that tells the user if the reservation succeded or failed
+                            validate();
+                        }}>
+                            Reserve
+                        </Button>
+                </Modal.Footer>
             </Form>
-        </div>
-            
+        </div>  
     );
 }
 
