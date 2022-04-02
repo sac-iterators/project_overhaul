@@ -91,7 +91,7 @@ function Home() {
                 </Carousel>
             </div>
             <div className="intro">
-                <h1>Welcome to Asian N Cajun</h1>
+                <h1>Welcome to Asian N Cajun 2</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
