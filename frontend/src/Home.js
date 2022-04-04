@@ -21,6 +21,11 @@ function Home() {
         <div className="home">
      
             <div className="top-section">
+                
+                <img className="" src={img1} />
+                <h3><OrderButton/>{' '}</h3>
+            
+            </div>   
                             
             {/* <main className="container">
         <h1 className="text-uppercase text-center my-4">Asian N Cajun 2 app</h1>
@@ -51,11 +56,11 @@ function Home() {
           />
         ) : null}
       </main>  */}
-            <Carousel fade style={{ minHeight: '90vh' }}>
+            {/* <Carousel fade style={{ maxHeight: '60vh' }}>
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
-                    src={img1}
+                    src={img2}
                     alt="First slide"
                     fluid
                     />
@@ -65,7 +70,7 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="w-100 d-block"
+                    className=""
                     src={img1}
                     alt="Second slide"
                     />
@@ -86,8 +91,8 @@ function Home() {
 
                     </Carousel.Caption>
                 </Carousel.Item>
-                </Carousel>
-            </div>
+                </Carousel> */}
+            
             <div className="intro">
                 <h1>Welcome to Asian N Cajun</h1>
                 <p>
