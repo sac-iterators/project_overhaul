@@ -1,3 +1,7 @@
+.navbar a{
+    padding: 0 10px;
+}
+
 .top-section {
     width: 100%;
     height: 60vh;
@@ -19,8 +23,17 @@
     height: 50vh;
 }
 
+
+.carousel button a{
+    color: inherit;
+}
 .logo{
-    width: 100%;
+    width: 100%; 
+}
+
+.menu .logo{
+    width: 30%;
+
 }
 
 .intro {
@@ -45,7 +58,6 @@
 
     color: #f3f0e2;
 }
-
 
 .news {
 
@@ -94,17 +106,13 @@
     padding: 10px;
 }
 
-footer div:nth-child(4){
-    text-align: right;
-}
-
 a{
     color: gray;
     text-decoration: none;
 }
 
 a:hover{
-    //color: black;
+    /*color: black;*/
 }
 
 .menu_options{
@@ -116,22 +124,20 @@ a:hover{
 
 }
 
-.intro h3 {}
-
-.question {
+.item {
   border: 2px solid rgb(240, 240, 240);
   padding: 7px;
 }
-.question h6 {
+.item h6 {
   text-transform: none;
   margin: 0;
 }
-.question p {
-  color: var(--clr-grey-3);
+.item .content {
+  color: gray;
   margin-top: 5px;
   margin-bottom: 0;
 }
-.question header {
+.item header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -140,59 +146,83 @@ a:hover{
 
 .about .top-section{
     background: url('./img/img-1.jpeg');
-    height: 92vh;
-}
-
-.about .top-section .panel{
-    width: 50vw;
-    height: 80vh;
-    background-color: rgba(255, 255, 255, 0.5);
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.panel .intro{
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.about .top-section .panel .intro h2{
-    text-align: center;
-}
-
-.services{
+    min-height: 92vh;
+    padding: auto;
     display: flex;
-    text-align: center;
-    justify-content: space-between;
     align-items: center;
-    height: 60px;
+    justify-content: center;
 }
 
-.services .icons{
-    width: 50px;
+.panel{
+    width: 50vw;
+    margin: 20px 0;
+    background-color: rgb(255, 255, 255, 0.5);
+    padding: 5vh 5vw;
+}
+
+.panel h2{
+    text-align: center;
+}
+
+.panel p{
+    color: black;
 }
 
 .services .icons:hover{
-    filter: drop-shadow(0 10px 10px black);
+    filter: drop-shadow(0 5px 5px black);
+}
+
+footer .services{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer .services .icons{
+    width: 100%;
+    max-width: 75px;
+}
+
+footer .sitemap{
+    text-align: right;
 }
 
 .hours{
     white-space: pre;
 }
 
-.service-select li{
-    text-align: center;
-}
-
-.service-select li:hover{
-    filter: drop-shadow(0 10px 10px gray);
-}
-
-.obviousLink{
+.hypertext{
     text-decoration: underline;
     font-weight: 500;
+    color: blue;
+}
+
+/************************************************** Bootstrap col-md */
+@media only screen and (max-width: 991px) {
+    .panel{
+        width: 90vw;
+    }
+    
+    footer .logo{
+        text-align: left;
+    }
+
+    footer .storeinfo{
+        text-align: right;
+    }
+
+    
+}
+
+/************************************************** Bootstrap col-sm */
+@media only screen and (max-width: 767px) {
+
+    footer .logo{
+        display: none;
+    }
+
+    footer .container .col{
+        text-align: center;
+        padding-bottom: 5%;
+    }
 }

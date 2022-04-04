@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
 import SignInButton from './components/SignInButton';
@@ -7,6 +7,9 @@ import { Link } from "react-router-dom";
 import './Navigation.css';
 
 function Navigation() {
+  
+  const [expanded, setExpanded] = useState(false);
+  const toggleMenu = () => setExpanded(!expanded);
     return (
         <Navbar scrolling  dark expand="md" fixed="top" className="navbar">
           <Container fluid>
