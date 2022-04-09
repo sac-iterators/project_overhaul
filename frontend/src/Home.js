@@ -10,7 +10,7 @@ import img2 from './img/img-2.jpeg';
 import img3 from './img/img-3.jpeg';
 import img4 from './img/img-4.jpeg';
 import img5 from './img/img-5.jpeg';
-import img6 from './img/img-6.jpg';
+import img6 from './img/img-6.jpeg';
 import img7 from './img/img-7.jpeg';
 import './Home.css';
 import Map from './components/Map';
@@ -140,7 +140,7 @@ function Home() {
              <div>
                 <CardGroup>
                     <Card>
-                        <Card.Img variant="top" src={img7} className="cover-img"/>
+                        <Card.Img variant="top" src={img5} className="cover-img"/>
             
                     </Card>
                     <Card>
@@ -148,7 +148,7 @@ function Home() {
               
                     </Card>
                     <Card>
-                        <Card.Img variant="top" src={img5} className="cover-img"/>
+                        <Card.Img variant="top" src={img7} className="cover-img"/>
             
                     </Card>
                 </CardGroup>
