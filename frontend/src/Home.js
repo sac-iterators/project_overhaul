@@ -7,7 +7,7 @@ import OrderButton from './components/OrderButton';
 import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
-import img3 from './img/img-3.png';
+import img3 from './img/img-3.jpeg';
 import img4 from './img/img-4.jpeg';
 import img5 from './img/img-5.jpeg';
 import img6 from './img/img-6.jpg';
@@ -66,7 +66,7 @@ function Home() {
                 <Carousel.Item>
                     <img
                     className="w-100 d-block"
-                    src={img1}
+                    src={img2}
                     alt="Second slide"
                     />
 
@@ -79,7 +79,7 @@ function Home() {
                 <Carousel.Item>
                     <img
                     className="d-block w-100 "
-                    src={img1}
+                    src={img3}
                     alt="Third slide"
                     />
 
