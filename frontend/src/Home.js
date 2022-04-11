@@ -52,7 +52,7 @@ function Home() {
           />
         ) : null}
       </main>  */}
-            <Carousel fade style={{ minHeight: '90vh' }}>
+            <Carousel fade style={{ minHeight: "100%" }}>
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
