@@ -1,6 +1,6 @@
 import Modal from 'react-bootstrap/Modal'
 import {Button, Form} from 'react-bootstrap';
-import { useState, ReactDOM} from 'react';
+import { useState, ReactDOM, useEffect} from 'react';
 import Calendar from 'react-calendar';
 
 import 'react-calendar/dist/Calendar.css';
@@ -11,9 +11,7 @@ import {collection, addDoc, getDocs} from 'firebase/firestore';
 // ? -------------------------
 // ? Research into if I need useEffect
 // ? Get date variable to not reset after clicking on a field that is not a date
-// ? 
 
-// TODO: 
 
 function ReservationForm(props){
     // TODO: Check the show states and make comments
@@ -34,6 +32,7 @@ function ReservationForm(props){
     // * UseState variable that is for storing all of the reservations
     const [reservations, setReservations] = useState([]);
 
+    // TODO: Redo comments to emulate a "why" instead of a what
     // * This is the times for each day that is selected
     const [openReservations, setOpenReservations] = useState([]);
     const [bookedReservations, setBookedReservations] = useState([]);
@@ -57,70 +56,77 @@ function ReservationForm(props){
     // ! Make sure that this time is not essential and then delete
     // ! times.setTime(times.setHours(8));
 
-    // * Time blocks that are used to store the time of the daily time slots
-    const elevenBlock = new Date(times.setHours(11));
-    const oneBlock = new Date(times.setTime(times.setHours(13)));
-    const threeBlock = new Date(times.setTime(times.setHours(15)));
-    const fiveBlock = new Date(times.setTime(times.setHours(17)));
-    const sevenBlock = new Date(times.setTime(times.setHours(19)));
-    const eightBlock = new Date(times.setTime(times.setHours(20)));
 
     // * Array to store the time slots
-    const timeBlocks = [
-        elevenBlock,
-        oneBlock,
-        threeBlock,
-        fiveBlock,
-        sevenBlock,
-        eightBlock,
-    ];
+    const timeBlocks = [];
+
+    // TODO: * 12 and 20 can be replaced so not hardcoded for API calls
+    for (let time_init = 12; time_init <= 20; time_init++) {
+        timeBlocks.push(new Date(times.setHours(time_init)));
+    }
+
     
     // * Function to initiate the availability of a day with no reservations 
     function initTime() {
         timeBlocks.forEach(time => { // Iterates through each time block
-            setFullAvailability(fullAvailability => [...fullAvailability, time]); // * Sets full availability to time slots
+            setFullAvailability(fullAvailability => [...fullAvailability, time]);
         });
-    }
 
-    // * If fullAvailability does not exist, then create it
-    if (fullAvailability.length === 0) initTime();
-
-    // * Function that runs when date is changed
-    function onDateChange(newDate) {
-        setOpenReservations(emptyReservations); // Set open resrvations to empty
-        setDate(newDate); // Set date (that is returned to database) to the date clicked/changed-to
-
-        checkDate(newDate); // Pass date clicked/changed-to to the checkDate() function
-        // ! DEBUG: console.log(openReservations);
-        // ! DEBUG: console.log(fullAvailability);
-        // ! DEBUG: console.log(bookedReservations);
-    }
-
-    // * Functon that runs to check date
-    function checkDate(date) {
-        // TODO: Handle holidays/edge 
-        
         // ? Consider moving this code to onDateChange to decrease loading amount
         const getReservations = async () => {
             const data = await getDocs(reservation_db);
             setReservations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
         };
+
         getReservations();
+    }
+
+    // * If fullAvailability does not exist, then create it
+    if (fullAvailability.length === 0) initTime();
 
 
-        setBookedReservations(emptyReservations);
+    // * Function that runs when date is changed
+    function onDateChange(newDate) {
+
+        // ? STOF : May change
+        setOpenReservations([]); // Set open resrvations to empty
+        setDate(newDate); // Set date (that is returned to database) to the date clicked/changed-to
+
+        checkDate(newDate); // Pass date clicked/changed-to to the checkDate() function
+
+        // ! DEBUG: console.log(openReservations);
+        // ! DEBUG: console.log(fullAvailability);
+        // ! DEBUG: console.log(bookedReservations);
+
+        // reservationCheck();
+    }
+
+    function reservationCheck(resDate) {
+        // setBookedReservations(emptyReservations);
+        const res_arr = [];
 
         reservations.forEach(item => { // Loops through all reservations 
 
-            console.log('ITEM: ' + item.date);
-            console.log("date " + date.toDateString());
-            // ? If there is a reservation already on the same date
-            if (item.date === date.toDateString()) {
-                console.log("DEBUG | Clicked date: " + date.toDateString()); // Debug message
 
+            console.log("DEBUG | Clicked date: " + resDate.toDateString()); // Debug message
+            // ? If there is a reservation already on the same date
+            if (item.date === resDate.toDateString()) {
+
+                console.log("MATCH")
+    
                 // Set booked reservations to each reservation item that exists that equals a reservation date
                 setBookedReservations(bookedReservations => [...bookedReservations, item.time]);
+                res_arr.push(item.time);
 
+                // If item date = date
+                //     if (fullAvailability.includes(item.time))
+
+
+                //      fullAvailability.forEach(slot => {
+                //          if slot.toLocaleTimeString()
+                //      })
+
+    
                 // ? Do I need this todo?
                 // TODO: Store time choice to the date variable
             } 
@@ -129,15 +135,36 @@ function ReservationForm(props){
             }
         });
 
+        console.log(res_arr);
+        console.log(bookedReservations);
+
+        // TODO: Possible redundency
         // * Uses the bookedReservations to remove from fullAvailability and store it to bookedReservations
         fullAvailability.forEach(slot => {
-            console.log(slot.toLocaleTimeString());
-            console.log(bookedReservations);
-            if (!bookedReservations.includes(slot.toLocaleTimeString())) {
+            if (!res_arr.includes(slot.toLocaleTimeString())) {
                 setOpenReservations(openReservations => [...openReservations, slot]);
             }
         });
     }
+
+    // * Functon that runs to check date
+    function checkDate(date) {
+        // // TODO: Handle holidays/edge 
+        
+        // // ? Consider moving this code to onDateChange to decrease loading amount
+        // const getReservations = async () => {
+        //     const data = await getDocs(reservation_db);
+        //     setReservations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+        // };
+
+        // getReservations();
+        console.log("RAN")
+
+    }
+
+    // useEffect(() => {
+    //     console.log(openReservations);
+    // });
 
     // * Creates Reservation Document that is sent to database
     const createReserv = async() => {
@@ -155,22 +182,49 @@ function ReservationForm(props){
 
     // * If time slot for date is clicked
     function timeClick(clicked_time) {
-        setBookedReservations(emptyReservations); // Resets bookedReservations
+
+        // ? STOF : May change
+        setBookedReservations([]); // Resets bookedReservations
         const val = new Date(clicked_time.target.value); // Val = clicked time value
 
-        console.log(val.toLocaleTimeString()); // Debug
-        console.log(date.toLocaleTimeString()); // Debug
-        console.log(date);
-
- 
         date.setHours(val.getHours()); // Date's time is set to val
-        console.log(date);
     }
 
+
     function validate(){
-        document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
-        document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
-        document.getElementById('phoneNumber').oninvalid.setCustomValidity('test');
+        // document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
+        // document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
+        // document.getElementById('phoneNumber').oninvalid.setCustomValidity('test');
+
+        const valid = true;
+        if (fname ==''){
+            const valid = false;
+            console.log("No first name");
+        }
+        else if (lname ==''){
+            const valid = false;
+            console.log("No last name");
+        }
+        else if(phoneNumber <= 10){
+            const valid =  false;
+            console.log("Phone number is not at least 10 numbers");
+        }
+        else if(guests <= 7){
+            const valid = false;
+            console.log("Number of guests is less than 8")
+        }
+        else if (guests > 10){
+            const valid = false;
+            alert("Please call  Asian N Cajun 2 to reserve for your party.");
+        }
+        else if(valid == true){
+            createReserv();
+        }
+
+    }
+
+    function timeInit() {
+        //console.log(openReservations);
     }
     
     const phoneNumberFormatter = (e) => {
@@ -202,7 +256,7 @@ function ReservationForm(props){
                 <Modal.Body>
                       
                   <div className = "sub-header"> 
-                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note Reservations will only be for Parties of 8 or more*</large>
+                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
                   </div>
 
                     <div className = "reservation-group">
@@ -210,8 +264,8 @@ function ReservationForm(props){
                         <input type="text" className="form-control" id="firstname" name="firstName" placeholder="John" 
                             onChange={(event) => setFname(event.target.value)}
                             pattern="[A-Za-z]*" maxLength="20" required>   
-                </input>
-            </div>
+                        </input>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="lastName"> Last Name</label>
@@ -219,15 +273,15 @@ function ReservationForm(props){
                             onChange={(event) => setLname(event.target.value)}
                             pattern="[A-Za-z]*" maxLength="20" required> 
                         </input>
-            </div>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="email"> Email Address</label>
                         <input type="email" className="form-control" id="email" name="email" placeholder="john.doe@email.com" 
                             onChange={(event) => setEmail(event.target.value)}
-                            maxLength="50">
+                            maxLength="50" required>
                         </input>
-            </div>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="phoneNumber"> Phone Number</label>
@@ -236,7 +290,7 @@ function ReservationForm(props){
                             pattern='([0-9]{3})" "[0-9]{3} \- [0-9]{4}' minLength="14" maxLength="14" required>
                         </input>
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
-            </div>
+                    </div>
 
             <div className = "reservation-group">
                 <label for = "Total Number of Guests"> Total Number of Guests</label>
@@ -254,14 +308,19 @@ function ReservationForm(props){
                     <option value = "10"> 10</option>
                 </select> */}
                 <input type = "numberOfGuests" className="form-control" id="totalGuests"  
-                    onChange={(event) => setGuests(event.target.value)}></input>
+                    onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
             </div>
 
             <div className = "reservation-calendar">
                 <label for="calendar"> Select a date & time for your reservation.</label>
                 <Calendar 
                     onClickDay= {(e) => {
+
+                        // ? STOF : May change
+                        setBookedReservations([])
                         onDateChange(e)
+                        reservationCheck(e)
+                        //timeInit(openReservations);
                         }}
                     value= {date}
                     minDate= {today}
@@ -272,11 +331,11 @@ function ReservationForm(props){
                 
                 {/* To check for full availability
                 / isFull ? x : y*/}
-                {openReservations.map((time) => {
-                    return <div>
-                        <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
-                    </div>
-                })}
+                <div>
+                    {openReservations.map((time) => {
+                        return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
+                    })}
+                </div>
 
             </div>
 
@@ -290,8 +349,14 @@ function ReservationForm(props){
             <Modal.Footer> 
                     <Button variant="secondary" onClick={props.close}>
                         Cancel
+
                     </Button>
-                        <Button type="submit" variant="primary" onClick={() => {createReserv(); validate()}}>
+                    <Button type="submit" variant="primary" onClick={() => {
+                            // createReserv();
+                            // TODO: Only create reservation if information is filled (check)
+                            // TODO: Create notification/popup that tells the user if the reservation succeded or failed
+                            validate();
+                            }}>
                         Reserve
                     </Button>
             </Modal.Footer>

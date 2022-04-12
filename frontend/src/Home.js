@@ -7,10 +7,10 @@ import OrderButton from './components/OrderButton';
 import { Carousel, Button, Card, CardGroup,} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
-import img3 from './img/img-3.png';
+import img3 from './img/img-3.jpeg';
 import img4 from './img/img-4.jpeg';
 import img5 from './img/img-5.jpeg';
-import img6 from './img/img-6.jpg';
+import img6 from './img/img-6.jpeg';
 import img7 from './img/img-7.jpeg';
 import './Home.css';
 import Map from './components/Map';
@@ -58,7 +58,9 @@ function Home() {
           />
         ) : null}
       </main>  */}
-            {/* <Carousel fade style={{ maxHeight: '60vh' }}>
+
+            <Carousel fade style={{ minHeight: "100%" }}>
+
                 <Carousel.Item>
                     <img
                     className="d-block w-100"
@@ -71,8 +73,10 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className=""
-                    src={img1}
+
+                    className="w-100 d-block"
+                    src={img2}
+
                     alt="Second slide"
                     />
 
@@ -85,7 +89,7 @@ function Home() {
                 <Carousel.Item>
                     <img
                     className="d-block w-100 "
-                    src={img1}
+                    src={img3}
                     alt="Third slide"
                     />
 
@@ -97,7 +101,7 @@ function Home() {
                 </Carousel> */} 
             
             <div className="intro">
-                <h1>Welcome to Asian N Cajun</h1>
+                <h1>Welcome to Asian N Cajun 2</h1>
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
                     sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
@@ -146,7 +150,7 @@ function Home() {
              <div>
                 <CardGroup>
                     <Card>
-                        <Card.Img variant="top" src={img7} className="cover-img"/>
+                        <Card.Img variant="top" src={img5} className="cover-img"/>
             
                     </Card>
                     <Card>
@@ -154,7 +158,7 @@ function Home() {
               
                     </Card>
                     <Card>
-                        <Card.Img variant="top" src={img5} className="cover-img"/>
+                        <Card.Img variant="top" src={img7} className="cover-img"/>
             
                     </Card>
                 </CardGroup>
