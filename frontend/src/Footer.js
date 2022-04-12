@@ -19,7 +19,7 @@ function Footer() {
         <div className="row py-4">
           <div className="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src={logo} alt="Second slide" className="logo"/>
             <ul className="list-inline social-links">
-              <li className="list-inline-item"><a href="http://www.facebook.com/asianncajun2" target="_blank" title="facebook"><i className="fa fa-facebook social"></i></a></li>
+
               <li className="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i className="fa fa-instagram social"></i></a></li>
               <li className="list-inline-item"><a href="mailto:sac.iterators@gmail.com" target="_blank" title="email"><i className="fa-solid fa-envelope social"></i></a></li>
             </ul>
@@ -48,18 +48,6 @@ function Footer() {
                 </a>
               </li>
             </ul>
-          </div>
-          <div className="col-lg-4 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col emailsignup">
-            <h6 className="text-uppercase font-weight-bold mb-4">Sign up for offers and other news!</h6>
-            <p className="text-muted mb-4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. At itaque temporibus.</p>
-            <div className="p-1 rounded border">
-              <div className="input-group">
-                <input type="email" placeholder="Enter your email address" aria-describedby="button-addon1" className="form-control border-0 shadow-0"/>
-                <div className="input-group-append">
-                  <button id="button-addon1" type="submit" className="btn btn-link"><i className="fa fa-paper-plane"></i></button>
-                </div>
-              </div>
-            </div>
           </div>
           <div className="col-lg-2 col-md-6  col-12 mb-lg-0 mx-auto col sitemap">
             <h6 className="text-uppercase font-weight-bold mb-4">Sitemap</h6>

@@ -163,19 +163,6 @@ function Home() {
                     </Card>
                 </CardGroup>
             </div> 
-            <div className="news">
-                <h1>Sign Up to our Newsletter</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    
-                </p>
-                <Button variant="secondary" size="lg">
-                    Submit
-                </Button>
-
-               
-            </div>   
             <div className="map">
 
                   <Map />
