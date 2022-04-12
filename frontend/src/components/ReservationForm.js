@@ -19,6 +19,7 @@ function ReservationForm(props){
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
     const [date, setDate] = useState(new Date());
+    const [reservationComplete, setReservationComplete] = useState(false);
 
     // * Define variables for data fetching/manipulation/validation
     const [reservations, setReservations] = useState([]);
@@ -49,6 +50,7 @@ function ReservationForm(props){
     function onDateChange(newDate) {
         setOpenReservations([]);
         setDate(newDate);
+        date.setHours(0);
     }
 
     function reservationCheck(reservationDate) {
@@ -73,7 +75,6 @@ function ReservationForm(props){
         });
     }
 
-    // * Creates Reservation Document that is sent to database
     const createReservation = async() => {
         await addDoc(reservation_db, {
             fname: fname, 
@@ -117,10 +118,18 @@ function ReservationForm(props){
         }
         else if (guests > 10){
             const valid = false;
+            console.log(date);
             alert("Please call Asian N Cajun 2 to reserve for your party.");
         }
-        else if(valid == true){
-            createReservation();
+        else if(valid === true){
+            console.log(date);
+
+            if(date.getHours() === 0) {
+                alert("Please select an available time")
+            } else {
+                setReservationComplete(true);
+                createReservation()
+            }
         }
 
     }
@@ -151,6 +160,7 @@ function ReservationForm(props){
         >
             <Form>
                 <Modal.Body>
+                    { reservationComplete ? <p> Thank you, Reservation has been made </p> : <>
                     <div className = "sub-header"> 
                         <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
                     </div>
@@ -211,6 +221,7 @@ function ReservationForm(props){
                         <label for="calendar"> Select a date & time for your reservation.</label>
                         <Calendar 
                             onClickDay= {(e) => {
+                                date.setTime(0)
                                 onDateChange(e)
                                 reservationCheck(e)
                             }}
@@ -234,6 +245,8 @@ function ReservationForm(props){
                             onChange={(event) => setNotes(event.target.value)}>
                         </input>
                     </div>
+                    </>}
+                    
                 </Modal.Body>
                 <Modal.Footer> 
                         <Button variant="secondary" onClick={props.close}>
