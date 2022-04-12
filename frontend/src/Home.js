@@ -58,7 +58,7 @@ function Home() {
           />
         ) : null}
       </main>  */}
-
+        
             <Carousel fade style={{ minHeight: "100%" }}>
 
                 <Carousel.Item>
@@ -81,8 +81,8 @@ function Home() {
                     />
 
                     <Carousel.Caption> 
-                    {/* <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3> */}
-                    {/* <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
+                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
 
                     </Carousel.Caption>
                 </Carousel.Item>
@@ -98,7 +98,7 @@ function Home() {
 
                     </Carousel.Caption>
                 </Carousel.Item>
-                </Carousel> */} 
+                </Carousel>
             
             <div className="intro">
                 <h1>Welcome to Asian N Cajun 2</h1>
@@ -185,6 +185,7 @@ function Home() {
             
             <Footer/>         
         </div>
+    
     )
 }
 
