@@ -32,8 +32,8 @@ function Navigation() {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown> */}
-                <Nav.Link className="nav_list" ><ReservationButton /></Nav.Link>
-                <Nav.Link className="nav_list" >  <SignInButton /></Nav.Link>
+                <Nav.Link ><p className="nav_list"> <ReservationButton /></p></Nav.Link>
+                <Nav.Link > <p className="nav_list" > <SignInButton /></p></Nav.Link>
               </Nav>
              
               {/* <Form className="d-flex">
