@@ -16,7 +16,7 @@ function ReservationButton(props) {
         {/* <a href='#' onClick={handleShow}>
           Reserve
         </a>  */}
-        <Button variant="outline-light" size="lg" onClick={handleShow}>Reserve</Button>
+        <div  onClick={handleShow}>Reserve</div>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
