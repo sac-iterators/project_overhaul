@@ -4,7 +4,7 @@
 
 .top-section {
     width: 100%;
-    height: 90vh;
+    height: 100%;
 }
 
 .cover-img {
@@ -27,7 +27,7 @@
 }
 
 .intro {
-    margin-top:20px ;
+    /* margin-top:20px ; */
     padding: 100px 0px;
     font-family: 'Montagu Slab', serif;
     text-align: center;
