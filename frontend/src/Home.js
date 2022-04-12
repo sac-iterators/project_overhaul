@@ -4,7 +4,7 @@ import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
 import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
-import { Carousel, Button, Card, CardGroup} from 'react-bootstrap';
+import { Carousel, Button, Card, CardGroup,} from 'react-bootstrap';
 import img1 from './img/img-1.jpeg';
 import img2 from './img/img-2.jpeg';
 import img3 from './img/img-3.png';
@@ -24,7 +24,7 @@ function Home() {
             <div className="top-section">
                 
                 <img className="" src={img1} />
-                <h3><OrderButton/>{' '}<ReservationButton/></h3>
+                <h3><OrderButton/>{' '}<Button variant="outline-light" size="lg" ><ReservationButton/></Button></h3>
 
             
             </div>   

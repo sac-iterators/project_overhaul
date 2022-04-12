@@ -32,7 +32,7 @@ function Navigation() {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown> */}
-                <Nav.Link ><p className="nav_list"> <ReservationButton /></p></Nav.Link>
+                <Nav.Link ><div className="nav_list"> <ReservationButton /></div></Nav.Link>
                 <Nav.Link > <p className="nav_list" > <SignInButton /></p></Nav.Link>
               </Nav>
              
