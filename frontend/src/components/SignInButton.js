@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { Modal, Button, Form } from "react-bootstrap";
 import SignInForm from "./SignInForm"
 
+
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signInWithGoogle, signInWithFacebook } from "../firebase/firebaseConfig";
 import { useAuthState, useSignInWithFacebook } from "react-firebase-hooks/auth";
 // import GoogleButton from 'react-google-button'
 import { GoogleLoginButton, FacebookLoginButton } from "react-social-login-buttons";
+import Navigation from "../Navigation";
 
 function SignInButton() {
     const [show, setShow] = useState(false);
@@ -23,11 +25,11 @@ function SignInButton() {
 
     return (
         <>
-            <a href='#' onClick={handleShow}>{text}</a>
+            <a href='#' style={{color: "white"}} onClick={handleShow}>{text}</a>
             
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Sign In</Modal.Title>
+                    <Modal.Title >Sign In</Modal.Title>
                 </Modal.Header>
                 <Form>
                     <Modal.Body>
