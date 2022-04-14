@@ -1,14 +1,12 @@
 import Modal from 'react-bootstrap/Modal'
-import {Form, ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap';
+import {Form, FormLabel, FormControl, 
+        ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap';
 import { useState, useEffect, ReactDOM} from 'react';
 import AccordionMenu from './AccordionMenu';
-import { FormLabel } from 'react-bootstrap';
-import { FormControl } from 'react-bootstrap';
-import { applications_db, storage } from '../firebase/firebaseConfig';
+import { applications_db, storage, job_listings, careerInfo} from '../firebase/firebaseConfig';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
 import { async } from '@firebase/util';
-import { job_listings, job_listings_test } from '../firebase/firebaseConfig';
 import application from '../resources/EmploymentApplication.docx'
 
 function CareersButton() {
@@ -16,10 +14,22 @@ function CareersButton() {
     const [value, setValue] = useState();
     const [pos, setPos] = useState([]);
     const [info, setInfo] = useState([]);
-
+    const [validated, setValidated] = useState(false);
+    
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
     const handleChange = (val) => setValue(val);
+    const handleSubmit = (event) => {
+      const form = event.currentTarget;
+      if (form.checkValidity() === false) {
+        event.preventDefault();
+        event.stopPropagation();
+      }else{
+        submit(event);
+        handleClose();
+      }
+      setValidated(true);
+    };
 
     useEffect(() => {
       const getPos = async () => {
@@ -29,7 +39,7 @@ function CareersButton() {
       getPos();
       
       const getInfo = async () => {
-        const data = await getDocs(job_listings_test);
+        const data = await getDocs(careerInfo);
         setInfo(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
       };
       getInfo();
@@ -64,12 +74,6 @@ function CareersButton() {
       }
     }
 
-    function validate(){
-      /*document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
-      document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
-      */
-    }
-
     return (
       <>
         <a href='#' onClick={handleShow}>
@@ -80,7 +84,7 @@ function CareersButton() {
           <Modal.Header closeButton>
             <Modal.Title>Career Sign Up</Modal.Title>
           </Modal.Header>
-          <Form onSubmit={(event) => {submit(event); handleClose();}}>
+          <Form noValidate validated={validated} onSubmit={handleSubmit}>
             <Modal.Body>
               <AccordionMenu data={info}/>
               <hr></hr>
@@ -101,21 +105,24 @@ function CareersButton() {
                   <div>
                   <FormLabel htmlFor="firstName">First Name: </FormLabel>
                       <FormControl type="text" className="form-control" id="firstname" name="firstName" placeholder='John'
-                      pattern="[A-Za-z]*" maxLength="20" required></FormControl>
+                      pattern="[A-Za-z]*" maxLength="20" onInvalid="setCustomValidity('Please enter your first name');" required></FormControl>
+                      <Form.Control.Feedback type="invalid">Please enter your first name</Form.Control.Feedback>
 
                       <FormLabel htmlFor="lastName">Last Name: </FormLabel>
                       <FormControl type="text" className="form-control" id="lastname" name="lastName" placeholder='Doe'
                       pattern="[A-Za-z]*" maxLength="20" required></FormControl>
+                      <Form.Control.Feedback type="invalid">Please enter your last name</Form.Control.Feedback>
 
                       <FormLabel htmlFor="resume">
                         Please fill out the <a href={application} download="EmploymentApplication.doc" className='hypertext'>Employment Application</a> and attach below.
                       </FormLabel>
                       <FormControl type="file" className="form-control" id="resumeAttachment" name="resume" accept=".doc,.docx,.xml,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple required></FormControl>
+                      <Form.Control.Feedback type="invalid">Please upload an application</Form.Control.Feedback>
                   </div>
             </Modal.Body>
             <Modal.Footer>
               <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-              <Button type="submit" variant="primary" onClick={validate}>Submit</Button>
+              <Button type="submit" variant="primary">Submit</Button>
             </Modal.Footer>
           </Form>
         </Modal>

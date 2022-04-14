@@ -13,7 +13,7 @@ function Navigation() {
     return (
         <Navbar scrolling  dark expand="md" fixed="top" className="navbar">
           <Container fluid>
-             <Navbar.Brand className="nav_title" href="#">Asian N Cajun</Navbar.Brand>
+             <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
@@ -32,8 +32,8 @@ function Navigation() {
                     Something else here
                   </NavDropdown.Item>
                 </NavDropdown> */}
-                <Nav.Link className="nav_list" ><ReservationButton /></Nav.Link>
-                <Nav.Link className="nav_list" >  <SignInButton /></Nav.Link>
+                <Nav.Link ><div className="nav_list"> <ReservationButton /></div></Nav.Link>
+                <Nav.Link > <p className="nav_list" > <SignInButton /></p></Nav.Link>
               </Nav>
              
               {/* <Form className="d-flex">
