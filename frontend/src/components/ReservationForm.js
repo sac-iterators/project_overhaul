@@ -2,172 +2,80 @@ import Modal from 'react-bootstrap/Modal'
 import {Button, Form} from 'react-bootstrap';
 import { useState, ReactDOM, useEffect} from 'react';
 import Calendar from 'react-calendar';
-
 import 'react-calendar/dist/Calendar.css';
 import { reservation_db } from '../firebase/firebaseConfig';
 import {collection, addDoc, getDocs} from 'firebase/firestore';
 
-// ? Questions to decided upon
-// ? -------------------------
-// ? Research into if I need useEffect
-// ? Get date variable to not reset after clicking on a field that is not a date
-
 
 function ReservationForm(props){
     // TODO: Check the show states and make comments
-    const [show, setShow] = useState(false);
-    const handleClose = () => setShow(false);
+    // TODO: Redo comments to emulate a "why" instead of a what
 
-    // * Define set variables for database
+    // * Define useState variables for storing in database
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
     const [email, setEmail] = useState("");
     const [guests, setGuests] = useState(1);
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
-
-    // * Sets the date variable that is going to be sent to the database
     const [date, setDate] = useState(new Date());
+    const [reservationComplete, setReservationComplete] = useState(false);
 
-    // * UseState variable that is for storing all of the reservations
+    // * Define variables for data fetching/manipulation/validation
     const [reservations, setReservations] = useState([]);
-
-    // TODO: Redo comments to emulate a "why" instead of a what
-    // * This is the times for each day that is selected
     const [openReservations, setOpenReservations] = useState([]);
-    const [bookedReservations, setBookedReservations] = useState([]);
-
-    // Variable for setting reservations to empty
-    const [emptyReservations, setEmptyReservations] = useState([]);
-
-    const today = new Date(); // Todays date
-
-    const maxDate = new Date(today); // Variable for storing the max date that a user is able to reserve
-    maxDate.setDate(maxDate.getDate() + 7); //  * This sets how far out a user is able to click on the dates
-
-    // Variable for a day with no reservations
-    const [fullAvailability, setFullAvailability] = useState([]);
-
-    // * Variable for storing the time slots of a day at the restaurant
+    const [fetchReservation, setFetchReservations] = useState(true);
+    const today = new Date();
+    const timeBlocks = [];      // Array to store the time slots
     const times = new Date(today);
-    times.setTime(times.setSeconds(0)); // Sets time slot seconds to 0
-    times.setTime(times.setMinutes(0)); // Sets time slot minutes to 0
+    times.setTime(times.setSeconds(0));     // Times seconds/milleseconds set to 0 because they are irrelevant to reservations
+    times.setTime(times.setMinutes(0));
 
-    // ! Make sure that this time is not essential and then delete
-    // ! times.setTime(times.setHours(8));
-
-
-    // * Array to store the time slots
-    const timeBlocks = [];
+    // TODO: Refactor this maxReservationDate block
+    const maxReservationDate = new Date(today);
+    maxReservationDate.setDate(maxReservationDate.getDate() + 7);
 
     // TODO: * 12 and 20 can be replaced so not hardcoded for API calls
     for (let time_init = 12; time_init <= 20; time_init++) {
         timeBlocks.push(new Date(times.setHours(time_init)));
     }
 
-    
-    // * Function to initiate the availability of a day with no reservations 
-    function initTime() {
-        timeBlocks.forEach(time => { // Iterates through each time block
-            setFullAvailability(fullAvailability => [...fullAvailability, time]);
-        });
-
-        // ? Consider moving this code to onDateChange to decrease loading amount
-        const getReservations = async () => {
+    // * Set to constant so that fetching reservations only happens when called
+    const getReservations = async () => {
             const data = await getDocs(reservation_db);
             setReservations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-        };
+    };
+    if (fetchReservation) getReservations().then(setFetchReservations(false))
 
-        getReservations();
-    }
-
-    // * If fullAvailability does not exist, then create it
-    if (fullAvailability.length === 0) initTime();
-
-
-    // * Function that runs when date is changed
     function onDateChange(newDate) {
-
-        // ? STOF : May change
-        setOpenReservations([]); // Set open resrvations to empty
-        setDate(newDate); // Set date (that is returned to database) to the date clicked/changed-to
-
-        checkDate(newDate); // Pass date clicked/changed-to to the checkDate() function
-
-        // ! DEBUG: console.log(openReservations);
-        // ! DEBUG: console.log(fullAvailability);
-        // ! DEBUG: console.log(bookedReservations);
-
-        // reservationCheck();
+        setOpenReservations([]);
+        setDate(newDate);
+        date.setHours(0);
     }
 
-    function reservationCheck(resDate) {
-        // setBookedReservations(emptyReservations);
-        const res_arr = [];
+    function reservationCheck(reservationDate) {
+        const bookedReservations = [];
+        console.log("DEBUG | Clicked date: " + reservationDate.toDateString()); // Debug message
 
         reservations.forEach(item => { // Loops through all reservations 
-
-
-            console.log("DEBUG | Clicked date: " + resDate.toDateString()); // Debug message
-            // ? If there is a reservation already on the same date
-            if (item.date === resDate.toDateString()) {
-
-                console.log("MATCH")
-    
-                // Set booked reservations to each reservation item that exists that equals a reservation date
-                setBookedReservations(bookedReservations => [...bookedReservations, item.time]);
-                res_arr.push(item.time);
-
-                // If item date = date
-                //     if (fullAvailability.includes(item.time))
-
-
-                //      fullAvailability.forEach(slot => {
-                //          if slot.toLocaleTimeString()
-                //      })
-
-    
-                // ? Do I need this todo?
-                // TODO: Store time choice to the date variable
+            if (item.date === reservationDate.toDateString()) {
+                console.log("DEBUG | Reservation found on this date")
+                bookedReservations.push(item.time);
             } 
-            else { // * No reservations exist on the same day
-                // TODO: Decide if I want to deal with this case
-            }
         });
 
-        console.log(res_arr);
-        console.log(bookedReservations);
+        console.log("DEBUG | Booked Reservations: " + bookedReservations);
 
         // TODO: Possible redundency
-        // * Uses the bookedReservations to remove from fullAvailability and store it to bookedReservations
-        fullAvailability.forEach(slot => {
-            if (!res_arr.includes(slot.toLocaleTimeString())) {
+        // * Uses the reservation array to remove from timeblocks and store it to openreservations
+        timeBlocks.forEach(slot => {
+            if (!bookedReservations.includes(slot.toLocaleTimeString())) {
                 setOpenReservations(openReservations => [...openReservations, slot]);
             }
         });
     }
 
-    // * Functon that runs to check date
-    function checkDate(date) {
-        // // TODO: Handle holidays/edge 
-        
-        // // ? Consider moving this code to onDateChange to decrease loading amount
-        // const getReservations = async () => {
-        //     const data = await getDocs(reservation_db);
-        //     setReservations(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-        // };
-
-        // getReservations();
-        console.log("RAN")
-
-    }
-
-    // useEffect(() => {
-    //     console.log(openReservations);
-    // });
-
-    // * Creates Reservation Document that is sent to database
-    const createReserv = async() => {
+    const createReservation = async() => {
         await addDoc(reservation_db, {
             fname: fname, 
             lname: lname, 
@@ -180,14 +88,9 @@ function ReservationForm(props){
         })
     };
 
-    // * If time slot for date is clicked
     function timeClick(clicked_time) {
-
-        // ? STOF : May change
-        setBookedReservations([]); // Resets bookedReservations
-        const val = new Date(clicked_time.target.value); // Val = clicked time value
-
-        date.setHours(val.getHours()); // Date's time is set to val
+        const timeChoice = new Date(clicked_time.target.value);
+        date.setHours(timeChoice.getHours());
     }
 
 
@@ -215,16 +118,20 @@ function ReservationForm(props){
         }
         else if (guests > 10){
             const valid = false;
-            alert("Please call  Asian N Cajun 2 to reserve for your party.");
+            console.log(date);
+            alert("Please call Asian N Cajun 2 to reserve for your party.");
         }
-        else if(valid == true){
-            createReserv();
+        else if(valid === true){
+            console.log(date);
+
+            if(date.getHours() === 0) {
+                alert("Please select an available time")
+            } else {
+                setReservationComplete(true);
+                createReservation()
+            }
         }
 
-    }
-
-    function timeInit() {
-        //console.log(openReservations);
     }
     
     const phoneNumberFormatter = (e) => {
@@ -244,20 +151,19 @@ function ReservationForm(props){
         inputField.value = formattedInputValue;
     }
 
-        return(
-            <div
+    return(
+        <div
             onKeyDown={e => e.stopPropagation()}
             onClick={e => e.stopPropagation()}
             onFocus={e => e.stopPropagation()}
             onMouseOver={e => e.stopPropagation()}
         >
-
             <Form>
                 <Modal.Body>
-                      
-                  <div className = "sub-header"> 
-                     <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
-                  </div>
+                    { reservationComplete ? <p> Thank you, Reservation has been made </p> : <>
+                    <div className = "sub-header"> 
+                        <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="firstName"> First Name</label>
@@ -292,77 +198,70 @@ function ReservationForm(props){
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
                     </div>
 
-            <div className = "reservation-group">
-                <label for = "Total Number of Guests"> Total Number of Guests</label>
-                {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
+                    <div className = "reservation-group">
+                        <label for = "Total Number of Guests"> Total Number of Guests</label>
+                        {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
 
-                    <option value = "1"> 1</option>
-                    <option value = "2"> 2</option>
-                    <option value = "3"> 3</option>
-                    <option value = "4"> 4</option>
-                    <option value = "5"> 5</option>
-                    <option value = "6"> 6</option>
-                    <option value = "7"> 7</option>
-                    <option value = "8"> 8</option>
-                    <option value = "9"> 9</option>
-                    <option value = "10"> 10</option>
-                </select> */}
-                <input type = "numberOfGuests" className="form-control" id="totalGuests"  
-                    onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
-            </div>
+                            <option value = "1"> 1</option>
+                            <option value = "2"> 2</option>
+                            <option value = "3"> 3</option>
+                            <option value = "4"> 4</option>
+                            <option value = "5"> 5</option>
+                            <option value = "6"> 6</option>
+                            <option value = "7"> 7</option>
+                            <option value = "8"> 8</option>
+                            <option value = "9"> 9</option>
+                            <option value = "10"> 10</option>
+                        </select> */}
+                        <input type = "numberOfGuests" className="form-control" id="totalGuests"  
+                            onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
+                    </div>
 
-            <div className = "reservation-calendar">
-                <label for="calendar"> Select a date & time for your reservation.</label>
-                <Calendar 
-                    onClickDay= {(e) => {
+                    <div className = "reservation-calendar">
+                        <label for="calendar"> Select a date & time for your reservation.</label>
+                        <Calendar 
+                            onClickDay= {(e) => {
+                                date.setTime(0)
+                                onDateChange(e)
+                                reservationCheck(e)
+                            }}
+                            value= {date}
+                            minDate= {today}
+                            maxDate= {maxReservationDate}
+                        />
 
-                        // ? STOF : May change
-                        setBookedReservations([])
-                        onDateChange(e)
-                        reservationCheck(e)
-                        //timeInit(openReservations);
-                        }}
-                    value= {date}
-                    minDate= {today}
-                    maxDate= {maxDate}
-                />
-
-                <label for="time"> Choose an available time </label>
-                
-                {/* To check for full availability
-                / isFull ? x : y*/}
-                <div>
-                    {openReservations.map((time) => {
-                        return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
-                    })}
-                </div>
-
-            </div>
+                        <label for="time"> Choose an available time </label>
+                        <div>
+                            {openReservations.map((time) => {
+                                return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
+                            })}
+                        </div>
+                    </div>
 
                     <div className = "reservation-group">
                         <label htmlFor="specialNotes">Other: </label>
                         <input type="text" className="form-control" id="specialNotes" maxLength="100"
-                placeholder='Let us know if there are any accomedations needed.' onChange={(event) => setNotes(event.target.value)}></input>
-            </div>
-
-            </Modal.Body>
-            <Modal.Footer> 
-                    <Button variant="secondary" onClick={props.close}>
-                        Cancel
-
-                    </Button>
-                    <Button type="submit" variant="primary" onClick={() => {
-                            // createReserv();
+                            placeholder='Let us know if there are any accomedations needed.' 
+                            onChange={(event) => setNotes(event.target.value)}>
+                        </input>
+                    </div>
+                    </>}
+                    
+                </Modal.Body>
+                <Modal.Footer> 
+                        <Button variant="secondary" onClick={props.close}>
+                            Cancel
+                        </Button>
+                        <Button type="submit" variant="primary" onClick={() => {
                             // TODO: Only create reservation if information is filled (check)
                             // TODO: Create notification/popup that tells the user if the reservation succeded or failed
                             validate();
-                            }}>
-                        Reserve
-                    </Button>
-            </Modal.Footer>
+                        }}>
+                            Reserve
+                        </Button>
+                </Modal.Footer>
             </Form>
-        </div>
-            
+        </div>  
     );
 }
 
