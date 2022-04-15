@@ -15,6 +15,8 @@ import img7 from './img/img-7.jpeg';
 import './Home.css';
 import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
+import ReservationForm from './components/ReservationForm';
+
 
 
 function Home() {
@@ -23,8 +25,8 @@ function Home() {
      
             <div className="top-section">
                 
-                <img className="" src={img1} />
-                <h3><OrderButton/>{' '}<Button variant="outline-light" size="lg" ><ReservationButton/></Button></h3>
+                {/* <img className="" src={img1} /> */}
+                {/* <h3><OrderButton/>{' '}<Button variant="outline-light" size="lg" ><ReservationButton/></Button></h3> */}
 
             
             </div>   
@@ -94,8 +96,7 @@ function Home() {
                     />
 
                     <Carousel.Caption>
-                    <h3><OrderButton/>{' '}</h3>
-
+                    <h3><Button variant="outline-light" size="lg" href="/menu">Menu</Button>{' '}</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 </Carousel>
@@ -132,14 +133,14 @@ function Home() {
                     <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>MENU</Card.Title>
-                            <Card.Link href="#">View Menus &#8594; </Card.Link>
+                            <Card.Link href="/menu">View Menus &#8594; </Card.Link>
                    
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>Book A Table</Card.Title>
-                            <Card.Link href="#">Reserve &#8594;</Card.Link>
+                            <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
                             
                         </Card.Body>
                     </Card>
