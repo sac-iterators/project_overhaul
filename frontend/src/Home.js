@@ -60,7 +60,7 @@ function Home() {
           />
         ) : null}
       </main>  */}
-        
+            <Navigation />
             <Carousel fade style={{ minHeight: "100%" }}>
 
                 <Carousel.Item>

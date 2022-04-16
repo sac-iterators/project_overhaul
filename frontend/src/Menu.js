@@ -4,10 +4,12 @@ import './Home.css';
 import React from "react";
 import Categories from "./Categories";
 import items from "./data";
+import Navigation from './Navigation';
 
 const Menu = ({ items }) => {
     return (
       <div className='menu'>
+        <Navigation/>
         <div className="top-section">
         {items.map((item) => {
           const { id, title, img, desc, price } = item;
