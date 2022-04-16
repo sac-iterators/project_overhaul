@@ -50,6 +50,24 @@ const googleProvider = new GoogleAuthProvider();
 
 const facebookProvider = new FacebookAuthProvider();
 
+// Saul's Implementation
+const all_Day_Special = collection(db, "all_Day_Special");
+const menu_Appetizers = collection(db, "menu_Appetizers");
+const menu_Beef = collection(db, "menu_Beef");
+const menu_Chicken = collection(db, "menu_Chicken");
+const menu_Combinations = collection(db, "menu_Combinations");
+const menu_Deep_Fried_Goodiness = collection(db, "menu_Deep_Fried_Goodiness");
+const menu_Dessert = collection(db, "menu_Dessert");
+const menu_Flavor = collection(db, "menu_Flavor");
+const menu_Fried_Rice = collection(db, "menu_Fried_Rice");
+const menu_Hot = collection(db, "menu_Hot");
+const menu_Pork = collection(db, "menu_Pork");
+const menu_Seafood_Platter = collection(db, "menu_Seafood_Platter");
+const menu_Sides = collection(db, "menu_Sides");
+const menu_Vegetable = collection(db, "menu_Vegetable");
+const menu_Whats_Cooking = collection(db, "menu_Whats_Cooking");
+const menu_Wing = collection(db, "menu_Wing");
+
 // Handles onClick event for signing in with Google
 const signInWithGoogle = async () => {
   try {
@@ -98,5 +116,9 @@ const logout = () => {
 
 
 // Gather files for export
+
 export {db, auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
+
+export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, all_Day_Special, menu_Appetizers, 
+  menu_Beef, menu_Chicken, menu_Combinations, menu_Deep_Fried_Goodiness, menu_Dessert, menu_Flavor, menu_Fried_Rice, menu_Hot, menu_Pork, menu_Seafood_Platter, menu_Sides, menu_Vegetable, menu_Whats_Cooking, menu_Wing};
 
