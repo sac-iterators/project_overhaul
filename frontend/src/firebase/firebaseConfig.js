@@ -119,6 +119,6 @@ const logout = () => {
 
 export {db, auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
 
-export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, all_Day_Special, menu_Appetizers, 
+export {all_Day_Special, menu_Appetizers, 
   menu_Beef, menu_Chicken, menu_Combinations, menu_Deep_Fried_Goodiness, menu_Dessert, menu_Flavor, menu_Fried_Rice, menu_Hot, menu_Pork, menu_Seafood_Platter, menu_Sides, menu_Vegetable, menu_Whats_Cooking, menu_Wing};
 
