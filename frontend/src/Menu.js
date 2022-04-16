@@ -2,15 +2,11 @@
 import './Home.css';
 
 import React from "react";
-
-import Categories from "./Categories";
-import items from "./data";
-import Navigation from './Navigation';
-
+//import Categories from "./Categories";
+//import items from "./data";
 import { menu_Chow_Mein } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
-
 
 
 
@@ -29,12 +25,8 @@ function Menu() {
   
   return(
       <div className='menu'>
-
-        <Navigation/>
-        <div className="top-section">
-        {items.map((item) => {
-          const { id, title, img, desc, price } = item;
-
+        <div className="top-section"></div>
+        {food.map((item) => {
           return (
             <article key={item.id} className="menu-items">
               <img src={item.ImageURL} alt={item.Name} className="photo" />
