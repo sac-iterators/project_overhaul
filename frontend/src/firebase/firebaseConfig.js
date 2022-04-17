@@ -44,6 +44,7 @@ const job_listings = collection(db, "job_listings");
 
 const careerInfo = collection(db, "careerInfo");
 
+const storeInfo = collection(db, "storeInfo");
 const googleProvider = new GoogleAuthProvider();
 
 const facebookProvider = new FacebookAuthProvider();
@@ -96,5 +97,6 @@ const logout = () => {
 
 
 // Gather files for export
-export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo};
+// Gather files for export
+export {db, auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
 
