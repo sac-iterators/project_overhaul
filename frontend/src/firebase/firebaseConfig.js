@@ -44,8 +44,6 @@ const job_listings = collection(db, "job_listings");
 
 const careerInfo = collection(db, "careerInfo");
 
-const storeInfo = collection(db, "storeInfo");
-
 const googleProvider = new GoogleAuthProvider();
 
 const facebookProvider = new FacebookAuthProvider();

@@ -1,12 +1,10 @@
 import React from 'react'
 import Footer from './Footer';
-import Navigation from './Navigation';
 import './Home.css';
 
 function About() {
     return (
         <div className="about">
-            <Navigation />
             <div className="top-section">
                 <div className='panel'>
                         <h2>About</h2>
