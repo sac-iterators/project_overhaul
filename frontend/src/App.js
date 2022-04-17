@@ -5,6 +5,7 @@ import {BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import About from './About';
 import Fire from './firebase/firebase-test'
 import Menu from './Menu';
+import Auth from './AdminPortal';
 import items from "./data";
 import Categories from "./Categories";
 import logo from "./img/logo.jpg"; // this could be a placeholder until we get their official logo
@@ -13,12 +14,12 @@ function App () {
   return (
     <BrowserRouter>
     <div className="App">
-      <Navigation />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<MenuApp />} />
         <Route path= "/fire" element={<Fire />}/>
+        <Route path= "/admin" element={<Auth />}/>
       </Routes>
     </div>
   </BrowserRouter>
