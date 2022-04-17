@@ -40,7 +40,8 @@ function Menu() {
             </article>
           );
         })}
-        </div>
+      </div>
+    </div>
     );
   }
   
