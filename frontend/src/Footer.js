@@ -3,6 +3,9 @@ import logo from './img/logo.jpg';
 import SignInButton from './components/SignInButton';
 import ReservationButton from './components/ReservationButton';
 import CareersButton from './components/CareersButton';
+import {doc, getDoc} from 'firebase/firestore';
+import {useEffect, useState} from 'react';
+import { storeInfo, db } from './firebase/firebaseConfig';
 import grubhub from './img/grubhub.svg';
 import ubereats from './img/ubereats.svg';
 import postmates from './img/postmates.svg';
@@ -13,6 +16,16 @@ function Footer() {
   script.src = "https://kit.fontawesome.com/68b7bc0ca8.js";
   script.crossOrigin = 'anonymous';
   document.body.appendChild(script);
+
+  const [hours, setHours] = useState([]);
+  useEffect(() => {
+    const getHours = async () => {
+        const data = await getDoc(doc(db, "storeInfo", "storeHours"));
+        setHours(data.data());
+    };
+    getHours();
+}, []);
+
   return (
     <footer className="bg-black">
       <div className="container">
@@ -35,9 +48,18 @@ function Footer() {
           <div className="col-lg-2 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col storeinfo">
             <h6 className="text-uppercase font-weight-bold mb-4">Store Hours</h6>
             <ul className="list-unstyled mb-4 hours">
-              <li><p className="text-muted mb-2">Mon-Fri 11am - 9pm</p></li>
-              <li><p className="text-muted mb-2">Sat         11am - 9pm</p></li>
-              <li><p className="text-muted mb-2">Sun        11am - 9pm</p></li>
+            <li>
+                <p className='days'>Mon-Fri</p>
+                <p className="text-muted mb-2">{hours["Mon-Fri"]}</p>
+              </li>
+              <li>
+                <p className='days'>Sat</p>
+                <p className="text-muted mb-2">{hours["Sat"]}</p>
+              </li>
+              <li>
+                <p className='days'>Sun</p>
+                <p className="text-muted mb-2">{hours["Sun"]}</p>
+              </li>
             </ul>
             <h6 className="text-uppercase font-weight-bold mb-4">Location</h6>
             <ul className="list-unstyled mb-0 location">
