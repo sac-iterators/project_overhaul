@@ -97,7 +97,7 @@ a{
 }
 
 a:hover{
-    //color: black;
+    /*color: black;*/
 }
 
 .menu_options{
@@ -189,3 +189,39 @@ a:hover{
     text-decoration: underline;
     font-weight: 500;
 }
+
+/* Saul's Implementation */
+.menu .logo {
+    width: 30%;
+} 
+
+.menu .top-section {
+    width: 100%;
+    grid-gap: 10%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: grid;
+}
+
+.menu .underline {
+    width: 50%;
+    height: 0.25rem;
+    background: #c59d5f;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menu .btn-container {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+.menu .photo {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    border: 0.25rem solid hsl(360, 71%, 66%);
+    border-radius: 0.25rem;
+    display: block;
+    grid: center;
+  }

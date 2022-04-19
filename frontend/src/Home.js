@@ -16,10 +16,16 @@ import './Home.css';
 import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
 import ReservationForm from './components/ReservationForm';
+import { useNavigate } from 'react-router-dom';
 
 
 
 function Home() {
+
+    // implemented function to the "View Full Menu" button
+    const navigate = useNavigate();
+    const handleMenuClick = () => navigate("menu");
+
     return (
         <div className="home">
      
@@ -75,17 +81,13 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-
-                    className="w-100 d-block"
+                    className="d-block w-100"
                     src={img2}
-
                     alt="Second slide"
                     />
 
                     <Carousel.Caption> 
-                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
-                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
-
+                        <h3 Button variant="outline-light" size="lg" ><ReservationButton/> {' '} </h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -129,25 +131,23 @@ function Home() {
                 </p>
             </div>
             <div className="menu_options">
-                <CardGroup>
+            <CardGroup>
                     <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>MENU</Card.Title>
-                            <Card.Link href="/menu">View Menus &#8594; </Card.Link>
+                            <Button variant="primary" onClick={handleMenuClick}>View Full Menu</Button>
                    
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>Book A Table</Card.Title>
-                            <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
+                            <Card.Link href="#">Reserve &#8594;</Card.Link>
                             
                         </Card.Body>
                     </Card>
                 </CardGroup>
-            </div>
-
-
+                </div>
              <div>
                 <CardGroup>
                     <Card>

@@ -4,6 +4,7 @@ import Navigation from './Navigation';
 import {BrowserRouter, Route, Routes, Link } from 'react-router-dom';
 import About from './About';
 import Fire from './firebase/firebase-test'
+import FireMenu from './firebase/firebase-menu'
 import Menu from './Menu';
 import items from "./data";
 import Categories from "./Categories";
@@ -19,6 +20,7 @@ function App () {
         <Route path="/about" element={<About />} />
         <Route path="/menu" element={<MenuApp />} />
         <Route path= "/fire" element={<Fire />}/>
+        <Route path="/firemenu" element={<FireMenu />}/>
       </Routes>
     </div>
   </BrowserRouter>
