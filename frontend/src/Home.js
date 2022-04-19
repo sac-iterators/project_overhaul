@@ -15,20 +15,15 @@ import img7 from './img/img-7.jpeg';
 import './Home.css';
 import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
+import { Link } from "react-router-dom";
+
 
 
 function Home() {
     return (
         <div className="home">
      
-            <div className="top-section">
-                
-                <img className="" src={img1} />
-                <h3><OrderButton/>{' '}<Button variant="outline-light" size="lg" ><ReservationButton/></Button></h3>
-
-            
-            </div>   
-                            
+          
             {/* <main className="container">
         <h1 className="text-uppercase text-center my-4">Asian N Cajun 2 app</h1>
         <div className="row">
@@ -81,23 +76,11 @@ function Home() {
                     />
 
                     <Carousel.Caption> 
-                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
-                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
+                    <h3><Button variant="outline-light" size="lg"><ReservationButton/></Button>{' '}</h3>
 
                     </Carousel.Caption>
                 </Carousel.Item>
-                <Carousel.Item>
-                    <img
-                    className="d-block w-100 "
-                    src={img3}
-                    alt="Third slide"
-                    />
-
-                    <Carousel.Caption>
-                    <h3><OrderButton/>{' '}</h3>
-
-                    </Carousel.Caption>
-                </Carousel.Item>
+             
                 </Carousel>
             
             <div className="intro">
@@ -132,7 +115,7 @@ function Home() {
                     <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>MENU</Card.Title>
-                            <Card.Link href="#">View Menus &#8594; </Card.Link>
+                            <Card.Link href="#"><Link to="/menu">View Menus &#8594;</Link> </Card.Link>
                    
                         </Card.Body>
                     </Card>
@@ -147,7 +130,7 @@ function Home() {
             </div>
 
 
-             <div>
+             <div className="food_imgs">
                 <CardGroup>
                     <Card>
                         <Card.Img variant="top" src={img5} className="cover-img"/>

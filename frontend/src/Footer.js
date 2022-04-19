@@ -15,9 +15,11 @@ function Footer() {
   document.body.appendChild(script);
   return (
     <footer className="bg-black">
-      <div className="container">
+      <div style={{color: "white", margin:"0"}} className="container">
         <div className="row py-4">
-          <div className="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src={logo} alt="Second slide" className="logo"/>
+          <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
+            {/* <img src={logo} alt="Second slide" className="logo"/> */}
+            <h1 style={{color: "white"}}>AsianNCajun2</h1>
             <ul className="list-inline social-links">
 
               <li className="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i className="fa fa-instagram social"></i></a></li>
@@ -52,17 +54,17 @@ function Footer() {
           <div className="col-lg-2 col-md-6  col-12 mb-lg-0 mx-auto col sitemap">
             <h6 className="text-uppercase font-weight-bold mb-4">Sitemap</h6>
             <ul className="list-unstyled mb-0">
-              <li className="mb-2"><SignInButton /></li>
+              <li className="text-muted mb-2"><SignInButton /></li>
               <li className="mb-2"><CareersButton/></li>
               <li className="mb-2"><a href="./about" className="">About</a></li>
               <li className="mb-2"><a href="./menu" className="">Menu</a></li>
-              <li className="mb-2"><ReservationButton/></li>
+              <li className="mb-2 text-muted"><ReservationButton/></li>
             </ul>
           </div>
         </div>
       </div>
 
-      <div className="bg-white">
+      <div className="bg-black">
         <div className="container text-center">
           <p className="text-muted">© 2022 AsianNCajun2 All rights reserved.</p>
         </div>
