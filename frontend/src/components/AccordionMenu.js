@@ -6,14 +6,11 @@ function AccordionMenu(props){
     const [menu, setItem] = useState(props.data)
 
     return(
-        <div className='container'>
-            <section className='info'>
-            {console.log(props)}
-                {menu.map((item) => (
-                    <AccordionItem key={item.id}{...item} />
-                ))}
-            </section>
-        </div>
+        <section className='info'>
+            {menu.map((item) => (
+                <AccordionItem key={item.id}{...item} />
+            ))}
+        </section>
     );
 
 }

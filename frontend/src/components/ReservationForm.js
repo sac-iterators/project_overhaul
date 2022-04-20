@@ -1,5 +1,5 @@
 import Modal from 'react-bootstrap/Modal'
-import {Button, Form} from 'react-bootstrap';
+import {Button, Form, FormLabel, FormControl} from 'react-bootstrap';
 import { useState, ReactDOM, useEffect} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -18,8 +18,9 @@ function ReservationForm(props){
     const [guests, setGuests] = useState(1);
     const [phoneNumber, setPhoneNumber] = useState(0);
     const [notes, setNotes] = useState("");
-    const [date, setDate] = useState(new Date());
+    const [date, setDate] = useState();
     const [reservationComplete, setReservationComplete] = useState(false);
+    const [validated, setValidated] = useState(false);
 
     // * Define variables for data fetching/manipulation/validation
     const [reservations, setReservations] = useState([]);
@@ -50,7 +51,6 @@ function ReservationForm(props){
     function onDateChange(newDate) {
         setOpenReservations([]);
         setDate(newDate);
-        date.setHours(0);
     }
 
     function reservationCheck(reservationDate) {
@@ -76,16 +76,20 @@ function ReservationForm(props){
     }
 
     const createReservation = async() => {
-        await addDoc(reservation_db, {
-            fname: fname, 
-            lname: lname, 
-            email: email, 
-            phoneNum: phoneNumber, 
-            notes: notes, 
-            guests: guests,
-            date: date.toDateString(),
-            time: date.toLocaleTimeString()
-        })
+        try{
+            await addDoc(reservation_db, {
+                fname: fname, 
+                lname: lname, 
+                email: email, 
+                phoneNum: phoneNumber, 
+                notes: notes, 
+                guests: guests,
+                date: date.toDateString(),
+                time: date.toLocaleTimeString()
+            })
+        }catch(err){
+            console.log(err);
+        }
     };
 
     function timeClick(clicked_time) {
@@ -94,44 +98,22 @@ function ReservationForm(props){
     }
 
 
-    function validate(){
-        // document.getElementById('firstname').oninvalid.setCustomValidity('Please enter your first name');
-        // document.getElementById('lastname').oninvalid.setCustomValidity('Please enter your last name');
-        // document.getElementById('phoneNumber').oninvalid.setCustomValidity('test');
-
-        const valid = true;
-        if (fname ==''){
-            const valid = false;
-            console.log("No first name");
-        }
-        else if (lname ==''){
-            const valid = false;
-            console.log("No last name");
-        }
-        else if(phoneNumber <= 10){
-            const valid =  false;
-            console.log("Phone number is not at least 10 numbers");
-        }
-        else if(guests <= 7){
-            const valid = false;
-            console.log("Number of guests is less than 8")
-        }
-        else if (guests > 10){
-            const valid = false;
-            console.log(date);
-            alert("Please call Asian N Cajun 2 to reserve for your party.");
-        }
-        else if(valid === true){
-            console.log(date);
-
-            if(date.getHours() === 0) {
+    const validate = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        
+        const form = event.currentTarget;
+        if (form.checkValidity()) {
+            if(!date) {
+                alert("Please select an available date")
+            }else if(!date.getHours()){
                 alert("Please select an available time")
             } else {
                 setReservationComplete(true);
                 createReservation()
             }
         }
-
+        setValidated(true);
     }
     
     const phoneNumberFormatter = (e) => {
@@ -158,7 +140,7 @@ function ReservationForm(props){
             onFocus={e => e.stopPropagation()}
             onMouseOver={e => e.stopPropagation()}
         >
-            <Form>
+            <Form noValidate validated={validated} onSubmit={validate}>
                 <Modal.Body>
                     { reservationComplete ? <p> Thank you, Reservation has been made </p> : <>
                     <div className = "sub-header"> 
@@ -166,40 +148,44 @@ function ReservationForm(props){
                     </div>
 
                     <div className = "reservation-group">
-                        <label htmlFor="firstName"> First Name</label>
-                        <input type="text" className="form-control" id="firstname" name="firstName" placeholder="John" 
+                        <FormLabel htmlFor="firstName"> First Name</FormLabel>
+                        <FormControl type="text" className="form-control" id="firstname" name="firstName" placeholder="John" 
                             onChange={(event) => setFname(event.target.value)}
                             pattern="[A-Za-z]*" maxLength="20" required>   
-                        </input>
+                        </FormControl>
+                        <Form.Control.Feedback type="invalid">Please enter your first name</Form.Control.Feedback>
                     </div>
 
                     <div className = "reservation-group">
-                        <label htmlFor="lastName"> Last Name</label>
-                        <input type="text" className="form-control" id="lastname" name="lastName" placeholder="Doe" 
+                        <FormLabel htmlFor="lastName"> Last Name</FormLabel>
+                        <FormControl type="text" className="form-control" id="lastname" name="lastName" placeholder="Doe" 
                             onChange={(event) => setLname(event.target.value)}
                             pattern="[A-Za-z]*" maxLength="20" required> 
-                        </input>
+                        </FormControl>
+                        <Form.Control.Feedback type="invalid">Please enter your last name</Form.Control.Feedback>
                     </div>
 
                     <div className = "reservation-group">
-                        <label htmlFor="email"> Email Address</label>
-                        <input type="email" className="form-control" id="email" name="email" placeholder="john.doe@email.com" 
+                        <FormLabel htmlFor="email"> Email Address</FormLabel>
+                        <FormControl type="email" className="form-control" id="email" name="email" placeholder="john.doe@email.com" 
                             onChange={(event) => setEmail(event.target.value)}
                             maxLength="50" required>
-                        </input>
+                        </FormControl>
+                        <Form.Control.Feedback type="invalid">Please enter your email address</Form.Control.Feedback>
                     </div>
 
                     <div className = "reservation-group">
-                        <label htmlFor="phoneNumber"> Phone Number</label>
-                        <input type="tel" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="(123) 456-7890" 
+                        <FormLabel htmlFor="phoneNumber"> Phone Number</FormLabel>
+                        <FormControl type="tel" className="form-control" id="phoneNumber" name="phoneNumber" placeholder="(123) 456-7890" 
                             onKeyDown={phoneNumberFormatter} onChange={(event) => setPhoneNumber(event.target.value)} 
                             pattern='([0-9]{3})" "[0-9]{3} \- [0-9]{4}' minLength="14" maxLength="14" required>
-                        </input>
+                        </FormControl>
+                        <Form.Control.Feedback type="invalid">Please enter your phone number</Form.Control.Feedback>
                         <small id="numberAreacode" className="form-text text-muted">Please include your area code.</small>
                     </div>
 
                     <div className = "reservation-group">
-                        <label for = "Total Number of Guests"> Total Number of Guests</label>
+                        <FormLabel for = "Total Number of Guests"> Total Number of Guests</FormLabel>
                         {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
 
                             <option value = "1"> 1</option>
@@ -213,15 +199,17 @@ function ReservationForm(props){
                             <option value = "9"> 9</option>
                             <option value = "10"> 10</option>
                         </select> */}
-                        <input type = "numberOfGuests" className="form-control" id="totalGuests"  
-                            onChange={(event) => setGuests(event.target.value)} min="8" max="12" required></input>
+                        <FormControl type="number" className="form-control" id="totalGuests"  
+                            onChange={(event) => setGuests(event.target.value)} min="8" max="12" required>
+                        </FormControl>
+                        <Form.Control.Feedback type="invalid">Please enter your party size</Form.Control.Feedback>
+                        <small className="form-text text-muted">Only accepting reservations for parties of 8-12.</small>
                     </div>
 
                     <div className = "reservation-calendar">
                         <label for="calendar"> Select a date & time for your reservation.</label>
                         <Calendar 
                             onClickDay= {(e) => {
-                                date.setTime(0)
                                 onDateChange(e)
                                 reservationCheck(e)
                             }}
@@ -252,13 +240,14 @@ function ReservationForm(props){
                         <Button variant="secondary" onClick={props.close}>
                             Cancel
                         </Button>
-                        <Button type="submit" variant="primary" onClick={() => {
-                            // TODO: Only create reservation if information is filled (check)
-                            // TODO: Create notification/popup that tells the user if the reservation succeded or failed
-                            validate();
-                        }}>
-                            Reserve
-                        </Button>
+                        { reservationComplete ? <></> : 
+                            <Button type="submit" variant="primary" onClick={() => {
+                                // TODO: Only create reservation if information is filled (check)
+                                // TODO: Create notification/popup that tells the user if the reservation succeded or failed
+                            }}>
+                                Reserve
+                            </Button> 
+                        }
                 </Modal.Footer>
             </Form>
         </div>  
