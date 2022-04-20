@@ -1,6 +1,5 @@
 import React from 'react'
 import logo from './img/logo.jpg';
-import SignInButton from './components/SignInButton';
 import ReservationButton from './components/ReservationButton';
 import CareersButton from './components/CareersButton';
 import {doc, getDoc} from 'firebase/firestore';
@@ -74,7 +73,6 @@ function Footer() {
           <div className="col-lg-2 col-md-6  col-12 mb-lg-0 mx-auto col sitemap">
             <h6 className="text-uppercase font-weight-bold mb-4">Sitemap</h6>
             <ul className="list-unstyled mb-0">
-              <li className="mb-2"><SignInButton /></li>
               <li className="mb-2"><CareersButton/></li>
               <li className="mb-2"><a href="./about" className="">About</a></li>
               <li className="mb-2"><a href="./menu" className="">Menu</a></li>

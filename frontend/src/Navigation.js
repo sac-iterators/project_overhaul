@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
-import SignInButton from './components/SignInButton';
 import Menu from './Menu';
 import { Link } from "react-router-dom";
 import './Navigation.css';
@@ -33,7 +32,6 @@ function Navigation() {
                   </NavDropdown.Item>
                 </NavDropdown> */}
                 <Nav.Link ><div className="nav_list"> <ReservationButton /></div></Nav.Link>
-                <Nav.Link > <p className="nav_list" > <SignInButton /></p></Nav.Link>
               </Nav>
              
               {/* <Form className="d-flex">

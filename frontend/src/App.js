@@ -9,18 +9,32 @@ import Auth from './AdminPortal';
 import items from "./data";
 import Categories from "./Categories";
 import logo from "./img/logo.jpg"; // this could be a placeholder until we get their official logo
+import Login from "./Login";
+import { AuthProvider } from "./contexts/AuthContext";
+import PrivateRoute from "./components/PrivateRoute"
+import AdminPortal from "./AdminPortal";
+import ForgotPassword from "./ForgotPassword";
 
 function App () {
   return (
     <BrowserRouter>
     <div className="App">
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/menu" element={<MenuApp />} />
-        <Route path= "/fire" element={<Fire />}/>
-        <Route path= "/admin" element={<Auth />}/>
-      </Routes>
+      <AuthProvider>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/menu" element={<MenuApp />} />
+          <Route path= "/fire" element={<Fire />}/>
+          <Route path= "/admin" element={<Login />}/>
+          <Route path="/adminPortal" element={
+              <PrivateRoute>
+                <AdminPortal />
+              </PrivateRoute>
+            }
+          ></Route>
+          <Route path="/forgot-password" element={<ForgotPassword/>} />
+        </Routes>
+      </AuthProvider>
     </div>
   </BrowserRouter>
   

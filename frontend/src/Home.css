@@ -197,10 +197,13 @@ a:hover{
 
 /*********************************************************************************************************/
 /******************************************Admin Portal Styling*******************************************/
-
+.login #b_login{
+    margin-top: 20px;
+}
 .admin .sidenav {
     height: 100%;
     width: 15%;
+    min-width: 130px;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -228,12 +231,16 @@ a:hover{
         transition: all 0.3s;
     }
 
-    .admin .sidenav .tabs:hover, .admin .sidenav .tabs.active {
-        background-color: rgb(255, 255, 255, 0.1);
+        .admin .sidenav .tabs:hover, .admin .sidenav .tabs.active {
+            background-color: rgb(255, 255, 255, 0.1);
+        }
+
+    .admin .sidenav #b_logout{
+        margin-top: 100%;
     }
 
 .admin .main {
-    margin-left: 15%; /* Same as the width of the sidenav */
+    margin-left: max(15%, 130px); /* Same as the width of the sidenav */
     padding: 20px 30px;
 }
 
@@ -253,3 +260,5 @@ a:hover{
 .hide{
     display: none;
 } 
+
+/***************************************************************************************************/
