@@ -1,6 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getFirestore, query, getDocs,  collection, where, addDoc, doc, setDoc } from '@firebase/firestore';
-import { GoogleAuthProvider, FacebookAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
+import { GoogleAuthProvider, getAuth, signInWithPopup, signOut } from 'firebase/auth'
 import "firebase/auth"
 import { getStorage } from '@firebase/storage';
 
@@ -47,8 +47,6 @@ const careerInfo = collection(db, "careerInfo");
 const storeInfo = collection(db, "storeInfo");
 const googleProvider = new GoogleAuthProvider();
 
-const facebookProvider = new FacebookAuthProvider();
-
 // Saul's Implementation
 const all_Day_Special = collection(db, "all_Day_Special");
 const menu_Appetizers = collection(db, "menu_Appetizers");
@@ -88,27 +86,6 @@ const signInWithGoogle = async () => {
   }
 };
 
-// Handles onClick event for signing in with Facebook
-const signInWithFacebook = async () => {
-  try {
-    const res = await signInWithPopup(auth, facebookProvider);
-    const user = res.user;
-    const q = query(collection(db, "users"), where("uid", "==", user.uid));
-    const docs = await getDocs(q);
-    if (docs.docs.length === 0) {
-      await addDoc(collection(db, "users"), {
-        uid: user.uid,
-        name: user.displayName,
-        authProvider: "facebook",
-        email: user.email,
-      });
-    }
-  } catch (err) {
-    console.error(err);
-    alert(err.message);
-  }
-};
-
 const logout = () => {
   signOut(auth);
 };
@@ -116,4 +93,4 @@ const logout = () => {
 
 // Gather files for export
 // Gather files for export
-export {db, auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
+export {db, auth, signInWithGoogle, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};

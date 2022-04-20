@@ -1,14 +1,27 @@
 import React from 'react'
 import { InputGroup, FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
-import SignInButton from './components/SignInButton';
 import './Home.css';
 
 import {collection, doc, setDoc, addDoc, getDoc, docSnap} from 'firebase/firestore';
 import { useState, useEffect, ReactDOM} from 'react';
 import { storeInfo, db } from './firebase/firebaseConfig';
+import { useAuth } from "./contexts/AuthContext"
+import { useNavigate } from 'react-router-dom';
 
 function AdminPortal() {
+    const navigate = useNavigate();
+    const { logout }  = useAuth();
+    const [error, setError] = useState("");
+    async function handleLogout() {
+        setError("")
+        try {
+            await logout()
+            navigate('/admin')
+        } catch {
+            setError("Failed to log out")
+        }
+    }
 
     const [show, setShow] = useState(false);
     const [toggleState, setToggleState] = useState('home');
@@ -59,9 +72,8 @@ function AdminPortal() {
     }
 
     return (
-        /*<SignInButton/>*/
         <>
-            <body className="admin">
+            <div className="admin">
                 <ToastContainer className="p-3" position="top-center">
                     <Toast onClose={() => setShow(false)} show={show} delay={3000} bg='success' autohide>
                         <Toast.Body className="text-center text-white">
@@ -69,7 +81,7 @@ function AdminPortal() {
                         </Toast.Body>
                     </Toast>
                 </ToastContainer>
-                <div class="sidenav">
+                <div className="sidenav">
                     <label className='header'>Asian N Cajun Portal</label>
                     <hr></hr>
                     <button className={toggleState === 'home' ? "tabs active" : "tabs"} 
@@ -92,9 +104,12 @@ function AdminPortal() {
                             onClick={() => toggleTab('reservations')}>
                         Reservation
                     </button>
+                    <Button id="b_logout" variant="secondary" className='w-100' onClick={handleLogout}>
+                        Log Out
+                    </Button>
                 </div>
 
-                <div class="main">
+                <div className="main">
 
                     <section className={toggleState === 'home' ? "" : "hide"}>
                         <h2>Dashboard</h2>
@@ -166,7 +181,7 @@ function AdminPortal() {
                         <Button className='b_save' onClick={submitReservations}>Save</Button>
                     </section>
                 </div>
-            </body>
+            </div>
         </>
     );
 }
