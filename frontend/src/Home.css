@@ -1,8 +1,3 @@
-.top-section {
-    width: 100%;
-
-    height: 100%;
-}
 
 
 .cover-img {
@@ -106,10 +101,20 @@ a:hover{
     text-align: center;
     color: black;
     background-color: #dfc984;
+    display: flex;
+    justify-content: center;
+    
 
 }
 
-.intro h3 {}
+.food_imgs{
+padding: 50px 50px;
+background-color: black;
+}
+
+.food_imgs img{
+    object-fit: fill;
+}
 
 .item {
   border: 2px solid rgb(240, 240, 240);
@@ -134,12 +139,16 @@ a:hover{
 .about .top-section{
     background: url('./img/img-1.jpeg');
     height: 92vh;
-}
+    width: auto;
 
+}
+.about{
+    padding-top: 70px;
+}
 .about .top-section .panel{
-    width: 50vw;
-    height: 80vh;
-    background-color: rgba(255, 255, 255, 0.5);
+    max-width: 70vh;
+    max-height: 80vh;
+    background-color: rgba(7, 1, 1, 0.5);
     position: relative;
     left: 50%;
     top: 50%;
@@ -158,16 +167,41 @@ a:hover{
     overflow-y: auto;
 }
 
-.about .top-section .panel .intro h2{
+.about .top-section .panel h2{
+    text-align: center;
+    color: white !important;
+
+}
+.about .top-section .panel  p{
+    color: white ;
     text-align: center;
 }
 
-@media screen and (max-width: 767px){
+@media only screen and (max-width: 767px){
     .about .top-section .panel{
         width: 80vw;
     }
 }
 
+@media only screen and (max-width: 500px) {
+    .about .top-section .panel  p{
+        font-size: 12px;
+    
+    }
+  }
+  @media only screen and (max-width: 600px) {
+    .about .top-section .panel {
+      padding: 10px;
+    
+    }
+  }
+
+  @media only screen and (max-height: 820px) {
+    .about .top-section .panel  p{
+        font-size: 12px;
+    
+    }
+  }
 .services{
     display: flex;
     text-align: center;

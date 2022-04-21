@@ -10,14 +10,14 @@ function Navigation() {
   const [expanded, setExpanded] = useState(false);
   const toggleMenu = () => setExpanded(!expanded);
     return (
-        <Navbar scrolling  dark expand="md" fixed="top" className="navbar">
+        <Navbar scrolling  variant="dark" bg="black" expand="lg" fixed="top" className="navbar">
           <Container fluid>
              <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
                 className="ms-auto my-2 my-lg-0"
-                style={{ maxHeight: '150px' }}
+                style={{ maxHeight: '500px' }}
                 navbarScroll
               >
                 <Nav.Link><Link className="nav_list" to="/">Home</Link></Nav.Link>
