@@ -15,7 +15,9 @@ import img7 from './img/img-7.jpeg';
 import './Home.css';
 import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
+
 import { Link } from "react-router-dom";
+import ReservationForm from './components/ReservationForm';
 
 
 
@@ -23,7 +25,14 @@ function Home() {
     return (
         <div className="home">
      
-          
+            <div className="top-section">
+                
+                {/* <img className="" src={img1} /> */}
+                {/* <h3><OrderButton/>{' '}<Button variant="outline-light" size="lg" ><ReservationButton/></Button></h3> */}
+
+            
+            </div>   
+                            
             {/* <main className="container">
         <h1 className="text-uppercase text-center my-4">Asian N Cajun 2 app</h1>
         <div className="row">
@@ -53,7 +62,7 @@ function Home() {
           />
         ) : null}
       </main>  */}
-        
+        <Navigation />
             <Carousel fade style={{ minHeight: "100%" }}>
 
                 <Carousel.Item>
@@ -76,8 +85,20 @@ function Home() {
                     />
 
                     <Carousel.Caption> 
-                    <h3><Button variant="outline-light" size="lg"><ReservationButton/></Button>{' '}</h3>
+                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
 
+                    </Carousel.Caption>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <img
+                    className="d-block w-100 "
+                    src={img3}
+                    alt="Third slide"
+                    />
+
+                    <Carousel.Caption>
+                    <h3><Button variant="outline-light" size="lg" href="/menu">Menu</Button>{' '}</h3>
                     </Carousel.Caption>
                 </Carousel.Item>
              
@@ -122,7 +143,7 @@ function Home() {
                     <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>Book A Table</Card.Title>
-                            <Card.Link href="#">Reserve &#8594;</Card.Link>
+                            <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
                             
                         </Card.Body>
                     </Card>
