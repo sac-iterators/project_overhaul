@@ -4,7 +4,7 @@ import ReservationButton from './components/ReservationButton';
 import CareersButton from './components/CareersButton';
 import {doc, getDoc} from 'firebase/firestore';
 import {useEffect, useState} from 'react';
-import { storeInfo, db } from './firebase/firebaseConfig';
+import { db } from './firebase/firebaseConfig';
 import grubhub from './img/grubhub.svg';
 import ubereats from './img/ubereats.svg';
 import postmates from './img/postmates.svg';

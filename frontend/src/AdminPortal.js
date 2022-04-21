@@ -3,9 +3,9 @@ import { InputGroup, FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
 import './Home.css';
 
-import {collection, doc, setDoc, addDoc, getDoc, docSnap} from 'firebase/firestore';
+import {collection, doc, setDoc, addDoc, getDoc, docSnap, getDocs, query, orderBy} from 'firebase/firestore';
 import { useState, useEffect, ReactDOM} from 'react';
-import { storeInfo, db } from './firebase/firebaseConfig';
+import { storeInfo_db, db, careerInfo_db, jobListings_db } from './firebase/firebaseConfig';
 import { useAuth } from "./contexts/AuthContext"
 import { useNavigate } from 'react-router-dom';
 
@@ -30,20 +30,30 @@ function AdminPortal() {
         setToggleState(tabIndex);
     };
 
-    const [about, setAbout] = useState([]);
-    const [hours, setHours] = useState([]);
-    useEffect(() => {
-        const getAbout = async () => {
-            const data = await getDoc(doc(db, "storeInfo", "AboutUs"));
-            setAbout(data.data());
-        };
-        const getHours = async () => {
-            const data = await getDoc(doc(db, "storeInfo", "storeHours"));
-            setHours(data.data());
-        };
+    const [storeInfo, setStoreInfo] = useState([]);
+    const [storeHours, setStoreHours] = useState([]);
+    const [aboutInfo, setAboutInfo] = useState([]);
+    const [careersInfo, setCareersInfo] = useState([]);
+    const [jobListings, setJobListings] = useState([]);
 
-        getAbout();
-        getHours();
+    useEffect(() => {
+        (async () => {
+            let data;
+            
+            data = await getDocs(storeInfo_db);
+            setStoreHours(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                .find(item => item.id == "storeHours")
+            );
+            setAboutInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                .find(item => item.id == "AboutUs")
+            );
+
+            data = await getDocs(query(careerInfo_db, orderBy("id")));
+            setCareersInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+            
+            data = await getDocs(query(jobListings_db));
+            setJobListings(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+        })();
     }, []);
 
     const submitMenu = (event) => {
@@ -121,7 +131,7 @@ function AdminPortal() {
 
                         <fieldset>
                             <legend>Element Name</legend>
-                            <FormControl id="" defaultValue={about.article} rows={2}/>
+                            <FormControl id="" rows={2}/>
                         </fieldset>
 
                         <Button className='b_save' onClick={submitMenu}>Save</Button>
@@ -132,8 +142,7 @@ function AdminPortal() {
 
                         <fieldset>
                             <legend>About Article</legend>
-                            <FormControl id="aboutArticle" as="textarea" aria-label="With textarea"
-                            defaultValue={about.article} rows={4}/>
+                            <FormControl as="textarea" defaultValue={aboutInfo.article} rows={4}/>
                         </fieldset>
 
                         <fieldset>
@@ -141,15 +150,15 @@ function AdminPortal() {
                             <Row className='mx-3'>
                                 <FormGroup as={Col} className="">
                                     <FormLabel>Mon-Fri</FormLabel>
-                                    <FormControl id="weekdayHours" defaultValue={hours["Mon-Fri"]}/>
+                                    <FormControl id="weekdayHours" defaultValue={storeHours["Mon-Fri"]}/>
                                 </FormGroup>
                                 <FormGroup as={Col}>
                                     <FormLabel>Sat</FormLabel>
-                                    <FormControl id="satHours" defaultValue={hours["Sat"]}/>
+                                    <FormControl id="satHours" defaultValue={storeHours["Sat"]}/>
                                 </FormGroup>
                                 <FormGroup as={Col}>
                                     <FormLabel>Sun</FormLabel>
-                                    <FormControl id="sunHours" defaultValue={hours["Sat"]}/>
+                                    <FormControl id="sunHours" defaultValue={storeHours["Sun"]}/>
                                 </FormGroup>
                             </Row>
                         </fieldset>
@@ -159,11 +168,28 @@ function AdminPortal() {
                     </section>
 
                     <section className={toggleState === 'careers' ? "" : "hide"} >
-                        <h2>Careers</h2>
-
+                        <h2>Career Info</h2>
                         <fieldset>
-                            <legend>Element Name</legend>
-                            <FormControl id="" defaultValue={about.article} rows={2}/>
+                            {careersInfo.map((item) => {
+                                return (
+                                    <FormGroup key={item.id}>
+                                        <legend>{item.title}</legend>
+                                        <FormControl as="textarea" defaultValue={item.content} rows={2}/>
+                                    </FormGroup>
+                                );
+                            })}
+                        </fieldset>
+
+                        <h2>Job Listings</h2>
+                        <fieldset>
+                            {jobListings.map((item) => {
+                                return (
+                                    <FormGroup key={item.id}>
+                                        <legend>{item.title}</legend>
+                                        <FormControl as="textarea" defaultValue={item.content} rows={2}/>
+                                    </FormGroup>
+                                );
+                            })}
                         </fieldset>
 
                         <Button className='b_save text-right' onClick={submitCareers}>Save</Button>
@@ -175,7 +201,7 @@ function AdminPortal() {
 
                         <fieldset>
                             <legend>Element Name</legend>
-                            <FormControl id="" defaultValue={about.article} rows={2}/>
+                            <FormControl id=""  rows={2}/>
                         </fieldset>
 
                         <Button className='b_save' onClick={submitReservations}>Save</Button>

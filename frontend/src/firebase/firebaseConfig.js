@@ -40,11 +40,11 @@ const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
 
 const menu_Add_Ins = collection(db, "menu_Add_Ins");
 
-const job_listings = collection(db, "job_listings");
+const jobListings_db = collection(db, "job_listings");
 
-const careerInfo = collection(db, "careerInfo");
+const careerInfo_db = collection(db, "careerInfo");
 
-const storeInfo = collection(db, "storeInfo");
+const storeInfo_db = collection(db, "storeInfo");
 const googleProvider = new GoogleAuthProvider();
 
 // Saul's Implementation
@@ -93,4 +93,4 @@ const logout = () => {
 
 // Gather files for export
 // Gather files for export
-export {db, auth, signInWithGoogle, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
+export {db, auth, signInWithGoogle, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, jobListings_db, careerInfo_db, storeInfo_db};

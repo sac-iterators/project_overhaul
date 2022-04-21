@@ -4,7 +4,7 @@ import Navigation from './Navigation';
 import './Home.css';
 import {useEffect, useState} from 'react';
 import {doc, getDoc} from 'firebase/firestore';
-import { storeInfo, db } from './firebase/firebaseConfig';
+import { db } from './firebase/firebaseConfig';
 
 function About() {
     const [aboutInfo, setAboutInfo] = useState([]);
@@ -15,11 +15,6 @@ function About() {
         };
         getAboutInfo();
     }, []);
-    function getInfo(){
-        var text = aboutInfo.article;
-        console.log(text)
-        return text.replace("\n", "\n");
-    }
     return (
         <div className="about">
             <Navigation />

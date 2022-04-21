@@ -3,8 +3,8 @@ import {Form, FormLabel, FormControl,
         ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap';
 import { useState, useEffect, ReactDOM} from 'react';
 import AccordionMenu from './AccordionMenu';
-import { applications_db, storage, job_listings, careerInfo} from '../firebase/firebaseConfig';
-import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
+import { applications_db, storage, jobListings_db, careerInfo_db} from '../firebase/firebaseConfig';
+import {collection, doc, setDoc, addDoc, getDocs, query, where, orderBy} from 'firebase/firestore';
 import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
 import { async } from '@firebase/util';
 import application from '../resources/EmploymentApplication.docx'
@@ -28,17 +28,15 @@ function CareersButton() {
     const handleChange = (val) => {setValue(val)};
 
     useEffect(() => {
-      const getPos = async () => {
-          const data = await getDocs(job_listings);
-          setPos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-        };
-      getPos();
-      
-      const getInfo = async () => {
-        const data = await getDocs(careerInfo);
-        setInfo(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
-      };
-      getInfo();
+      (async () => {
+          let data;
+
+          data = await getDocs(query(jobListings_db));
+          setPos(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+          
+          data = await getDocs(query(careerInfo_db, orderBy("id")));
+          setInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
+      })();
     }, []);
 
     const handleSubmit = async(e) =>{
@@ -82,7 +80,7 @@ function CareersButton() {
         <a href='#' onClick={handleShow}>
           Careers
         </a>
-        
+  
         <Modal show={show} onHide={handleClose} className="orderModal">
           <Modal.Header closeButton>
             <Modal.Title>Apply</Modal.Title>
