@@ -192,7 +192,7 @@ background-color: black;
     background-color: rgba(7, 1, 1, 0.5);
     position: relative;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
     padding: 20px;
     display: flex;
@@ -202,9 +202,6 @@ background-color: black;
 }
 @media only screen and (max-width: 767px){
     .about .top-section .panel{ width: 80vw; }
-}
-@media only screen and (max-width: 600px) {
-    .about .top-section .panel {  padding: 10px; }
 }
 
 .panel .info{
@@ -346,7 +343,6 @@ background-color: black;
   .vertical-scroll::-webkit-scrollbar-track {
     background-color: rgba(255, 255, 255, 0.3);
     border-radius: 100vw;
-    margin-block: 0.5em;
   }
   
   .vertical-scroll::-webkit-scrollbar-thumb {
