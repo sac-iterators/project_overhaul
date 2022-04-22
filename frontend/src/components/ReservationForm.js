@@ -142,7 +142,7 @@ function ReservationForm(props){
         >
             <Form noValidate validated={validated} onSubmit={validate}>
                 <Modal.Body>
-                    { reservationComplete ? <p> Thank you, Reservation has been made </p> : <>
+                    {reservationComplete ? <p> Thank you, your reservation has been made </p> : <>
                     <div className = "sub-header"> 
                         <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
                     </div>
@@ -186,19 +186,6 @@ function ReservationForm(props){
 
                     <div className = "reservation-group">
                         <FormLabel for = "Total Number of Guests"> Total Number of Guests</FormLabel>
-                        {/* <select className="form-control" id="totalGuests" placeholder="Total Number of Guests" onChange={(event) => setGuests(event.target.value)}>
-
-                            <option value = "1"> 1</option>
-                            <option value = "2"> 2</option>
-                            <option value = "3"> 3</option>
-                            <option value = "4"> 4</option>
-                            <option value = "5"> 5</option>
-                            <option value = "6"> 6</option>
-                            <option value = "7"> 7</option>
-                            <option value = "8"> 8</option>
-                            <option value = "9"> 9</option>
-                            <option value = "10"> 10</option>
-                        </select> */}
                         <FormControl type="number" className="form-control" id="totalGuests"  
                             onChange={(event) => setGuests(event.target.value)} min="8" max="12" required>
                         </FormControl>
@@ -238,12 +225,10 @@ function ReservationForm(props){
                 </Modal.Body>
                 <Modal.Footer> 
                         <Button variant="secondary" onClick={props.close}>
-                            Cancel
+                            {reservationComplete ? 'Cancel' : 'Close'}
                         </Button>
                         { reservationComplete ? <></> : 
                             <Button type="submit" variant="primary" onClick={() => {
-                                // TODO: Only create reservation if information is filled (check)
-                                // TODO: Create notification/popup that tells the user if the reservation succeded or failed
                             }}>
                                 Reserve
                             </Button> 
