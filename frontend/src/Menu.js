@@ -6,6 +6,7 @@ import React from "react";
 import { menu_Chow_Mein } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
+import Navigate from './Navigation';
 
 
 
@@ -24,6 +25,7 @@ function Menu() {
   
   return(
       <div className='menu'>
+        <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
           return (

@@ -3,16 +3,16 @@ import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from '
 import ReservationButton from './components/ReservationButton';
 import Menu from './Menu';
 import { Link } from "react-router-dom";
-import './Navigation.css';
+import './Home.css';
 
 function Navigation() {
   
   const [expanded, setExpanded] = useState(false);
   const toggleMenu = () => setExpanded(!expanded);
     return (
-        <Navbar scrolling  variant="dark" bg="black" expand="lg" fixed="top" className="navbar">
+        <Navbar scrolling="true" variant="dark" expand="lg" fixed="top">
           <Container fluid>
-             <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
+            <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav

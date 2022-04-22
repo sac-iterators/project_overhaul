@@ -9,6 +9,7 @@ import grubhub from './img/grubhub.svg';
 import ubereats from './img/ubereats.svg';
 import postmates from './img/postmates.svg';
 import yelp from './img/yelp.svg';
+import Map from './components/Map';
 
 function Footer() {
   const script = document.createElement('script');
@@ -27,11 +28,12 @@ function Footer() {
 
   return (
     <footer className="bg-black">
-      <div style={{color: "white", margin:"0"}} className="container">
+      
+      <div className="">
         <div className="row py-4">
-          <div className="col-lg-4 col-md-6 mb-4 mb-lg-0">
-            {/* <img src={logo} alt="Second slide" className="logo"/> */}
-            <h1 style={{color: "white"}}>AsianNCajun2</h1>
+          <div className="col-lg-5 col-md-6 col-12 mb-4 mb-lg-0">
+            {/**<h1 className='text-center'>AsianNCajun2</h1> */}
+            <Map/>
             <ul className="list-inline social-links">
 
               <li className="list-inline-item"><a href="http://www.instagram.com/asianncajun2" target="_blank" title="instagram"><i className="fa fa-instagram social"></i></a></li>
@@ -46,7 +48,7 @@ function Footer() {
 
             </ul>
           </div>
-          <div className="col-lg-2 col-md-6 col-12 mb-4 mb-lg-0 mx-auto col storeinfo">
+          <div className="col-lg-3 col-md-4 col-10 mb-4 mb-lg-0 mx-auto col storeinfo">
             <h6 className="text-uppercase font-weight-bold mb-4">Store Hours</h6>
             <ul className="list-unstyled mb-4 hours">
             <li>
@@ -72,7 +74,7 @@ function Footer() {
               </li>
             </ul>
           </div>
-          <div className="col-lg-2 col-md-6  col-12 mb-lg-0 mx-auto col sitemap">
+          <div className="col-lg-1 col-md-2 col-2 mb-lg-0 mx-auto col sitemap">
             <h6 className="text-uppercase font-weight-bold mb-4">Sitemap</h6>
             <ul className="list-unstyled mb-0">
               <li className="mb-2"><CareersButton/></li>
@@ -82,11 +84,8 @@ function Footer() {
             </ul>
           </div>
         </div>
-      </div>
-
-      <div className="bg-black">
         <div className="container text-center">
-          <p className="text-muted">© 2022 AsianNCajun2 All rights reserved.</p>
+          <p className="copyright text-muted">© 2022 AsianNCajun2 All rights reserved.</p>
         </div>
       </div>
     </footer>    

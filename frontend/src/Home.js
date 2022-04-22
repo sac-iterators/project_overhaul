@@ -17,49 +17,28 @@ import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
 import ReservationForm from './components/ReservationForm';
 import { Link } from "react-router-dom";
-
+import {db} from './firebase/firebaseConfig'
+import {useEffect, useState} from 'react';
+import {doc, getDoc} from 'firebase/firestore';
 
 
 function Home() {
+
+    const [welcomeMessage, setWelcomeMessage] = useState([]);
+    useEffect(() => {
+        (async () => {
+            const data = await getDoc(doc(db, "storeInfo", "welcomeMessage"));
+            setWelcomeMessage(data.data());
+        })();
+    }, []);
+
     return (
         <div className="home">
-     
-          
-            {/* <main className="container">
-        <h1 className="text-uppercase text-center my-4">Asian N Cajun 2 app</h1>
-        <div className="row">
-          <div className="col-md-6 col-sm-10 mx-auto p-0">
-            <div className="card p-3">
-              <div className="mb-4">
-                <button
-                  className="btn btn-primary"
-                  onClick={this.createItem}
-                >
-                  Add task
-                </button>
-              </div>
-              {this.renderTabList()}
-              <ul className="list-group list-group-flush border-top-0">
-                {this.renderItems()}
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        {this.state.modal ? (
-          <Modal
-            activeItem={this.state.activeItem}
-            toggle={this.toggle}
-            onSave={this.handleSubmit}
-          />
-        ) : null}
-      </main>  */}
-        <Navigation />
+            <Navigation />
             <Carousel fade style={{ minHeight: "100%" }}>
-
                 <Carousel.Item>
                     <img
-                    className="d-block w-100"
+                    className="hero-img"
                     src={img2}
                     alt="First slide"
                     />
@@ -82,56 +61,30 @@ function Home() {
                     </Carousel.Caption>
                 </Carousel.Item>
              
-                </Carousel>
+            </Carousel>
             
-            <div className="intro">
+            <div className="intro text-center">
                 <h1>Welcome to Asian N Cajun 2</h1>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                    
-                </p>
-                <p>
-                    At consectetur lorem donec massa sapien. Euismod lacinia at quis 
-                    risus sed vulputate odio ut. At consectetur lorem donec massa sapien. <br />Euismod lacinia at quis 
-                    risus sed vulputate odio ut.
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                </p>
-                <p>
-                    At consectetur lorem donec massa sapien. Euismod lacinia at quis 
-                    risus sed vulputate odio ut.
-                </p>
-                <p>
-                    At consectetur lorem donec massa sapien. Euismod lacinia at quis 
-                    risus sed vulputate odio ut.
-                    At consectetur lorem donec massa sapien. <br />Euismod lacinia at quis 
-                    risus sed vulputate odio ut.
-                </p>
+                <p className="info">{welcomeMessage.article}</p>
             </div>
-            <div className="menu_options">
+            <div className="menu_options text-center">
                 <CardGroup>
                     <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
                         <Card.Body>
-                            <Card.Title>MENU</Card.Title>
-                            <Card.Link href="#"><Link to="/menu">View Menus &#8594;</Link> </Card.Link>
-                   
+                            <Card.Title>Menu</Card.Title>
+                            <Card.Link href="/menu">View Menus &#8594;</Card.Link>
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
                         <Card.Body>
-                            <Card.Title>Book A Table</Card.Title>
+                            <Card.Title>Book a Table</Card.Title>
                             <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
                             
                         </Card.Body>
                     </Card>
                 </CardGroup>
             </div>
-
-
-             <div className="food_imgs">
+             <div className="food_imgs text-center">
                 <CardGroup>
                     <Card>
                         <Card.Img variant="top" src={img5} className="cover-img"/>
@@ -147,13 +100,7 @@ function Home() {
                     </Card>
                 </CardGroup>
             </div> 
-            <div className="map">
-
-                  <Map />
-
-            </div>
-            
-            
+        
             <Footer/>         
         </div>
     

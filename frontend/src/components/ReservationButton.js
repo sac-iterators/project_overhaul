@@ -13,9 +13,6 @@ function ReservationButton(props) {
     
     return (
       <>
-        {/* <a href='#' onClick={handleShow}>
-          Reserve
-        </a>  */}
         <div  onClick={handleShow}>Reserve</div>
   
         <Modal show={show} onHide={handleClose}>

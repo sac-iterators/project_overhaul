@@ -9,15 +9,14 @@ import { db } from './firebase/firebaseConfig';
 function About() {
     const [aboutInfo, setAboutInfo] = useState([]);
     useEffect(() => {
-        const getAboutInfo = async () => {
+        (async () => {
             const data = await getDoc(doc(db, "storeInfo", "AboutUs"));
             setAboutInfo(data.data());
-        };
-        getAboutInfo();
+        })();
     }, []);
-    return (
+    return (<><Navigation />
         <div className="about">
-            <Navigation />
+            
             <div className="top-section">
                 <div className='panel'>
                     <h2>About</h2>
@@ -25,7 +24,7 @@ function About() {
                 </div>
             </div>
             <Footer/>          
-        </div>
+        </div></>
     )
 }
 
