@@ -2,8 +2,10 @@
     --blue: #64C9CF;
     --darker-blue: #2984ce;
     --dark-orange: #DF711B;
+    --sandy-orange: #FF7A00;
     --orange: #FFB740;
     --beige: #FDE49C;
+    --tan: #FFC77F;
     --off-white: #f3f0e2;
 }
 
@@ -70,7 +72,7 @@ footer{
     padding: 40px 60px;
     font-family: Verdana;
     color: white;
-    background-color: var(--dark-orange);
+    background-color: var(--sandy-orange);
 }
 .intro h1{
     color: var(--beige);
@@ -80,9 +82,16 @@ footer{
     line-height: 2.5;
     font-size: 20px;
     height: 100%;
-    font-weight: normal;
+    font-weight: 550;
     position: relative;
     color: var(--off-white);
+}
+p.info {
+    background-color: var(--dark-orange);
+    border-radius: 2rem;
+    opacity: .9;
+    padding: 10px;
+    margin-top: 2.5rem;
 }
 
 
@@ -139,7 +148,7 @@ footer .copyright{
 }
 
 .footer-title {
-    color: var(--orange);
+    color: var(--sandy-orange);
 }
 
 a{
@@ -152,11 +161,11 @@ a:hover{
 }
 
 main {
-    color: var(--beige);
-    background-color: var(--orange);
+    color: var(--dark-orange);
+    background-color: var(--dark-orange);
 }
 section {
-    background-color: var(--dark-orange);
+    background-color: var(--off-white);
 }
 
 .btn-outline-light {
@@ -172,11 +181,10 @@ section {
     border-color: #64C9CF;
 }
 
-.filter-btn {
-    border-color: var(--blue);
-}
+
 button.filter-btn:hover {
-    background-color: #64C9CF;
+    color: var(--blue);
+    background-color: var(--off-white);
 }
 
 .card-link{
@@ -187,7 +195,7 @@ button.filter-btn:hover {
 }
 
 .card {
-    background-color: var(--dark-orange);
+    background-color: var(--sandy-orange);
 }
 .card-button {
     background-color: var(--blue);
@@ -216,7 +224,7 @@ button.filter-btn:hover {
     padding: 40px 60px;
     font-family: 'Montagu Slab', serif;
     color: black;
-    background-color: var(--orange);
+    background-color: var(--tan);
     display: flex;
     justify-content: center;
     
@@ -225,7 +233,7 @@ button.filter-btn:hover {
 
 .food_imgs{
     padding: 40px 60px;
-    background-color: var(--dark-orange);
+    background-color: var(--sandy-orange);
 }
 
 .food_imgs .card{
