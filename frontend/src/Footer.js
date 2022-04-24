@@ -49,7 +49,7 @@ function Footer() {
             </ul>
           </div>
           <div className="col-lg-3 col-md-4 col-10 mb-4 mb-lg-0 mx-auto col storeinfo">
-            <h6 className="text-uppercase font-weight-bold mb-4">Store Hours</h6>
+            <h6 className="footer-title text-uppercase font-weight-bold mb-4">Store Hours</h6>
             <ul className="list-unstyled mb-4 hours">
             <li>
                 <p className='days'>Mon-Fri</p>
@@ -64,7 +64,7 @@ function Footer() {
                 <p className="text-muted mb-2">{hours["Sun"]}</p>
               </li>
             </ul>
-            <h6 className="text-uppercase font-weight-bold mb-4">Location</h6>
+            <h6 className="footer-title text-uppercase font-weight-bold mb-4">Location</h6>
             <ul className="list-unstyled mb-0 location">
               <li>
                 <a href="https://www.google.com/maps/place/8121+Greenback+Ln,+Fair+Oaks,+CA+95628" target="_blank">
@@ -75,7 +75,7 @@ function Footer() {
             </ul>
           </div>
           <div className="col-lg-1 col-md-2 col-2 mb-lg-0 mx-auto col sitemap">
-            <h6 className="text-uppercase font-weight-bold mb-4">Sitemap</h6>
+            <h6 className="footer-title text-uppercase font-weight-bold mb-4">Sitemap</h6>
             <ul className="list-unstyled mb-0">
               <li className="mb-2"><CareersButton/></li>
               <li className="mb-2"><a href="./about" className="">About</a></li>

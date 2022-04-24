@@ -1,9 +1,18 @@
+:root {
+    --blue: #64C9CF;
+    --darker-blue: #2984ce;
+    --dark-orange: #DF711B;
+    --orange: #FFB740;
+    --beige: #FDE49C;
+    --off-white: #f3f0e2;
+}
+
 /*Page x-Padding******************************************************************************************/
 .home .intro, 
 .home .food_imgs, 
 .home .menu_options,
 footer{
-    padding: 40px 60px
+    padding: 50px 60px
 }
 @media only screen and (max-width: 576px){
     .home .intro, 
@@ -20,7 +29,7 @@ footer{
 }
 
 .nav_title{
-    font-size: 18px;
+    font-size: 32px;
     color: #f3f0e2 !important;
 }
 
@@ -42,10 +51,13 @@ footer{
 
 .nav_list{
     height: auto;
-    color: rgba(180, 180, 180, 1);
+    color: var(--off-white);
+    opacity: 0.7;
+    font-size: 1.3rem;
 }
 .nav_list:hover{
-    color: white;
+    color: var(--blue);
+
 }
 /*******************************************************************************************/
 .cover-img {
@@ -56,23 +68,21 @@ footer{
 
 .intro {
     padding: 40px 60px;
-    font-family: 'Montagu Slab', serif;
+    font-family: Verdana;
     color: white;
-    background-color: black;
+    background-color: var(--dark-orange);
 }
 .intro h1{
-    color: #dfc984;
-
+    color: var(--beige);
 }
 .intro .info{
-    font-family: "Lato",sans-serif,Times,Serif;
+    font-family: sans-serif;
     line-height: 2.5;
-    font-size: 17px;
+    font-size: 20px;
     height: 100%;
     font-weight: normal;
     position: relative;
-
-    color: #f3f0e2;
+    color: var(--off-white);
 }
 
 
@@ -128,24 +138,85 @@ footer .copyright{
     margin: 0;
 }
 
+.footer-title {
+    color: var(--orange);
+}
+
 a{
     color: rgba(180, 180, 180, 1);
     text-decoration: none;
 }
 
 a:hover{
-   color: white;
+   color: var(--blue);
+}
+
+main {
+    color: var(--beige);
+    background-color: var(--orange);
+}
+section {
+    background-color: var(--dark-orange);
+}
+
+.btn-outline-light {
+    font-size: 1.4rem;
+    color: #64C9CF;
+    border-color: #64C9CF;
+    border-width: 0.3rem;
+    border-radius: 0.6rem;
+}
+.btn-outline-light:hover {
+    color: white;
+    background-color: #64C9CF;
+    border-color: #64C9CF;
+}
+
+.filter-btn {
+    border-color: var(--blue);
+}
+button.filter-btn:hover {
+    background-color: #64C9CF;
 }
 
 .card-link{
-    color: #f3f0e2;
+    color: var(--off-white);
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: underline;
+}
+
+.card {
+    background-color: var(--dark-orange);
+}
+.card-button {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    font-size: 18px;
+    font-family: sans-serif;
+}
+.card-button:hover {
+    background-color: var(--dark-orange);
+    color: var(--off-white);
+    border-color: var(--blue);
+}
+
+.home-card-title {
+    color: var(--beige);
+    font-size: 28px;
+    font-family: Verdana;
+    padding: 5px 0px 10px 0px;
+}
+.home-card-body {
+    width: 14.5rem;
+    padding: 10px 0px 15px 0px;
 }
 
 .menu_options{
     padding: 40px 60px;
     font-family: 'Montagu Slab', serif;
     color: black;
-    background-color: #dfc984;
+    background-color: var(--orange);
     display: flex;
     justify-content: center;
     
@@ -153,8 +224,8 @@ a:hover{
 }
 
 .food_imgs{
-padding: 40px 60px;
-background-color: black;
+    padding: 40px 60px;
+    background-color: var(--dark-orange);
 }
 
 .food_imgs .card{
@@ -189,7 +260,8 @@ background-color: black;
 .about .top-section .panel{
     width: 60vw;
     max-height: 80vh;
-    background-color: rgba(7, 1, 1, 0.5);
+    background-color: var(--dark-orange);
+    opacity: 0.95;
     position: relative;
     left: 50%;
     top: 55%;
@@ -212,12 +284,14 @@ background-color: black;
 
 .about .top-section .panel h2{
     text-align: center;
-    color: white !important;
+    color: var(--off-white) !important;
+    font-size: 2.5rem;
 
 }
 .about .top-section .panel  p{
-    color: white ;
+    color: var(--off-white) ;
     text-align: center;
+    font-size: 1.4rem;
 }
 
 .hero-img{

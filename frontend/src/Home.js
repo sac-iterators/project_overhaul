@@ -69,17 +69,24 @@ function Home() {
             </div>
             <div className="menu_options text-center">
                 <CardGroup>
-                    <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
-                        <Card.Body>
-                            <Card.Title>Menu</Card.Title>
-                            <Card.Link href="/menu">View Menus &#8594;</Card.Link>
+                    <Card class="home-card">
+                        <Card.Body class="home-card-body">
+                            <Card.Title class="home-card-title">Menu</Card.Title>
+                            <Card.Link href="/menu">
+                                <button class="btn btn-primary card-button" variant='outline-light'>
+                                    View Menu
+                                </button>
+                            </Card.Link>
                         </Card.Body>
                     </Card>
-                    <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
-                        <Card.Body>
-                            <Card.Title>Book a Table</Card.Title>
-                            <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
-                            
+                    <Card class="home-card">
+                        <Card.Body class="home-card-body">
+                            <Card.Title class="home-card-title">Book a Table</Card.Title>
+                            <Card.Link> 
+                                <button class="btn btn-primary card-button" variant='outline-light'>
+                                    <ReservationButton/> 
+                                </button>
+                            </Card.Link> 
                         </Card.Body>
                     </Card>
                 </CardGroup>
