@@ -50,7 +50,7 @@ function Home() {
                     <img
 
                     className="w-100 d-block"
-                    src={img2}
+                    src={img3}
 
                     alt="Second slide"
                     />
