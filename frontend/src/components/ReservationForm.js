@@ -3,8 +3,11 @@ import {Button, Form, FormLabel, FormControl} from 'react-bootstrap';
 import { useState, ReactDOM, useEffect} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
-import { reservation_db } from '../firebase/firebaseConfig';
-import {collection, addDoc, getDocs} from 'firebase/firestore';
+import { db, reservation_db } from '../firebase/firebaseConfig';
+import {collection, doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
+import moment from 'moment';
+import { async } from '@firebase/util';
+
 
 
 function ReservationForm(props){
@@ -36,6 +39,9 @@ function ReservationForm(props){
     const maxReservationDate = new Date(today);
     maxReservationDate.setDate(maxReservationDate.getDate() + 7);
 
+    const delReservationDate = new Date(today);
+    delReservationDate.setDate(delReservationDate.getDate() - 7);
+
     // TODO: * 12 and 20 can be replaced so not hardcoded for API calls
     for (let time_init = 12; time_init <= 20; time_init++) {
         timeBlocks.push(new Date(times.setHours(time_init)));
@@ -48,6 +54,29 @@ function ReservationForm(props){
     };
     if (fetchReservation) getReservations().then(setFetchReservations(false))
 
+    useEffect(() => {
+        const deleteRes = async () => {
+            const data = await getDocs(reservation_db);
+            data.docs.forEach(delDoc => {
+                const fields = delDoc._document.data.value.mapValue.fields;
+                const reservationDate = moment(fields.date.stringValue);
+                const deleteDate = moment(delReservationDate);
+
+
+                if(reservationDate.isBefore(deleteDate, 'day')) {
+                    console.log(delDoc.id + ' | ' + reservationDate + ': Should be deleted');
+                    const del = async () => {
+                        await deleteDoc(doc(db, 'reservation_Test', delDoc.id))
+                    };
+                    del();
+                } else {
+                    console.log(delDoc.id + ': IS FINE');
+                }
+            });
+        }
+        deleteRes();
+    }, []);
+
     function onDateChange(newDate) {
         setOpenReservations([]);
         setDate(newDate);
@@ -58,7 +87,7 @@ function ReservationForm(props){
         console.log("DEBUG | Clicked date: " + reservationDate.toDateString()); // Debug message
 
         reservations.forEach(item => { // Loops through all reservations 
-            if (item.date === reservationDate.toDateString()) {
+            if (item.date === isoDate(reservationDate)) {
                 console.log("DEBUG | Reservation found on this date")
                 bookedReservations.push(item.time);
             } 
@@ -75,6 +104,20 @@ function ReservationForm(props){
         });
     }
 
+    function isoDate(oldDate) {
+        const year = oldDate.getFullYear();
+        let month = oldDate.getMonth()+1;
+        let dt = oldDate.getDate();
+
+        if (dt < 10) {
+            dt = '0' + dt;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+        return year+'-' + month + '-'+ dt;
+    }
+
     const createReservation = async() => {
         try{
             await addDoc(reservation_db, {
@@ -84,7 +127,7 @@ function ReservationForm(props){
                 phoneNum: phoneNumber, 
                 notes: notes, 
                 guests: guests,
-                date: date.toDateString(),
+                date: isoDate(date),
                 time: date.toLocaleTimeString()
             })
         }catch(err){
@@ -110,7 +153,7 @@ function ReservationForm(props){
                 alert("Please select an available time")
             } else {
                 setReservationComplete(true);
-                createReservation()
+                createReservation();
             }
         }
         setValidated(true);
@@ -225,7 +268,7 @@ function ReservationForm(props){
                 </Modal.Body>
                 <Modal.Footer> 
                         <Button variant="secondary" onClick={props.close}>
-                            {reservationComplete ? 'Cancel' : 'Close'}
+                            {reservationComplete ? 'Close' : 'Cancel'}
                         </Button>
                         { reservationComplete ? <></> : 
                             <Button type="submit" variant="primary" onClick={() => {
