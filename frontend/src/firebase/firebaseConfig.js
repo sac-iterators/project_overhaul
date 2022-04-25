@@ -65,7 +65,7 @@ const menu_Sides = collection(db, "menu_Sides");
 const menu_Vegetable = collection(db, "menu_Vegetable");
 const menu_Whats_Cooking = collection(db, "menu_Whats_Cooking");
 const menu_Wing = collection(db, "menu_Wing");
-const menu = collection(db, "menu");
+const Full_Menu = collection(db, "Full_Menu");
 
 // Handles onClick event for signing in with Google
 const signInWithGoogle = async () => {
@@ -115,6 +115,6 @@ const logout = () => {
 
 
 // Gather files for export
-export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, all_Day_Special, menu_Appetizers, 
+export {auth, signInWithGoogle, signInWithFacebook, logout, food_db, Full_Menu, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, all_Day_Special, menu_Appetizers, 
   menu_Beef, menu_Chicken, menu_Combinations, menu_Deep_Fried_Goodiness, menu_Dessert, menu_Flavor, menu_Fried_Rice, menu_Hot, menu_Pork, menu_Seafood_Platter, menu_Sides, menu_Vegetable, menu_Whats_Cooking, menu_Wing};
 

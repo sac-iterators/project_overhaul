@@ -26,6 +26,7 @@ function FireMenu() {
             {food.map((item) => 
             { return <div key={item.id}> 
             <h1>Name: {item.Name}</h1>
+            <h1>Category: {item.Category}</h1>
             <h1>Cost: {item.Price}</h1>
             <h1>Spicy: {item.Spicy ? "true": "false"}</h1>
             </div>

@@ -4,9 +4,7 @@ import './Home.css';
 import React from "react";
 //import Categories from "./Categories";
 //import items from "./data";
-import { all_Day_Special, menu_Add_Ins, menu_Appetizers, menu_Beef, menu_Chicken, menu_Chow_Mein,
-  menu_Combinations, menu_Deep_Fried_Goodiness, menu_Dessert, menu_Flavor, menu_Fried_Rice, menu_Hot,
-  menu_Pork, menu_Seafood_Platter, menu_Sides, menu_Vegetable, menu_Whats_Cooking, menu_Wing, menu, All_Items } from './firebase/firebaseConfig';
+import { Full_Menu } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 
@@ -21,9 +19,7 @@ function Menu() {
  useEffect(() => {
      // Const getFood will grab the documents from the database provided in getDocs()
      const getFood = async () => {
-         const data = await getDocs( all_Day_Special, menu_Add_Ins, menu_Appetizers, menu_Beef, menu_Chicken, menu_Chow_Mein
-             , menu_Combinations, menu_Deep_Fried_Goodiness, menu_Dessert, menu_Flavor, menu_Fried_Rice, menu_Hot
-             , menu_Pork, menu_Seafood_Platter, menu_Sides, menu_Vegetable, menu_Whats_Cooking, menu_Wing);
+         const data = await getDocs(Full_Menu);
          setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    // Maps the database data to food variable
      };
 

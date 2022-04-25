@@ -32,17 +32,16 @@ function App () {
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 const MenuApp = () => {
-  const [menuItems, setMenuItems] = useState(items) // assuming items is from firebase;
+  const [menuItems, setMenuItems] = useState(items)
   const [activeCategory, setActiveCategory] = useState("all");
 
 const filterItems = items?.filter(item => {
         switch (activeCategory) {
             case 'all':
                 return true
-            case 'development':
-            case 'design':
-            case 'sales':
-                  //assuming you have category of category in your firebase
+            case 'all day specials':
+            case 'appetizers':
+            case 'add ins':
                 return item.category === activeCategory
             default:
                 return true
@@ -53,7 +52,7 @@ const filterItems = items?.filter(item => {
     <main>
       <section className="menu section">
         <div className="title">
-          <img src={logo} className="logo" />
+          
           <h2>Menu List</h2>
           <div className="underline"></div>
         </div>
