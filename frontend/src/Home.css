@@ -191,16 +191,43 @@ a:hover{
 }
 
 /* Saul's Implementation */
-.menu .logo {
-    width: 30%;
-} 
 
-.menu .top-section {
+
+.menu {
     width: 100%;
-    grid-gap: 10%;
+    /*
+    grid-gap: 5%;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    display: grid;
+    */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+
 }
+.menu .menu-items {
+    width: 30%;
+    
+    margin: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .menu .top-section {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    
+    }
+
+    .menu .menu-items {
+        width: 300px;
+        margin: 5px;
+    }
+}
+
+
+
 
 .menu .underline {
     width: 50%;
@@ -216,7 +243,7 @@ a:hover{
     justify-content: center;
   }
 
-.menu .photo {
+.menu .photo2 {
     object-fit: cover;
     height: 200px;
     width: 100%;

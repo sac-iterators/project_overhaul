@@ -32,19 +32,22 @@ function App () {
 const allCategories = ["all", ...new Set(items.map((item) => item.category))];
 
 const MenuApp = () => {
-  const [menuItems, setMenuItems] = useState(items);
-  const [activeCategory, setActiveCategory] = useState("");
-  const [categories, setCategories] = useState(allCategories);
+  const [menuItems, setMenuItems] = useState(items) // assuming items is from firebase;
+  const [activeCategory, setActiveCategory] = useState("all");
 
-  const filterItems = (category) => {
-    setActiveCategory(category);
-    if (category === "all") {
-      setMenuItems(items);
-      return;
-    }
-    const newItems = items.filter((item) => item.category === category);
-    setMenuItems(newItems);
-  };
+const filterItems = items?.filter(item => {
+        switch (activeCategory) {
+            case 'all':
+                return true
+            case 'development':
+            case 'design':
+            case 'sales':
+                  //assuming you have category of category in your firebase
+                return item.category === activeCategory
+            default:
+                return true
+        }
+    })
   
   return (
     <main>
@@ -55,14 +58,13 @@ const MenuApp = () => {
           <div className="underline"></div>
         </div>
         <Categories
-          categories={categories}
+          setActiveCategory={setActiveCategory}
           activeCategory={activeCategory}
-          filterItems={filterItems}
         />
-        <Menu items={menuItems} />
+        <Menu items={filterItems} />
       </section>
     </main>
   );
-}
+};
 
 export default App;

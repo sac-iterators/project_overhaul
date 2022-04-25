@@ -65,6 +65,7 @@ const menu_Sides = collection(db, "menu_Sides");
 const menu_Vegetable = collection(db, "menu_Vegetable");
 const menu_Whats_Cooking = collection(db, "menu_Whats_Cooking");
 const menu_Wing = collection(db, "menu_Wing");
+const menu = collection(db, "menu");
 
 // Handles onClick event for signing in with Google
 const signInWithGoogle = async () => {
