@@ -1,4 +1,3 @@
-
 import './Home.css';
 
 import React from "react";
@@ -7,6 +6,7 @@ import React from "react";
 import { Full_Menu } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
+import Navigate from './Navigation';
 
 
 
@@ -28,10 +28,12 @@ function Menu() {
   
   return(
       <div className='menu'>
-          {food.map((item) => {
-            return (
-              <article key={item.id} className="menu-items">
-              <img src={item.ImageURL} alt={item.Name} className="photo2" />
+        <Navigate/>
+        <div className="top-section"></div>
+        {food.map((item) => {
+          return (
+            <article key={item.id} className="menu-items">
+              <img src={item.ImageURL} alt={item.Name} className="photo" />
               <div className="item-info">
                 <header>
                   <h4>{item.Name}</h4>

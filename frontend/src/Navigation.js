@@ -1,24 +1,23 @@
 import React, { useState } from 'react'
 import { Button, Navbar, Nav, Container, NavDropdown, Form, FormControl } from 'react-bootstrap';
 import ReservationButton from './components/ReservationButton';
-import SignInButton from './components/SignInButton';
 import Menu from './Menu';
 import { Link } from "react-router-dom";
-import './Navigation.css';
+import './Home.css';
 
 function Navigation() {
   
   const [expanded, setExpanded] = useState(false);
   const toggleMenu = () => setExpanded(!expanded);
     return (
-        <Navbar scrolling  dark expand="md" fixed="top" className="navbar">
+        <Navbar scrolling="true" variant="dark" expand="lg" fixed="top">
           <Container fluid>
-             <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
+            <Navbar.Brand className="nav_title" href="#">Asian N Cajun 2</Navbar.Brand>
             <Navbar.Toggle aria-controls="navbarScroll" />
             <Navbar.Collapse id="navbarScroll">
               <Nav
                 className="ms-auto my-2 my-lg-0"
-                style={{ maxHeight: '150px' }}
+                style={{ maxHeight: '500px' }}
                 navbarScroll
               >
                 <Nav.Link><Link className="nav_list" to="/">Home</Link></Nav.Link>
@@ -33,7 +32,6 @@ function Navigation() {
                   </NavDropdown.Item>
                 </NavDropdown> */}
                 <Nav.Link ><div className="nav_list"> <ReservationButton /></div></Nav.Link>
-                <Nav.Link > <p className="nav_list" > <SignInButton /></p></Nav.Link>
               </Nav>
              
               {/* <Form className="d-flex">
