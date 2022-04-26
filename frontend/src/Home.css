@@ -349,6 +349,68 @@ button.filter-btn:hover {
     font-weight: 500;
 }
 
+/* Saul's Implementation */
+
+
+.menu {
+    width: 100%;
+    /*
+    grid-gap: 5%;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+
+}
+.menu .menu-items {
+    width: 30%;
+    
+    margin: 10px;
+}
+
+@media screen and (max-width: 700px) {
+    .menu .top-section {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    
+    }
+
+    .menu .menu-items {
+        width: 300px;
+        margin: 5px;
+    }
+}
+
+
+
+
+.menu .underline {
+    width: 50%;
+    height: 0.25rem;
+    background: #c59d5f;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menu .btn-container {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+.menu .photo2 {
+    object-fit: cover;
+    height: 200px;
+    width: 100%;
+    border: 0.25rem solid hsl(360, 71%, 66%);
+    border-radius: 0.25rem;
+    display: block;
+    grid: center;
+  }
 /*********************************************************************************************************/
 /******************************************Admin Portal Styling*******************************************/
 .login #b_login{

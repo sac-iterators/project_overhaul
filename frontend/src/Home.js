@@ -13,6 +13,9 @@ import img6 from './img/img-6.jpeg';
 import img7 from './img/img-7.jpeg';
 import './Home.css';
 import 'leaflet/dist/leaflet.css';
+import ReservationForm from './components/ReservationForm';
+import { useNavigate } from 'react-router-dom';
+
 import {db} from './firebase/firebaseConfig'
 import {useEffect, useState} from 'react';
 import {doc, getDoc} from 'firebase/firestore';
@@ -20,6 +23,9 @@ import {doc, getDoc} from 'firebase/firestore';
 
 function Home() {
 
+    // implemented function to the "View Full Menu" button
+    const navigate = useNavigate();
+    const handleMenuClick = () => navigate("menu");
     const [welcomeMessage, setWelcomeMessage] = useState([]);
     useEffect(() => {
         (async () => {
@@ -44,7 +50,6 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-
                     className="w-100 d-block"
                     src={img3}
 
@@ -87,7 +92,7 @@ function Home() {
                     </Card>
                 </CardGroup>
             </div>
-             <div className="food_imgs text-center">
+            <div className="food_imgs text-center">
                 <CardGroup>
                     <Card>
                         <Card.Img variant="top" src={img5} className="cover-img"/>

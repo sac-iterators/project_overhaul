@@ -3,7 +3,7 @@ import './Home.css';
 import React from "react";
 //import Categories from "./Categories";
 //import items from "./data";
-import { menu_Chow_Mein } from './firebase/firebaseConfig';
+import { Full_Menu } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 import Navigate from './Navigation';
@@ -12,16 +12,19 @@ import Navigate from './Navigation';
 
 function Menu() {
 
-  const [food, setFood] = useState([]);
+ // Variable used to store items/information from the database
+ const [food, setFood] = useState([]);
 
-  useEffect(() => {
-    const getFood = async () => {
-        const data = await getDocs(menu_Chow_Mein);
-        setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+ // This function runs when the page is loaded
+ useEffect(() => {
+     // Const getFood will grab the documents from the database provided in getDocs()
+     const getFood = async () => {
+         const data = await getDocs(Full_Menu);
+         setFood(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    // Maps the database data to food variable
+     };
 
-    };
-    getFood();
-  }, []);
+     getFood();
+ }, []);
   
   return(
       <div className='menu'>

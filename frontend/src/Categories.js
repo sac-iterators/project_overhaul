@@ -1,9 +1,12 @@
 import React from "react";
 
-const Categories = ({ categories, filterItems, activeCategory }) => {
+const allCategories = ['all','all day specials','appetizers','seafood platter', 'add ins', 'beef', 'chicken', 'chow mein', 'combinations', 'deep fried goodiness', 'dessert', 'fried rice',
+'pork', 'seafood platter', 'sides', 'vegetable', 'whats cooking', 'wing']
+
+const Categories = ({ activeCategory, setActiveCategory, }) => {
   return (
     <div className="btn-container">
-      {categories.map((category, index) => {
+      {allCategories.map((category, index) => {
         return (
           <button
             type="button"
@@ -11,7 +14,7 @@ const Categories = ({ categories, filterItems, activeCategory }) => {
               activeCategory === category ? "filter-btn active" : "filter-btn"
             }`}
             key={index}
-            onClick={() => filterItems(category)}
+            onClick={() => setActiveCategory(category)}
           >
             {category}
           </button>
