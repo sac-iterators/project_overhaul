@@ -81,13 +81,14 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="d-block w-100"
+                    className="w-100 d-block"
                     src={img2}
                     alt="Second slide"
                     />
 
                     <Carousel.Caption> 
-                        <h3 Button variant="outline-light" size="lg" ><ReservationButton/> {' '} </h3>
+                    <h3><Button variant="outline-light" size="lg">Make a Reservation</Button>{' '}</h3>
+                     <h3 variant="outline-light" size="lg"><ReservationButton/> {' '} </h3>
                     </Carousel.Caption>
                 </Carousel.Item>
                 <Carousel.Item>
@@ -131,24 +132,26 @@ function Home() {
                 </p>
             </div>
             <div className="menu_options">
-            <CardGroup>
+                <CardGroup>
                     <Card style={{ width: '10rem', backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>MENU</Card.Title>
-                            <Button variant="primary" onClick={handleMenuClick}>View Full Menu</Button>
+                            <Card.Link href="/menu">View Menus &#8594; </Card.Link>
                    
                         </Card.Body>
                     </Card>
                     <Card style={{ width: '10rem' , backgroundColor: '#dfc984' }}>
                         <Card.Body>
                             <Card.Title>Book A Table</Card.Title>
-                            <Card.Link href="#">Reserve &#8594;</Card.Link>
+                            <Card.Link> <ReservationButton/>&#8594; </Card.Link> 
                             
                         </Card.Body>
                     </Card>
                 </CardGroup>
-                </div>
-             <div>
+            </div>
+
+
+            <div>
                 <CardGroup>
                     <Card>
                         <Card.Img variant="top" src={img5} className="cover-img"/>
