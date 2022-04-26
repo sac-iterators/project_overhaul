@@ -79,4 +79,4 @@ const logout = () => {
 };
 
 // Gather files for export
-export {db, auth, signInWithGoogle, logout, food_db, reservation_db, Full_Menu, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, jobListings_db, careerInfo_db, storeInfo_db};
+export {db, auth, all_Day_Special, signInWithGoogle, logout, food_db, reservation_db, Full_Menu, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, jobListings_db, careerInfo_db, storeInfo_db};
