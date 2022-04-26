@@ -1,19 +1,15 @@
 import Modal from 'react-bootstrap/Modal'
 import {Button, Form, FormLabel, FormControl} from 'react-bootstrap';
-import { useState, ReactDOM, useEffect} from 'react';
+import { useState, useEffect} from 'react';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
 import { db, reservation_db } from '../firebase/firebaseConfig';
-import {collection, doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
+import {doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
 import moment from 'moment';
-import { async } from '@firebase/util';
 
 
 
 function ReservationForm(props){
-    // TODO: Check the show states and make comments
-    // TODO: Redo comments to emulate a "why" instead of a what
-
     // * Define useState variables for storing in database
     const [fname, setFname] = useState("");
     const [lname, setLname] = useState("");
@@ -32,14 +28,12 @@ function ReservationForm(props){
     const today = new Date();
     const timeBlocks = [];      // Array to store the time slots
     const times = new Date(today);
+    const maxReservationDate = new Date(today);
+    const delReservationDate = new Date(today);
+    
     times.setTime(times.setSeconds(0));     // Times seconds/milleseconds set to 0 because they are irrelevant to reservations
     times.setTime(times.setMinutes(0));
-
-    // TODO: Refactor this maxReservationDate block
-    const maxReservationDate = new Date(today);
     maxReservationDate.setDate(maxReservationDate.getDate() + 7);
-
-    const delReservationDate = new Date(today);
     delReservationDate.setDate(delReservationDate.getDate() - 7);
 
     // TODO: * 12 and 20 can be replaced so not hardcoded for API calls
@@ -55,13 +49,13 @@ function ReservationForm(props){
     if (fetchReservation) getReservations().then(setFetchReservations(false))
 
     useEffect(() => {
+        // Const that when called will delete reservations over a week old
         const deleteRes = async () => {
             const data = await getDocs(reservation_db);
             data.docs.forEach(delDoc => {
                 const fields = delDoc._document.data.value.mapValue.fields;
                 const reservationDate = moment(fields.date.stringValue);
                 const deleteDate = moment(delReservationDate);
-
 
                 if(reservationDate.isBefore(deleteDate, 'day')) {
                     console.log(delDoc.id + ' | ' + reservationDate + ': Should be deleted');
@@ -70,7 +64,7 @@ function ReservationForm(props){
                     };
                     del();
                 } else {
-                    console.log(delDoc.id + ': IS FINE');
+                    console.log(delDoc.id + ': Does not need to be removed');
                 }
             });
         }
@@ -104,6 +98,7 @@ function ReservationForm(props){
         });
     }
 
+    // Passed a date and returns it in ISO format
     function isoDate(oldDate) {
         const year = oldDate.getFullYear();
         let month = oldDate.getMonth()+1;

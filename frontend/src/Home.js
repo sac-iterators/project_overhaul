@@ -1,6 +1,5 @@
 import React from 'react'
 import Navigation from './Navigation';
-import Modal from 'react-bootstrap/Modal'
 import Footer from './Footer';
 import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
@@ -13,10 +12,7 @@ import img5 from './img/img-5.jpeg';
 import img6 from './img/img-6.jpeg';
 import img7 from './img/img-7.jpeg';
 import './Home.css';
-import Map from './components/Map';
 import 'leaflet/dist/leaflet.css';
-import ReservationForm from './components/ReservationForm';
-import { Link } from "react-router-dom";
 import {db} from './firebase/firebaseConfig'
 import {useEffect, useState} from 'react';
 import {doc, getDoc} from 'firebase/firestore';

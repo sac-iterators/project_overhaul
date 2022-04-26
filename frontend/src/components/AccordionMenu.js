@@ -1,4 +1,4 @@
-import { useState, ReactDOM} from 'react';
+import { useState} from 'react';
 import AccordionItem from './AccordionItem';
 
 function AccordionMenu(props){

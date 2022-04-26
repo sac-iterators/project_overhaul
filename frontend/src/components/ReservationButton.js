@@ -1,8 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
-import { useState, ReactDOM} from 'react';
+import { useState } from 'react';
 import ReservationForm from './ReservationForm';
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
 
 function ReservationButton(props) {
@@ -31,5 +30,4 @@ function ReservationButton(props) {
     text: "Reservations",
   };
   
-// render(<ReservationButton />);
 export default ReservationButton;
