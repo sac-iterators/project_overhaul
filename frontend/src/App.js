@@ -21,7 +21,6 @@ function App () {
     <BrowserRouter>
     <div className="App">
       <AuthProvider>
-        <Navigation />
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
