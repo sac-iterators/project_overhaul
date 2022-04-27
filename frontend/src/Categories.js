@@ -1,6 +1,6 @@
 import React from "react";
 
-const allCategories = ['all','all day specials','appetizers', 'add ins', 'beef', 'chicken', 'chow mein', 'combinations', 'deep fried goodiness', 'dessert', 'fried rice',
+const allCategories = ['all','allDaySpecials','appetizers', 'add ins', 'beef', 'chicken', 'chow mein', 'combinations', 'deepFriedGoodiness', 'dessert', 'fried rice',
 'pork', 'seafood platter', 'sides', 'vegetable', 'whats cooking', 'wing']
 
 const Categories = ({ activeCategory, setActiveCategory, }) => {

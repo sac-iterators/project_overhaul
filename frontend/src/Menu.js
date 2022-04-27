@@ -15,18 +15,26 @@ import items from "./data";
 function Menu() {
 
  // Variable used to store items/information from the database
- const [food, setFood] = useState([]);
+  const [food, setFood] = useState([]);
 
-   const [menuItems, setMenuItems] = useState(items)
+  const [menuItems, setMenuItems] = useState(items)
   const [activeCategory, setActiveCategory] = useState("all");
+
+  function categorySwitch(cat) {
+    setActiveCategory(cat);
+    console.log(cat)
+  }
 
   const filterItems = items?.filter(item => {
         switch (activeCategory) {
           case 'all':
             return true
           case 'allDaySpecials':
+            break
           case 'appetizers':
+              break
           case 'addIns':
+              break
           case 'beef':
           case 'chicken':
           case 'chowMein':
@@ -46,7 +54,7 @@ function Menu() {
             default:
                 return true
         }
-    })
+    });
 
  // This function runs when the page is loaded
  useEffect(() => {
@@ -69,25 +77,40 @@ function Menu() {
           <div className="underline"></div>
         </div>
         <Categories
-          setActiveCategory={setActiveCategory}
+          setActiveCategory={categorySwitch}
           activeCategory={activeCategory}
         />
         <div className='menu'>
         <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
-          return (
-            <article key={item.id} className="menu-items">
-              <img src={item.ImageURL} alt={item.Name} className="photo" />
-              <div className="item-info">
-                <header>
-                  <h4>{item.Name}</h4>
-                  <h4 className="price">${item.Price}</h4>
-                </header>
-                <p className="item-text">{item.Description}</p>
-              </div>
-            </article>
-          );
+          if (activeCategory == 'all') {
+            return (
+              <article key={item.id} className="menu-items">
+                <img src={item.ImageURL} alt={item.Name} className="photo" />
+                <div className="item-info">
+                  <header>
+                    <h4>{item.Name}</h4>
+                    <h4 className="price">${item.Price}</h4>
+                  </header>
+                  <p className="item-text">{item.Description}</p>
+                </div>
+              </article>
+            );
+          } else if (activeCategory == item.Category) {
+            return (
+              <article key={item.id} className="menu-items">
+                <img src={item.ImageURL} alt={item.Name} className="photo" />
+                <div className="item-info">
+                  <header>
+                    <h4>{item.Name}</h4>
+                    <h4 className="price">${item.Price}</h4>
+                  </header>
+                  <p className="item-text">{item.Description}</p>
+                </div>
+              </article>
+            );
+          }
         })}
         </div>
       </section>
