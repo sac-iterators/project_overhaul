@@ -106,10 +106,10 @@ function AdminPortal() {
                             onClick={() => toggleTab('about')}>
                         About Page
                     </button>
-                    <button className={toggleState === 'careers' ? "tabs active" : "tabs"} 
+                    {/*<button className={toggleState === 'careers' ? "tabs active" : "tabs"} 
                             onClick={() => toggleTab('careers')}>
                         Careers
-                    </button>
+                    </button>*/}
                     <button className={toggleState === 'reservations' ? "tabs active" : "tabs"} 
                             onClick={() => toggleTab('reservations')}>
                         Reservation
@@ -142,7 +142,7 @@ function AdminPortal() {
 
                         <fieldset>
                             <legend>About Article</legend>
-                            <FormControl as="textarea" defaultValue={aboutInfo.article} rows={4}/>
+                            <FormControl id="aboutArticle" as="textarea" defaultValue={aboutInfo.article} rows={4}/>
                         </fieldset>
 
                         <fieldset>
