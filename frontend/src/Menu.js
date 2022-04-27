@@ -85,7 +85,7 @@ function Menu() {
         <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
-          if (activeCategory == 'all') {
+          if (activeCategory == 'All') {
             return (
               <article key={item.id} className="menu-items">
                 <img src={item.ImageURL} alt={item.Name} className="photo" />

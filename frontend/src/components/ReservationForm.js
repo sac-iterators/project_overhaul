@@ -69,7 +69,7 @@ function ReservationForm(props){
             });
         }
         deleteRes();
-    }, []);
+    });
 
     function onDateChange(newDate) {
         setOpenReservations([]);
