@@ -4,17 +4,8 @@ import Footer from './Footer';
 import ReservationButton from './components/ReservationButton';
 import OrderButton from './components/OrderButton';
 import { Carousel, Button, Card, CardGroup,} from 'react-bootstrap';
-import img1 from './img/img-1.jpeg';
-import img2 from './img/img-2.jpeg';
-import img3 from './img/img-3.jpeg';
-import img4 from './img/img-4.jpeg';
-import img5 from './img/img-5.jpeg';
-import img6 from './img/img-6.jpeg';
-import img7 from './img/img-7.jpeg';
 import './Home.css';
 import 'leaflet/dist/leaflet.css';
-import ReservationForm from './components/ReservationForm';
-import { useNavigate } from 'react-router-dom';
 
 import {db} from './firebase/firebaseConfig'
 import {useEffect, useState} from 'react';
@@ -24,13 +15,17 @@ import {doc, getDoc} from 'firebase/firestore';
 function Home() {
 
     // implemented function to the "View Full Menu" button
-    const navigate = useNavigate();
-    const handleMenuClick = () => navigate("menu");
     const [welcomeMessage, setWelcomeMessage] = useState([]);
+    const [teaserImages, setTeaserImages] = useState([]);
     useEffect(() => {
         (async () => {
-            const data = await getDoc(doc(db, "storeInfo", "welcomeMessage"));
+            let data;
+            
+            data = await getDoc(doc(db, "storeInfo", "welcomeMessage"));
             setWelcomeMessage(data.data());
+
+            data = await getDoc(doc(db, "storeInfo", "homeTeaserImages"));
+            setTeaserImages(data.data());
         })();
     }, []);
 
@@ -41,7 +36,6 @@ function Home() {
                 <Carousel.Item>
                     <img
                     className="hero-img"
-                    src={img2}
                     alt="First slide"
                     />
                     <Carousel.Caption>
@@ -50,9 +44,7 @@ function Home() {
                 </Carousel.Item>
                 <Carousel.Item>
                     <img
-                    className="w-100 d-block"
-                    src={img3}
-
+                    className="hero-img"
                     alt="Second slide"
                     />
 
@@ -70,21 +62,21 @@ function Home() {
             </div>
             <div className="menu_options text-center">
                 <CardGroup>
-                    <Card class="home-card">
-                        <Card.Body class="home-card-body">
-                            <Card.Title class="home-card-title">Menu</Card.Title>
+                    <Card className="home-card">
+                        <Card.Body className="home-card-body">
+                            <Card.Title className="home-card-title">Menu</Card.Title>
                             <Card.Link href="/menu">
-                                <button class="btn btn-primary card-button" variant='outline-light'>
+                                <button className="btn btn-primary card-button" variant='outline-light'>
                                     View Menu
                                 </button>
                             </Card.Link>
                         </Card.Body>
                     </Card>
-                    <Card class="home-card">
-                        <Card.Body class="home-card-body">
-                            <Card.Title class="home-card-title">Book a Table</Card.Title>
+                    <Card className="home-card">
+                        <Card.Body className="home-card-body">
+                            <Card.Title className="home-card-title">Book a Table</Card.Title>
                             <Card.Link> 
-                                <button class="btn btn-primary card-button" variant='outline-light'>
+                                <button className="btn btn-primary card-button" variant='outline-light'>
                                     <ReservationButton/> 
                                 </button>
                             </Card.Link> 
@@ -95,15 +87,15 @@ function Home() {
             <div className="food_imgs text-center">
                 <CardGroup>
                     <Card>
-                        <Card.Img variant="top" src={img5} className="cover-img"/>
+                        <Card.Img variant="top" src={teaserImages.ImageURL1} className="cover-img"/>
             
                     </Card>
                     <Card>
-                        <Card.Img variant="top" src={img6} className="cover-img"/>
+                        <Card.Img variant="top" src={teaserImages.ImageURL2} className="cover-img"/>
               
                     </Card>
                     <Card>
-                        <Card.Img variant="top" src={img7} className="cover-img"/>
+                        <Card.Img variant="top" src={teaserImages.ImageURL3} className="cover-img"/>
             
                     </Card>
                 </CardGroup>

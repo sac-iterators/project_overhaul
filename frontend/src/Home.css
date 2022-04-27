@@ -89,6 +89,7 @@ footer{
     color: var(--beige);
 }
 .intro .info{
+    white-space: pre-wrap;
     font-family: sans-serif;
     line-height: 2.5;
     font-size: 20px;
@@ -277,7 +278,7 @@ button.filter-btn:hover {
 }
 
 .about .top-section{
-    background: url('./img/img-1.jpeg');
+    background: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FaboutBackgroundImage.jpeg?alt=media');
     height: 100vh;
 }
 
@@ -318,13 +319,23 @@ button.filter-btn:hover {
     font-size: 1.4rem;
 }
 
-.hero-img{
-    object-fit: cover;
-    width: 100%;
-    height: 100vh;
+.hero-img{ 
+    width: 100%; 
+    max-width: 100%;
+    object-fit: contain;
+    content: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FhomeSlideImage.jpeg?alt=media');
+}
+@media only screen and (max-width: 576px){
+    .hero-img{
+        content: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FhomeSlideImage_small.jpeg?alt=media');
+        object-fit: cover;
+        height: 100vh;
+        min-height: 100vh;
+    }
 }
 
 .services{
+    text-align: center;
     display: flex;
     text-align: center;
     justify-content: space-between;
@@ -334,10 +345,12 @@ button.filter-btn:hover {
 
 .services .icons{
     width: 50px;
+    margin: 0 5px;
 }
 
 .services .icons:hover{
-    filter: drop-shadow(0 10px 10px black);
+    background-color: var(--blue);
+    border-radius: 20%;
 }
 
 .hours{
@@ -359,8 +372,12 @@ button.filter-btn:hover {
 .service-select li:hover{
     filter: drop-shadow(0 10px 10px gray);
 }
+.service-select .orderService{
+    height: 5vw;
+    min-height: 5vh;
+}
 
-.obviousLink{
+.hypertext{
     text-decoration: underline;
     font-weight: 500;
 }
@@ -476,6 +493,10 @@ button.filter-btn:hover {
     padding: 20px 30px;
 }
 
+.admin .main section{
+    padding: 15px;
+}
+
 .admin .main fieldset{
     margin: 20px;
 }
@@ -514,8 +535,16 @@ button.filter-btn:hover {
     background-color: rgba(0, 0, 0, 0.5);
   }
 
-  #reservationButton{ 
+  .btn>#reservationButton{ color: white; }
+
+  .nav_list#reservationButton, 
+  li>#reservationButton{ 
       color: rgba(180, 180, 180, 1);
       cursor: pointer; 
   }
-  #reservationButton:hover{ color: var(--blue); }
+  .nav_list#reservationButton:hover,
+  li>#reservationButton:hover{ 
+      color: var(--blue); 
+  }
+
+  

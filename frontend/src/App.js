@@ -1,15 +1,9 @@
-import React, { useState } from "react";
 import Home from "./Home";
-import Navigation from './Navigation';
-import {BrowserRouter, Route, Routes, Link } from 'react-router-dom';
+import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from './About';
 import Fire from './firebase/firebase-test'
 import FireMenu from './firebase/firebase-menu'
 import Menu from './Menu';
-import Auth from './AdminPortal';
-import items from "./data";
-import Categories from "./Categories";
-import logo from "./img/logo.jpg"; // this could be a placeholder until we get their official logo
 import Login from "./Login";
 import { AuthProvider } from "./contexts/AuthContext";
 import PrivateRoute from "./components/PrivateRoute"

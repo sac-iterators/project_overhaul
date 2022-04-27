@@ -1,10 +1,13 @@
 import React from 'react'
 import ReservationButton from './components/ReservationButton';
-import CareersButton from './components/CareersButton';
 import {doc, getDoc} from 'firebase/firestore';
 import {useEffect, useState} from 'react';
 import { db } from './firebase/firebaseConfig';
 import Map from './components/Map';
+import grubhub from './img/grubhub_icon.svg'
+import ubereats from './img/ubereats_icon.svg'
+import postmates from './img/postmates_icon.svg'
+import yelp from './img/yelp_icon.svg'
 
 function Footer() {
   const script = document.createElement('script');
@@ -36,11 +39,10 @@ function Footer() {
             </ul>
 
             <ul className="list-inline services">
-              <li className=""><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank" rel="noreferrer"><img src="https://cdn.cdnlogo.com/logos/g/61/grubhub.svg" className="icons" alt="Grubhub icon"/></a></li>
-              <li className=""><a href="https://www.ubereats.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg?diningMode=DELIVERY&pl=JTdCJTIyYWRkcmVzcyUyMiUzQSUyMkFzaWFuJTIwTiclMjBDYWp1biUyMiUyQyUyMnJlZmVyZW5jZSUyMiUzQSUyMmM4YzlhY2FkLTRjZjEtMTg1ZS1iMDE5LWVmMmFlZmFiYWIxNSUyMiUyQyUyMnJlZmVyZW5jZVR5cGUlMjIlM0ElMjJ1YmVyX3BsYWNlcyUyMiUyQyUyMmxhdGl0dWRlJTIyJTNBMzguNjQ5MDYlMkMlMjJsb25naXR1ZGUlMjIlM0EtMTIxLjUxMDA5NjclN0Q%3D" 
-                target="_blank" rel="noreferrer"><img src="https://img.icons8.com/color/48/000000/uber-eats-app.png" className="icons" alt="Ubereats icon"/></a></li>
-              <li className=""><a href="https://postmates.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank" rel="noreferrer"><img src="https://iconape.com/wp-content/files/rd/245476/png/postmates-logo.png" className="icons" alt="Postmates icon"/></a></li>
-
+              <li className="list-inline-item"><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank" rel="noreferrer"><img src={grubhub} className="icons" alt="Grubhub icon"/></a></li>
+              <li className="list-inline-item"><a href="https://www.ubereats.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank" rel="noreferrer"><img src={ubereats} className="icons" alt="Ubereats icon"/></a></li>
+              <li className="list-inline-item"><a href="https://postmates.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank" rel="noreferrer"><img src={postmates} className="icons" alt="Postmates icon"/></a></li>
+              <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank" rel="noreferrer"><img src={yelp} className="icons" alt="Yelp icon"/></a></li>
             </ul>
           </div>
           <div className="col-lg-3 col-md-4 col-8 mb-4 mb-lg-0 mx-auto col storeinfo">

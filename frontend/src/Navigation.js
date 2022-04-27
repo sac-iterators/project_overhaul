@@ -36,10 +36,8 @@ function Navigation() {
                   to="/menu">
                     Menu
                 </Link></Nav.Link>
-                <Nav.Link><div 
-                  onClick={() => setActive('reservations')} 
-                  className={active === 'reservation' ? "nav_list active" : "nav_list"}> 
-                    <ReservationButton />
+                <Nav.Link><div className='nav_list'>
+                  <ReservationButton />
                 </div></Nav.Link>
               </Nav>
             </Navbar.Collapse>

@@ -10,7 +10,9 @@ function About() {
     const [aboutInfo, setAboutInfo] = useState([]);
     useEffect(() => {
         (async () => {
-            const data = await getDoc(doc(db, "storeInfo", "AboutUs"));
+            let data;
+            
+            data = await getDoc(doc(db, "storeInfo", "AboutUs"));
             setAboutInfo(data.data());
         })();
     }, []);

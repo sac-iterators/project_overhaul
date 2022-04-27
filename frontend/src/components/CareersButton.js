@@ -1,12 +1,11 @@
 import Modal from 'react-bootstrap/Modal'
 import {Form, FormLabel, FormControl, 
         ToggleButtonGroup, ToggleButton, Button} from 'react-bootstrap';
-import { useState, useEffect, ReactDOM} from 'react';
+import { useState, useEffect } from 'react';
 import AccordionMenu from './AccordionMenu';
 import { applications_db, storage, jobListings_db, careerInfo_db} from '../firebase/firebaseConfig';
-import {collection, doc, setDoc, addDoc, getDocs, query, where, orderBy} from 'firebase/firestore';
-import { uploadBytes, ref, getDownloadURL } from '@firebase/storage';
-import { async } from '@firebase/util';
+import { addDoc, getDocs, query, orderBy} from 'firebase/firestore';
+import { uploadBytes, ref } from '@firebase/storage';
 import application from '../resources/EmploymentApplication.docx'
 
 function CareersButton() {

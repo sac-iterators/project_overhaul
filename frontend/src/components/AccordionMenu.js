@@ -1,9 +1,8 @@
-import { useState} from 'react';
 import AccordionItem from './AccordionItem';
 
 function AccordionMenu(props){
 
-    const [menu, setItem] = useState(props.data)
+    const menu = props.data;
 
     return(
         <section className='info'>

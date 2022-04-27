@@ -1,51 +1,51 @@
 import React from 'react'
-import { InputGroup, FormControl, Toast, ToastContainer,
+import { FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
 import './Home.css';
 
-import {collection, doc, setDoc, addDoc, getDoc, docSnap, getDocs, query, orderBy} from 'firebase/firestore';
-import { useState, useEffect, ReactDOM} from 'react';
-import { storeInfo_db, db, careerInfo_db, jobListings_db } from './firebase/firebaseConfig';
+import { doc, setDoc, getDocs, query, orderBy} from 'firebase/firestore';
+import { useState, useEffect } from 'react';
+import { storage, storeInfo_db, db, careerInfo_db, jobListings_db } from './firebase/firebaseConfig';
+import { uploadBytes, ref } from '@firebase/storage';
 import { useAuth } from "./contexts/AuthContext"
 import { useNavigate } from 'react-router-dom';
 
 function AdminPortal() {
     const navigate = useNavigate();
     const { logout }  = useAuth();
-    const [error, setError] = useState("");
     async function handleLogout() {
-        setError("")
         try {
             await logout()
             navigate('/admin')
         } catch {
-            setError("Failed to log out")
+            console.log("Failed to logout");
         }
     }
 
     const [show, setShow] = useState(false);
     const [toggleState, setToggleState] = useState('home');
 
-    const toggleTab = (tabIndex) => {
-        setToggleState(tabIndex);
-    };
+    const toggleTab = (tabIndex) => { setToggleState(tabIndex); };
 
-    const [storeInfo, setStoreInfo] = useState([]);
     const [storeHours, setStoreHours] = useState([]);
     const [aboutInfo, setAboutInfo] = useState([]);
+    const [welcomeMessage, setWelcomeMessage] = useState([]);
     const [careersInfo, setCareersInfo] = useState([]);
     const [jobListings, setJobListings] = useState([]);
 
     useEffect(() => {
         (async () => {
             let data;
-            
+
             data = await getDocs(storeInfo_db);
             setStoreHours(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-                .find(item => item.id == "storeHours")
+                .find(item => item.id === "storeHours")
             );
             setAboutInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
-                .find(item => item.id == "AboutUs")
+                .find(item => item.id === "AboutUs")
+            );
+            setWelcomeMessage(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                .find(item => item.id === "welcomeMessage")
             );
 
             data = await getDocs(query(careerInfo_db, orderBy("id")));
@@ -56,29 +56,64 @@ function AdminPortal() {
         })();
     }, []);
 
-    const submitMenu = (event) => {
-
+    const submitHome = async (event) => {
+        await new Promise((resolve, reject) => {
+            try{
+                setDoc(doc(db, "storeInfo", "welcomeMessage"), {
+                    article: document.getElementById('welcomeMessage').value
+                });
+                Array.from(document.querySelectorAll("input[type='file']")).forEach(element => {
+                    if(element.files[0] !== undefined){
+                        const filename = 'gs://asian-n-cajun-db.appspot.com/site_images/' + element.id + '.jpeg';
+                        const storageRef = ref(storage, filename);
+                        uploadBytes(storageRef, element.files[0]);
+                    }
+                })
+                setShow(true);
+            }catch(err){
+                console.log(err);
+            }
+        });
     }
+    
+    const submitMenu = async (event) => {
 
-    const submitAbout = async (event) => {
-        setDoc(doc(db, "storeInfo", "AboutUs"), {
-            article: document.getElementById('aboutArticle').value
-        });
-        setDoc(doc(db, "storeInfo", "storeHours"), {
-            "Mon-Fri": document.getElementById('weekdayHours').value,
-            "Sat": document.getElementById('satHours').value,
-            "Sun": document.getElementById('sunHours').value
-        });
-        //document.blur();
         setShow(true);
     }
 
-    const submitCareers = (event) => {
-
+    const submitAbout = async (event) => {
+        await new Promise((resolve, reject) => {
+            try{
+                setDoc(doc(db, "storeInfo", "AboutUs"), {
+                    article: document.getElementById('aboutArticle').value
+                });
+                setDoc(doc(db, "storeInfo", "storeHours"), {
+                    "Mon-Fri": document.getElementById('weekdayHours').value,
+                    "Sat": document.getElementById('satHours').value,
+                    "Sun": document.getElementById('sunHours').value
+                });
+                if(document.getElementById('aboutBackgroundImage').files[0] !== undefined){
+                    const filename = 'gs://asian-n-cajun-db.appspot.com/site_images/aboutBackgroundImage.jpeg';
+                    const storageRef = ref(storage, filename);
+                    uploadBytes(storageRef, document.getElementById('aboutBackgroundImage').files[0]);
+                }
+                setShow(true);
+            }catch(err){
+                console.log(err);
+            }
+        });
+        setShow(true);
     }
 
-    const submitReservations = (event) => {
+    const submitCareers = async (event) => {
 
+
+        setShow(true);
+    }
+
+    const submitReservations = async (event) => {
+
+        setShow(true);
     }
 
     return (
@@ -122,8 +157,39 @@ function AdminPortal() {
                 <div className="main">
 
                     <section className={toggleState === 'home' ? "" : "hide"}>
-                        <h2>Dashboard</h2>
+                        <h2>Home Page</h2>
 
+                        <fieldset>
+                            <legend>Welcome Message</legend>
+                            <FormControl id="welcomeMessage" as="textarea" defaultValue={welcomeMessage.article} rows={4}/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Hero Image</legend>
+                            <FormControl id="homeSlideImage" type="file"/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Hero Image for Smaller Screen Resolutions</legend>
+                            <FormControl id="homeSlideImage_small" type="file"/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>First Teaser Image</legend>
+                            <FormControl id="firstTeaserImage" type="file"/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Second Teaser Image</legend>
+                            <FormControl id="secondTeaserImage" type="file"/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Third Teaser Image</legend>
+                            <FormControl id="thirdTeaserImage" type="file"/>
+                        </fieldset>
+
+                        <Button className='b_save' onClick={submitHome}>Save</Button>
                     </section>
 
                     <section className={toggleState === 'menu' ? "" : "hide"} >
@@ -143,6 +209,11 @@ function AdminPortal() {
                         <fieldset>
                             <legend>About Article</legend>
                             <FormControl id="aboutArticle" as="textarea" defaultValue={aboutInfo.article} rows={4}/>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Background Image</legend>
+                            <FormControl id="aboutBackgroundImage" type="file"/>
                         </fieldset>
 
                         <fieldset>
