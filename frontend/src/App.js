@@ -24,7 +24,7 @@ function App () {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/menu" element={<MenuApp />} />
+          <Route path="/menu" element={<Menu />} />
           <Route path= "/fire" element={<Fire />}/>
           <Route path="/firemenu" element={<FireMenu />}/>
           <Route path= "/admin" element={<Login />}/>
@@ -42,43 +42,5 @@ function App () {
   
   );
 }
-
-// Saul's implementation
-const allCategories = ["all", ...new Set(items.map((item) => item.category))];
-
-const MenuApp = () => {
-  const [menuItems, setMenuItems] = useState(items)
-  const [activeCategory, setActiveCategory] = useState("all");
-
-const filterItems = items?.filter(item => {
-        switch (activeCategory) {
-            case 'all':
-                return true
-            case 'all day specials':
-            case 'appetizers':
-            case 'add ins':
-                return item.category === activeCategory
-            default:
-                return true
-        }
-    })
-  
-  return (
-    <main>
-      <section className="menu section">
-        <div className="title">
-          
-          <h2>Menu List</h2>
-          <div className="underline"></div>
-        </div>
-        <Categories
-          setActiveCategory={setActiveCategory}
-          activeCategory={activeCategory}
-        />
-        <Menu items={filterItems} />
-      </section>
-    </main>
-  );
-};
 
 export default App;

@@ -7,6 +7,8 @@ import { Full_Menu } from './firebase/firebaseConfig';
 import { useState, useEffect, ReactDOM} from 'react';
 import {collection, doc, setDoc, addDoc, getDocs} from 'firebase/firestore';
 import Navigate from './Navigation';
+import Categories from "./Categories";
+import items from "./data";
 
 
 
@@ -14,6 +16,22 @@ function Menu() {
 
  // Variable used to store items/information from the database
  const [food, setFood] = useState([]);
+
+  const [menuItems, setMenuItems] = useState(items)
+  const [activeCategory, setActiveCategory] = useState("all");
+
+  const filterItems = items?.filter(item => {
+        switch (activeCategory) {
+            case 'all':
+                return true
+            case 'all day specials':
+            case 'appetizers':
+            case 'add ins':
+                return item.category === activeCategory
+            default:
+                return true
+        }
+    })
 
  // This function runs when the page is loaded
  useEffect(() => {
@@ -27,7 +45,19 @@ function Menu() {
  }, []);
   
   return(
-      <div className='menu'>
+
+    <main>
+      <section className="menu section">
+        <div className="title">
+          
+          <h2>Menu List</h2>
+          <div className="underline"></div>
+        </div>
+        <Categories
+          setActiveCategory={setActiveCategory}
+          activeCategory={activeCategory}
+        />
+        <div className='menu'>
         <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
@@ -45,6 +75,8 @@ function Menu() {
           );
         })}
         </div>
+      </section>
+    </main>
     );
   }
   
