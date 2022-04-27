@@ -31,7 +31,7 @@ footer{
 }
 
 .nav_title{
-    font-size: 32px;
+    font-size: 24px;
     color: #f3f0e2 !important;
 }
 
@@ -43,6 +43,13 @@ footer{
 
 .navbar-nav .nav-link{
     padding: 0 30px !important;
+}
+.navbar-nav .nav-link>.active{
+    color: var(--blue);
+    background-color: transparent;
+}
+.navbar-nav .nav-link>.active:hover{
+    color: var(--blue);
 }
 
 @media only screen and (max-width: 991px){
@@ -60,6 +67,10 @@ footer{
 .nav_list:hover{
     color: var(--blue);
 
+}
+@media only screen and (max-width: 576px){
+    .nav_list{ font-size: 18px; }
+    .navbar-toggler{ font-size: 14px; }
 }
 /*******************************************************************************************/
 .cover-img {
@@ -85,15 +96,20 @@ footer{
     font-weight: 550;
     position: relative;
     color: var(--off-white);
-}
-p.info {
     background-color: var(--dark-orange);
     border-radius: 2rem;
     opacity: .9;
     padding: 10px;
     margin-top: 2.5rem;
 }
-
+@media only screen and (max-width: 576px){
+    .intro .info { 
+        font-size: 16px; 
+        line-height: 1.8;
+        font-weight: lighter;
+        margin-top: 0;
+    }
+}
 
 .news {
 
@@ -497,3 +513,9 @@ button.filter-btn:hover {
   .vertical-scroll::-webkit-scrollbar-thumb:hover {
     background-color: rgba(0, 0, 0, 0.5);
   }
+
+  #reservationButton{ 
+      color: rgba(180, 180, 180, 1);
+      cursor: pointer; 
+  }
+  #reservationButton:hover{ color: var(--blue); }

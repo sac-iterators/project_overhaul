@@ -223,8 +223,8 @@ function ReservationForm(props){
                     </div>
 
                     <div className = "reservation-group">
-                        <FormLabel for = "Total Number of Guests"> Total Number of Guests</FormLabel>
-                        <FormControl type="number" className="form-control" id="totalGuests"  
+                        <FormLabel htmlFor = "totalGuests"> Total Number of Guests</FormLabel>
+                        <FormControl type="number" className="form-control" id="totalGuests" name="totalGuests"
                             onChange={(event) => setGuests(event.target.value)} min="8" max="12" required>
                         </FormControl>
                         <Form.Control.Feedback type="invalid">Please enter your party size</Form.Control.Feedback>
@@ -232,7 +232,7 @@ function ReservationForm(props){
                     </div>
 
                     <div className = "reservation-calendar">
-                        <label for="calendar"> Select a date & time for your reservation.</label>
+                        <label htmlFor="calendar"> Select a date & time for your reservation.</label>
                         <Calendar 
                             onClickDay= {(e) => {
                                 onDateChange(e)
@@ -243,7 +243,7 @@ function ReservationForm(props){
                             maxDate= {maxReservationDate}
                         />
 
-                        <label for="time"> Choose an available time </label>
+                        <label htmlFor="time"> Choose an available time </label>
                         <div>
                             {openReservations.map((time) => {
                                 return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>

@@ -12,7 +12,7 @@ function ReservationButton(props) {
     
     return (
       <>
-        <div  onClick={handleShow}>Reserve</div>
+        <div id="reservationButton" onClick={handleShow}>Reserve</div>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
