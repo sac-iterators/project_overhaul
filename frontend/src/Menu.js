@@ -17,16 +17,31 @@ function Menu() {
  // Variable used to store items/information from the database
  const [food, setFood] = useState([]);
 
-  const [menuItems, setMenuItems] = useState(items)
+   const [menuItems, setMenuItems] = useState(items)
   const [activeCategory, setActiveCategory] = useState("all");
 
   const filterItems = items?.filter(item => {
         switch (activeCategory) {
-            case 'all':
-                return true
-            case 'all day specials':
-            case 'appetizers':
-            case 'add ins':
+          case 'all':
+            return true
+          case 'allDaySpecials':
+          case 'appetizers':
+          case 'addIns':
+          case 'beef':
+          case 'chicken':
+          case 'chowMein':
+          case 'combinations':
+          case 'deepFriedGoodiness':
+          case 'dessert':
+          case 'flavor':
+          case 'friedRice':
+          case 'hot':
+          case 'pork':
+          case 'seafoodPlatter':
+          case 'sides':
+          case 'vegetable':
+          case 'whatsCooking':
+          case 'wing':
                 return item.category === activeCategory
             default:
                 return true
