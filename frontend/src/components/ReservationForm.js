@@ -6,6 +6,7 @@ import 'react-calendar/dist/Calendar.css';
 import { db, reservation_db } from '../firebase/firebaseConfig';
 import {doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
 import moment from 'moment';
+import emailjs from '@emailjs/browser';
 
 
 
@@ -113,6 +114,21 @@ function ReservationForm(props){
         return year+'-' + month + '-'+ dt;
     }
 
+    function dateForEmail(oldDate) {
+        const year = new Date(oldDate).getFullYear();
+        let month = new Date(oldDate).getMonth()+1;
+        let dt = new Date(oldDate).getDate();
+
+        if (dt < 10) {
+            dt = '0' + dt;
+        }
+        if (month < 10) {
+            month = '0' + month;
+        }
+
+        return month + "/" + dt + "/" + year
+    }
+
     const createReservation = async() => {
         try{
             await addDoc(reservation_db, {
@@ -135,6 +151,26 @@ function ReservationForm(props){
         date.setHours(timeChoice.getHours());
     }
 
+    function setTemplate() {
+        return {
+            name: fname + " " + lname,
+            email: email,
+            guests: guests,
+            date: dateForEmail(date),
+            time: date.toLocaleTimeString(),
+            notes: notes
+        }
+    }
+    
+
+    function sendEmail() {
+        emailjs.send('service_26z1tpt', 'template_b3e47ua', setTemplate(), 'gYwVV1r7UqHJLSBIW')
+            .then((result) => {
+                console.log(result.text);
+            }, (error) => {
+                console.log(error.text);
+            });
+    }
 
     const validate = (event) => {
         event.preventDefault();
@@ -149,6 +185,8 @@ function ReservationForm(props){
             } else {
                 setReservationComplete(true);
                 createReservation();
+                sendEmail();
+                console.log(new Date(date).toLocaleTimeString())
             }
         }
         setValidated(true);
@@ -180,7 +218,7 @@ function ReservationForm(props){
         >
             <Form noValidate validated={validated} onSubmit={validate}>
                 <Modal.Body>
-                    {reservationComplete ? <p> Thank you, your reservation has been made </p> : <>
+                    {reservationComplete ? <p> Thank you, your reservation has been made. If you have not received your email confirmation, please check your spam folder. </p> : <>
                     <div className = "sub-header"> 
                         <large id = "reseravtion-disclaimer" className="form-text text-muted">*Please note reservations will only be for Parties of 8 . Parties of 10 or more please call our business number.*</large>
                     </div>
@@ -254,7 +292,7 @@ function ReservationForm(props){
                     <div className = "reservation-group">
                         <label htmlFor="specialNotes">Other: </label>
                         <input type="text" className="form-control" id="specialNotes" maxLength="100"
-                            placeholder='Let us know if there are any accomedations needed.' 
+                            placeholder='Let us know if there are any accommodations needed.' 
                             onChange={(event) => setNotes(event.target.value)}>
                         </input>
                     </div>
