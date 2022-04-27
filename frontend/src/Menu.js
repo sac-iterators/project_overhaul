@@ -51,6 +51,7 @@ function Menu() {
           case 'whatsCooking':
           case 'wing':
                 return item.category === activeCategory
+                //if item.category === 'allDaySpecials'
             default:
                 return true
         }
