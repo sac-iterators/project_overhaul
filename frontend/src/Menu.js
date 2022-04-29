@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import { getDocs } from 'firebase/firestore';
 import Navigate from './Navigation';
 import Categories from "./Categories";
+import Footer from "./Footer";
 import items from "./data";
 
 
@@ -114,7 +115,9 @@ function Menu() {
         })}
         </div>
       </section>
+      <Footer />
     </main>
+    
     );
   }
   
