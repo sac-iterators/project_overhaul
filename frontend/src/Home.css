@@ -547,4 +547,15 @@ button.filter-btn:hover {
       color: var(--blue); 
   }
 
+  .banner{
+      z-index: 5;
+      width: 90%;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0);
+  }
+  .banner p{
+    margin: 0;
+}
+
   

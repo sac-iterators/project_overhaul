@@ -1,5 +1,5 @@
 import React from 'react'
-import { FormControl, Toast, ToastContainer,
+import { Form, FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
 import './Home.css';
 
@@ -32,6 +32,7 @@ function AdminPortal() {
     const [welcomeMessage, setWelcomeMessage] = useState([]);
     const [careersInfo, setCareersInfo] = useState([]);
     const [jobListings, setJobListings] = useState([]);
+    const [bannerAlert, setBannerAlert] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -47,6 +48,9 @@ function AdminPortal() {
             setWelcomeMessage(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
                 .find(item => item.id === "welcomeMessage")
             );
+            setBannerAlert(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
+                .find(item => item.id === "BannerAlert")
+            );
 
             data = await getDocs(query(careerInfo_db, orderBy("id")));
             setCareersInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -59,6 +63,11 @@ function AdminPortal() {
     const submitHome = async (event) => {
         await new Promise((resolve, reject) => {
             try{
+                setDoc(doc(db, "storeInfo", "BannerAlert"), {
+                    enabled: document.getElementById('bannerAlert_enabled').checked, 
+                    header: document.getElementById('bannerAlert_header').value,
+                    message: document.getElementById('bannerAlert_message').value
+                });
                 setDoc(doc(db, "storeInfo", "welcomeMessage"), {
                     article: document.getElementById('welcomeMessage').value
                 });
@@ -159,6 +168,15 @@ function AdminPortal() {
                     <section className={toggleState === 'home' ? "" : "hide"}>
                         <h2>Home Page</h2>
 
+                        <fieldset>
+                            <legend>
+                                Banner Message (Optional)
+                                <Form.Check type="switch" id="bannerAlert_enabled" label="Enable banner" defaultChecked={bannerAlert.enabled}/>
+                            </legend>
+                            <FormControl id="bannerAlert_header" defaultValue={bannerAlert.header}/>
+                            <FormControl id="bannerAlert_message" as="textarea" defaultValue={bannerAlert.message} rows={2}/>
+                        </fieldset>
+                        
                         <fieldset>
                             <legend>Welcome Message</legend>
                             <FormControl id="welcomeMessage" as="textarea" defaultValue={welcomeMessage.article} rows={4}/>

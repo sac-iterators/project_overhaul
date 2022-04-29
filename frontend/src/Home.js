@@ -10,6 +10,7 @@ import 'leaflet/dist/leaflet.css';
 import {db} from './firebase/firebaseConfig'
 import {useEffect, useState} from 'react';
 import {doc, getDoc} from 'firebase/firestore';
+import Banner from './components/Banner';
 
 
 function Home() {
@@ -32,6 +33,7 @@ function Home() {
     return (
         <div className="home">
             <Navigation />
+            <Banner />
             <Carousel fade style={{ minHeight: "100%" }}>
                 <Carousel.Item>
                     <img
