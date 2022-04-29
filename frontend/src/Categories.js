@@ -11,7 +11,7 @@ const Categories = ({ activeCategory, setActiveCategory, }) => {
   
   return (
       <Tabs
-        id="controlled-tab-example"
+        id="menu-tab-wrapper"
         activeKey={key}
         onSelect={(k) => {setKey(k); setActiveCategory(k)}}
         className="horizontal-scroll"
@@ -19,7 +19,7 @@ const Categories = ({ activeCategory, setActiveCategory, }) => {
       {/*<div className="btn-container horizontal-scroll">*/}
         {allCategories.map((category, index) => {
           return (      
-            <Tab eventKey={category} title={category} key={index} className="flex-nowrap"></Tab>
+            <Tab eventKey={category} title={category} key={index}></Tab>
             /*<button
               type="button"
               className={`${
