@@ -80,7 +80,7 @@ function Menu() {
           setActiveCategory={categorySwitch}
           activeCategory={activeCategory}
         />
-        <div className='menu'>
+        <div className='menu menu-items-container'>
         <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
