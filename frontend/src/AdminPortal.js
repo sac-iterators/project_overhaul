@@ -1,11 +1,11 @@
 import React from 'react'
 import { Form, FormControl, Toast, ToastContainer,
-         FormGroup, FormLabel, Button, Row, Col } from 'react-bootstrap';
+         FormGroup, FormLabel, Button, Row, Col, Table } from 'react-bootstrap';
 import './Home.css';
 
 import { doc, setDoc, getDocs, query, orderBy} from 'firebase/firestore';
 import { useState, useEffect } from 'react';
-import { storage, storeInfo_db, db, careerInfo_db, jobListings_db } from './firebase/firebaseConfig';
+import { storage, storeInfo_db, db, careerInfo_db, jobListings_db, reservation_db} from './firebase/firebaseConfig';
 import { uploadBytes, ref } from '@firebase/storage';
 import { useAuth } from "./contexts/AuthContext"
 import { useNavigate } from 'react-router-dom';
@@ -33,6 +33,7 @@ function AdminPortal() {
     const [careersInfo, setCareersInfo] = useState([]);
     const [jobListings, setJobListings] = useState([]);
     const [bannerAlert, setBannerAlert] = useState([]);
+    const [reservation, setReservation] = useState([]);
 
     useEffect(() => {
         (async () => {
@@ -51,6 +52,15 @@ function AdminPortal() {
             setBannerAlert(data.docs.map((doc) => ({ id: doc.id, ...doc.data() }))
                 .find(item => item.id === "BannerAlert")
             );
+            
+            //come back to this for review 
+            // data = await getDocs(reservation_db);
+            // getReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id}))
+            // .find(item => item.id === "ReservationList")
+            // ); 
+            
+            data = await getDocs(reservation_db);
+            setReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    
 
             data = await getDocs(query(careerInfo_db, orderBy("id")));
             setCareersInfo(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -289,8 +299,38 @@ function AdminPortal() {
                         <h2>Reservations</h2>
 
                         <fieldset>
-                            <legend>Element Name</legend>
-                            <FormControl id=""  rows={2}/>
+                            <legend>All Reservations</legend>
+                            <div className="reservation_Test" >
+            {reservation.map((item) => 
+            { return <div key={item.id}> 
+            <Table striped bordered hover key={item.id}>
+                <thead>
+                    <tr>
+                    <th>Date </th>
+                    <th>Time </th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email / Phone number </th>
+                    <th>Guests </th>
+                    <th>Notes: </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                    <td> {item.date}</td>
+                    <td> {item.time}</td>
+                    <td> {item.fname} </td>
+                    <td>{item.lname}</td>
+                    <td>{item.email +" / "+ item.phoneNum}</td>
+                    <td>{item.guests}</td>
+                    <td>{item.notes}</td>
+                    </tr>
+                </tbody>
+            </Table>
+        </div>
+            })}
+        </div>
+   
                         </fieldset>
 
                         <Button className='b_save' onClick={submitReservations}>Save</Button>
