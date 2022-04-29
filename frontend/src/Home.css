@@ -433,6 +433,7 @@ button.filter-btn:hover {
     margin-bottom: 4rem;
     display: flex;
     justify-content: center;
+    flex-wrap: wrap;
   }
 
 .menu .photo2 {

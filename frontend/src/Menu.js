@@ -18,7 +18,7 @@ function Menu() {
   const [food, setFood] = useState([]);
 
   const [menuItems, setMenuItems] = useState(items)
-  const [activeCategory, setActiveCategory] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("All");
 
   function categorySwitch(cat) {
     setActiveCategory(cat);
@@ -80,11 +80,11 @@ function Menu() {
           setActiveCategory={categorySwitch}
           activeCategory={activeCategory}
         />
-        <div className='menu'>
+        <div className='menu menu-items-container'>
         <Navigate/>
         <div className="top-section"></div>
         {food.map((item) => {
-          if (activeCategory == 'All') {
+          if (activeCategory === 'All') {
             return (
               <article key={item.id} className="menu-items">
                 <img src={item.ImageURL} alt={item.Name} className="photo" />
@@ -97,7 +97,7 @@ function Menu() {
                 </div>
               </article>
             );
-          } else if (activeCategory == item.Category) {
+          } else if (activeCategory === item.Category) {
             return (
               <article key={item.id} className="menu-items">
                 <img src={item.ImageURL} alt={item.Name} className="photo" />
