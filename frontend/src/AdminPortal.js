@@ -141,7 +141,7 @@ function AdminPortal() {
                     "Sun": document.getElementById('sunHours').value
                 });
                 if(document.getElementById('aboutBackgroundImage').files[0] !== undefined){
-                    const filename = 'gs://asian-n-cajun-db.appspot.com/site_images/aboutBackgroundImage.jpeg';
+                    const filename = 'gs://asian-n-cajun-db.appspot.com/site_images/aboutBackgroundImage.jpg';
                     const storageRef = ref(storage, filename);
                     uploadBytes(storageRef, document.getElementById('aboutBackgroundImage').files[0]);
                 }
