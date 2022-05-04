@@ -30,8 +30,10 @@ function Menu() {
         switch (activeCategory) {
           case 'all':
             return true
+            /*
           case 'allDaySpecials':
             break
+            */
           case 'appetizers':
               break
           case 'addIns':
