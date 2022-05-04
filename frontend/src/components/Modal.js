@@ -41,7 +41,7 @@ export default class CustomModal extends Component {
         <ModalBody>
           <Form>
             <FormGroup>
-              <Label for="food-title">Name</Label>
+              <Label htmlFor="food-title">Name</Label>
               <Input
                 type="text"
                 id="food-title"
@@ -52,7 +52,7 @@ export default class CustomModal extends Component {
               />
             </FormGroup>
             <FormGroup>
-              <Label for="food-cost">Cost</Label>
+              <Label htmlFor="food-cost">Cost</Label>
               <Input
                 type="text"
                 id="food-cost"
