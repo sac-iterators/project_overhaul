@@ -387,10 +387,10 @@ button.filter-btn:hover {
 
 .menu {
     width: 100%;
-    /*
-    grid-gap: 5%;
+    
+    
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    */
+
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
@@ -400,7 +400,7 @@ button.filter-btn:hover {
 }
 .menu .menu-items {
     width: 30%;
-    
+    height: auto;
     margin: 10px;
 }
 
@@ -447,9 +447,9 @@ button.filter-btn:hover {
     white-space: nowrap;
   }
 
-.menu .photo2 {
+.menu .photo {
     object-fit: cover;
-    height: 200px;
+    height: 300px;
     width: 100%;
     border: 0.25rem solid hsl(360, 71%, 66%);
     border-radius: 0.25rem;
