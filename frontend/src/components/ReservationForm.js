@@ -61,7 +61,7 @@ function ReservationForm(props){
                 if(reservationDate.isBefore(deleteDate, 'day')) {
                     console.log(delDoc.id + ' | ' + reservationDate + ': Should be deleted');
                     const del = async () => {
-                        await deleteDoc(doc(db, 'reservation_Test', delDoc.id))
+                        await deleteDoc(doc(db, 'reservations', delDoc.id))
                     };
                     del();
                 } else {

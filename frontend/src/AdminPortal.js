@@ -3,7 +3,7 @@ import { Form, FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col, Table } from 'react-bootstrap';
 import './Home.css';
 
-import { doc, setDoc, getDocs, query, orderBy} from 'firebase/firestore';
+import { doc, setDoc, getDocs, query, orderBy, deleteDoc} from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { storage, storeInfo_db, db, careerInfo_db, jobListings_db, Full_Menu, reservation_db } from './firebase/firebaseConfig';
 import { uploadBytes, ref } from '@firebase/storage';
@@ -63,7 +63,8 @@ function AdminPortal() {
             // ); 
             
             data = await getDocs(reservation_db);
-            setReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    
+            setReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+            console.log(reservation.sort((a, b) => console.log(a.date)));
 
             data = await getDocs(Full_Menu);
             setMenu(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -162,6 +163,27 @@ function AdminPortal() {
     const submitReservations = async (event) => {
 
         setShow(true);
+    };
+
+    function deleteReservation(reserv, callback) {
+        
+        const deleteRes = async () => {
+            await deleteDoc(doc(db, "reservations", reserv.id));
+        };
+        deleteRes();
+        
+        console.log('Reservation for ' + reserv.date + ' at ' + reserv.time + ' has been deleted');
+        setTimeout(callback, 250);
+        
+        // * Deletion email here
+    };
+
+    function reloadReservation() {
+
+        const delRefresh = async () => {
+            window.location.reload();
+        };
+        delRefresh();
     }
 
     return (
@@ -358,8 +380,8 @@ function AdminPortal() {
                             <legend>All Reservations</legend>
                             <div className="reservation_Test" >
             {reservation.map((item) => 
-            { return <div key={item.id}> 
-            <Table striped bordered hover key={item.id}>
+            { return <div className='admin_res_container' key={item.id}> 
+            <Table responsive striped bordered hover key={item.id}>
                 <thead>
                     <tr>
                     <th>Date </th>
@@ -382,9 +404,15 @@ function AdminPortal() {
                     <td>{item.notes}</td>
                     </tr>
                 </tbody>
+                <Button className='res_delete_button' variant='danger'
+                    onClick={() => {
+                        deleteReservation(item, reloadReservation);
+                    }}
+                >
+                    Delete
+                </Button>
             </Table>
-        </div>
-            })}
+            </div>})}
         </div>
    
                         </fieldset>

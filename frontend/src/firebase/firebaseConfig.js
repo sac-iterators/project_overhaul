@@ -25,7 +25,7 @@ const storage = getStorage(app);
 
 // Create a reference to database collections
 const food_db = collection(db, 'food_test');
-const reservation_db = collection(db, 'reservation_Test');
+const reservation_db = collection(db, 'reservations');
 const applications_db = collection(db, 'applications');
 const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
 const menu_Add_Ins = collection(db, "menu_Add_Ins");
