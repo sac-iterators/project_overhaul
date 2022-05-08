@@ -7,6 +7,7 @@ import { db, reservation_db } from '../firebase/firebaseConfig';
 import {doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
 import moment from 'moment';
 import emailjs from '@emailjs/browser';
+import './ReservationForm.css';
 
 
 
@@ -284,7 +285,7 @@ function ReservationForm(props){
                         <label htmlFor="time"> Choose an available time </label>
                         <div>
                             {openReservations.map((time) => {
-                                return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
+                                return <Button className='time-reserv-button' value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
                             })}
                         </div>
                     </div>
