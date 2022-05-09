@@ -1,7 +1,7 @@
 import Home from "./Home";
 import {BrowserRouter, Route, Routes } from 'react-router-dom';
 import About from './About';
-import Fire from './firebase/firebase-test'
+// import Fire from './firebase/firebase-test'
 import FireMenu from './firebase/firebase-menu'
 import Menu from './Menu';
 import Login from "./Login";
@@ -19,7 +19,7 @@ function App () {
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
           <Route path="/menu" element={<Menu />} />
-          <Route path= "/fire" element={<Fire />}/>
+          {/* <Route path= "/fire" element={<Fire />}/> */}
           <Route path="/firemenu" element={<FireMenu />}/>
           <Route path= "/admin" element={<Login />}/>
           <Route path="/adminPortal" element={

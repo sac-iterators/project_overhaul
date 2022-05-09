@@ -84,4 +84,4 @@ function Fire() {
     
 }
 
-export default Fire;
+// export default Fire;
