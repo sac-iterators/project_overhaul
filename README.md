@@ -21,16 +21,22 @@
 
     What did you learn?
     
-### Download Instructions and Environment Setup/Requirements:
-    Since our project is a website, you can see it running live by visiting it the webpage [insert webpage link here].
+### Environment Setup/Requirements:
+    NodeJS
+    Visual Studio Code
+    Google Firebase (backend)
+    
+### Download Instructions:
+
+    Since our project is a website, you can see it running live by visiting the webpage [insert webpage link here].
 
     Alternatively, you can run it locally on your machine. To do so, you must install NodeJS and download the source files from this repository.
     
     While in the "frontend" folder, run 'npm install' in the terminal to install all dependenices (if it gives you errors, you may have to restart your machine and try running the command again).
 
-    Once that is done, run 'npm start' and the webpage will load in your web browser.
+    Once that is done, run 'npm start' and the webpage will load in your web browser on localhost.
     
-    We use Google Firebase as our backend and database. It stores all of our menu items, images for the menu items, and reservations. 
+    We use Google Firebase as our backend and database. It stores all of our menu items, images for the menu items, and reservations and is managed in our Google account.
 
 ### Team of Developers:
     Patrick Chanthilack
