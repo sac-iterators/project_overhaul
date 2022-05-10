@@ -46,3 +46,29 @@
     Ethan Luong
     Saul Chavez
     Rishi Verma
+
+### Project Timeline: 
+    Sprint 0 (08/27/2021 - 09/10/2021) - Secured our client and began draft of Product Charter Docment.
+
+    Sprint 1 (10/04/2021 - 10/18/2021) - Completed business context diagram & business event table. Finalized Project Charter Document.
+
+    Sprint 2 (10/18/2021 - 10/31/2021) - Created low fidelity mockups of key components of User Interface. Completed Jira board setup to manage workflow.
+    
+    Sprint 3 (11/01/2021 - 11/15/2021) - Created high fidelity prototype of client website. Began documentation on potential tech stack being used for project. Drafting user stories to better understand requiremnts.
+
+    Sprint 4 (11/15/2021 - 12/01/2021) - Implemented more features to high fidelity prototype, created acceptance criterias for user stories, and presented our project to the CSC 190 class. Preparing next semester backlog for Sprint 5 for CSC 191. 
+
+    Sprint 5 (02/07/2022 - 02/21/2022) - Finalized requirements for product. Started enviroment setup for Visual Studio. Started project with React project to initialize design layouts from high fidelity mockup. Presented progress to client and made adjustments for next sprint. 
+
+    Sprint 6 (02/21/2022 - 03/06/2022) - Created different components & buttons for landing page. Started to connect online delivery services to buttons to redirect users to respective delivery options. Created early iteration of About & Menu page that had temporary stock images and text. Created early stages of reservation form embeded in a React Modal Component and creating user input fields. Implementing early stages of mobile responsiveness for web application. 
+
+    Sprint 7 (03/06/22 - 03/21/2022 ) - Tied backend data base to have project read basic data from Google Firestore and output data read to an exported fire. Menu component started with test data pulled from database. Populate menu data into database & test reservation data sent to data base. 
+    Revised reservation form to only allow parties of 8 or more being capped at 12. Form validation on first name, last name, email address, phone number, and total number of guests. Once all conditions are met, data is compiled and set to Firestore database. 
+
+    Sprint 8 (03/21/22 - 04/04/2022) - Began manual testing on reservation fields to make sure data is correctly inputted into Firestore database. Finalize overall color scheme of the web app to be consistent of colors present in the business. Created a successful popup once reservation is created to let user know their reservation has been sent to the database to notify business. Work in progress and researching emailing alternatives to notify users via email provided through reservation form. 
+
+    Created menu layout to pull data from menu collection in Firestore database. Reformated all photos provided by client to ensure they are inputted into Firestore storage to be used later when pulling menu data. Removed extras features no longer required by client. 
+
+    Started development of admin portal where administrator can access all features within the web application. Reads, write, edit, and delete all dynamic fields tied to Firestore database that interact with frontend components. Admin is able to access the login page through a react secure router that is prompted with an authenticated email with required password. 
+
+    Sprint 9 (04/04/2022 - 04/25/2022)
