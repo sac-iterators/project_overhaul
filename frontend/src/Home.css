@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Radio+Canada:wght@500&display=swap');
+
 :root {
     --blue: #64C9CF;
     --darker-blue: #2984ce;
@@ -87,12 +89,13 @@ footer{
 }
 .intro h1{
     color: var(--beige);
+    font-family: 'Koulen', cursive;
 }
 .intro .info{
     white-space: pre-wrap;
-    font-family: sans-serif;
+    font-family: 'Radio Canada', sans-serif;
     line-height: 2.5;
-    font-size: 20px;
+    font-size: 1.5rem;
     height: 100%;
     font-weight: 550;
     position: relative;
@@ -218,7 +221,7 @@ button.filter-btn:hover {
     background-color: var(--blue);
     border-color: var(--blue);
     font-size: 18px;
-    font-family: sans-serif;
+    font-family: 'Radio Canada', sans-serif;
 }
 .card-button:hover {
     background-color: var(--dark-orange);
@@ -229,7 +232,7 @@ button.filter-btn:hover {
 .home-card-title {
     color: var(--beige);
     font-size: 28px;
-    font-family: Verdana;
+    font-family: 'Koulen', cursive;
     padding: 5px 0px 10px 0px;
 }
 .home-card-body {
@@ -282,6 +285,10 @@ button.filter-btn:hover {
     height: 100vh;
 }
 
+.about-intro {
+    font-family: 'Koulen', cursive;
+}
+
 .about .top-section .panel{
     width: 60vw;
     max-height: 80vh;
@@ -317,6 +324,7 @@ button.filter-btn:hover {
     color: var(--off-white) ;
     text-align: center;
     font-size: 1.4rem;
+    font-family: 'Radio Canada', sans-serif;
 }
 
 .hero-img{ 
@@ -402,6 +410,10 @@ button.filter-btn:hover {
     width: 30%;
     height: auto;
     margin: 10px;
+}
+
+.menu-categories {
+    font-family: 'Koulen', cursive;
 }
 
 @media screen and (max-width: 700px) {
@@ -506,7 +518,7 @@ button.filter-btn:hover {
 }
 
 .admin .main section{
-    padding: 15px;
+    padding: 50px 20px;
 }
 
 .admin .main fieldset{
@@ -589,6 +601,15 @@ button.filter-btn:hover {
   }
   .banner p{
     margin: 0;
+}
+
+.admin_res_container {
+    padding-bottom: 1.75rem;
+}
+
+.res_delete_button {
+    margin-top: 5px;
+    border-top: 0px !important;
 }
 
   

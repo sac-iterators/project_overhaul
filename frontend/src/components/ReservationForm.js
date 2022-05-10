@@ -7,6 +7,8 @@ import { db, reservation_db } from '../firebase/firebaseConfig';
 import {doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
 import moment from 'moment';
 import emailjs from '@emailjs/browser';
+import './ReservationForm.css';
+import isoDate from './ISOdate';
 
 
 
@@ -61,7 +63,7 @@ function ReservationForm(props){
                 if(reservationDate.isBefore(deleteDate, 'day')) {
                     console.log(delDoc.id + ' | ' + reservationDate + ': Should be deleted');
                     const del = async () => {
-                        await deleteDoc(doc(db, 'reservation_Test', delDoc.id))
+                        await deleteDoc(doc(db, 'reservations', delDoc.id))
                     };
                     del();
                 } else {
@@ -100,19 +102,19 @@ function ReservationForm(props){
     }
 
     // Passed a date and returns it in ISO format
-    function isoDate(oldDate) {
-        const year = oldDate.getFullYear();
-        let month = oldDate.getMonth()+1;
-        let dt = oldDate.getDate();
+    // function isoDate(oldDate) {
+    //     const year = oldDate.getFullYear();
+    //     let month = oldDate.getMonth()+1;
+    //     let dt = oldDate.getDate();
 
-        if (dt < 10) {
-            dt = '0' + dt;
-        }
-        if (month < 10) {
-            month = '0' + month;
-        }
-        return year+'-' + month + '-'+ dt;
-    }
+    //     if (dt < 10) {
+    //         dt = '0' + dt;
+    //     }
+    //     if (month < 10) {
+    //         month = '0' + month;
+    //     }
+    //     return year+'-' + month + '-'+ dt;
+    // }
 
     function dateForEmail(oldDate) {
         const year = new Date(oldDate).getFullYear();
@@ -284,7 +286,7 @@ function ReservationForm(props){
                         <label htmlFor="time"> Choose an available time </label>
                         <div>
                             {openReservations.map((time) => {
-                                return <Button value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
+                                return <Button className='time-reserv-button' value={time} onClick={(e) => timeClick(e)}>{time.toLocaleTimeString()}</Button>
                             })}
                         </div>
                     </div>

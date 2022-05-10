@@ -3,13 +3,14 @@ import { Form, FormControl, Toast, ToastContainer,
          FormGroup, FormLabel, Button, Row, Col, Table } from 'react-bootstrap';
 import './Home.css';
 
-import { doc, setDoc, getDocs, query, orderBy} from 'firebase/firestore';
+import { doc, setDoc, getDocs, query, orderBy, deleteDoc} from 'firebase/firestore';
 import { useState, useEffect } from 'react';
 import { storage, storeInfo_db, db, careerInfo_db, jobListings_db, Full_Menu, reservation_db } from './firebase/firebaseConfig';
 import { uploadBytes, ref } from '@firebase/storage';
 import { useAuth } from "./contexts/AuthContext"
 import { useNavigate } from 'react-router-dom';
 import Categories from './Categories';
+import isoDate from './components/ISOdate';
 
 function AdminPortal() {
     const navigate = useNavigate();
@@ -63,7 +64,8 @@ function AdminPortal() {
             // ); 
             
             data = await getDocs(reservation_db);
-            setReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));    
+            setReservation(data.docs.map((doc) => ({ ...doc.data(), id: doc.id})));
+            console.log(reservation.sort((a, b) => console.log(a.date)));
 
             data = await getDocs(Full_Menu);
             setMenu(data.docs.map((doc) => ({ id: doc.id, ...doc.data() })));
@@ -162,6 +164,27 @@ function AdminPortal() {
     const submitReservations = async (event) => {
 
         setShow(true);
+    };
+
+    function deleteReservation(reserv, callback) {
+        
+        const deleteRes = async () => {
+            await deleteDoc(doc(db, "reservations", reserv.id));
+        };
+        deleteRes();
+        
+        console.log('Reservation for ' + reserv.date + ' at ' + reserv.time + ' has been deleted');
+        setTimeout(callback, 250);
+        
+        // * Deletion email here
+    };
+
+    function reloadReservation() {
+
+        const delRefresh = async () => {
+            window.location.reload();
+        };
+        delRefresh();
     }
 
     return (
@@ -355,37 +378,80 @@ function AdminPortal() {
                         <h2>Reservations</h2>
 
                         <fieldset>
-                            <legend>All Reservations</legend>
+                            <legend>Reservations scheduled for today</legend>
                             <div className="reservation_Test" >
-            {reservation.map((item) => 
-            { return <div key={item.id}> 
-            <Table striped bordered hover key={item.id}>
-                <thead>
-                    <tr>
-                    <th>Date </th>
-                    <th>Time </th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email / Phone number </th>
-                    <th>Guests </th>
-                    <th>Notes: </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td> {item.date}</td>
-                    <td> {item.time}</td>
-                    <td> {item.fname} </td>
-                    <td>{item.lname}</td>
-                    <td>{item.email +" / "+ item.phoneNum}</td>
-                    <td>{item.guests}</td>
-                    <td>{item.notes}</td>
-                    </tr>
-                </tbody>
-            </Table>
-        </div>
-            })}
-        </div>
+                                {reservation.map((item) => {
+                                    const today = new Date();
+                                    if (item.date === isoDate(today)) {
+                                        return <Table responsive striped bordered hover key={item.id}>
+                                            <thead>
+                                                <tr>
+                                                <th>Date </th>
+                                                <th>Time </th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email / Phone number </th>
+                                                <th>Guests </th>
+                                                <th>Notes: </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td> {item.date}</td>
+                                                <td> {item.time}</td>
+                                                <td> {item.fname} </td>
+                                                <td>{item.lname}</td>
+                                                <td>{item.email +" / "+ item.phoneNum}</td>
+                                                <td>{item.guests}</td>
+                                                <td>{item.notes}</td>
+                                                </tr>
+                                            </tbody>
+                                            <Button className='res_delete_button' variant='danger'
+                                                onClick={() => {
+                                                    deleteReservation(item, reloadReservation);
+                                                }}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </Table>
+                                    }}
+                                )}
+                                <legend>All Reservations</legend>
+                                {reservation.map((item) => 
+                                { return <div className='admin_res_container' key={item.id}> 
+                                <Table responsive striped bordered hover key={item.id}>
+                                    <thead>
+                                        <tr>
+                                        <th>Date </th>
+                                        <th>Time </th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email / Phone number </th>
+                                        <th>Guests </th>
+                                        <th>Notes: </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td> {item.date}</td>
+                                        <td> {item.time}</td>
+                                        <td> {item.fname} </td>
+                                        <td>{item.lname}</td>
+                                        <td>{item.email +" / "+ item.phoneNum}</td>
+                                        <td>{item.guests}</td>
+                                        <td>{item.notes}</td>
+                                        </tr>
+                                    </tbody>
+                                    <Button className='res_delete_button' variant='danger'
+                                        onClick={() => {
+                                            deleteReservation(item, reloadReservation);
+                                        }}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Table>
+                                </div>})}
+                            </div>
    
                         </fieldset>
 

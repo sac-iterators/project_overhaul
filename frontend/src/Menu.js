@@ -79,10 +79,12 @@ function Menu() {
           <h2>Menu List</h2>
           <div className="underline"></div>
         </div>
-        <Categories
-          setActiveCategory={categorySwitch}
-          activeCategory={activeCategory}
-        />
+        <div className='container menu-categories'>
+          <Categories
+            setActiveCategory={categorySwitch}
+            activeCategory={activeCategory}
+          />
+        </div>
         <div className='menu menu-items-container'>
         <Navigate/>
         <div className="top-section"></div>
