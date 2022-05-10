@@ -31,6 +31,7 @@ h4 {
   text-transform: capitalize;
   line-height: 1.25;
   margin-bottom: 0.75rem;
+  font-family: 'Koulen', cursive;
 }
 
 h3 {
@@ -140,8 +141,10 @@ p {
   border-bottom: 0.5px dotted var(--blue);
 }
 .item-info h4 {
+  margin-top: 0.3rem;
   margin-bottom: 0.5rem;
   font-size: 1.1rem;
+  font-family: 'Radio Canada', sans-serif;
 }
 .price {
   color: var(--dark-orange);

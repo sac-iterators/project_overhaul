@@ -21,7 +21,7 @@ function About() {
             
             <div className="top-section">
                 <div className='panel'>
-                    <h2>About</h2>
+                    <h2 className='about-intro'>About</h2>
                     <p className="info vertical-scroll">{aboutInfo.article}</p>
                 </div>
             </div>
