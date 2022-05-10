@@ -72,3 +72,14 @@
     Started development of admin portal where administrator can access all features within the web application. Reads, write, edit, and delete all dynamic fields tied to Firestore database that interact with frontend components. Admin is able to access the login page through a react secure router that is prompted with an authenticated email with required password. 
 
     Sprint 9 (04/04/2022 - 04/25/2022)
+
+
+### Key Takeaways: 
+    Our team learned full stack development with an emphasis with Scrum and Agile methodologies.
+    We focused on the front-end development with the use of React, React Bootstrap, JavaScript, HTML, and CSS to complete our front-end stack. We heavily utilized React Bootstrap components to build out the reservation, home page, menu, navigation bar, and footer. We learned that using these components can make our code more readable, easier to maintain, and reusable.
+
+    With the front-end components built, we tied our data with the use of Express.js, Node.js, and the use of Google API services. We made use of Firestore Database for data, Firestore Storage for images, and Firestore Deployment to host the web application. Our front-end components are non-static fields which can be dynamically changed with our built in Admin portal for the client. This helped us as a team to develop create, read, update, and delete fields from the database through the admin portal. This will also hopefully create easier maintainability for the client going forward. Our team learned how to make API calls to our database in order to use CRUD operations on the stored data.
+
+    Our team learned how to incorporate email notifications into our project so that the user and the client get emails when specific business logic is passed. We learned how to utilize an email framework called email.js for this task.
+
+    We also practiced an overarching Git process that evolved over time. This helped the team stay on track of the ever-changing code base to see what the team is working on. Our team learned how to maintain their own git branch in the beginning and then as the semester carried on we began working from the same branch. This taught our team how to keep fellow team members updated when changes have been made and to what. We also tied this practice with our Jira board for tasks that needed immediate attention regarding requirements. Teaching our team how to manage the status of a task and properly track the task as work is done. 
