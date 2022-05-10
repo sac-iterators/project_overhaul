@@ -8,6 +8,7 @@ import {doc, addDoc, getDocs, deleteDoc} from 'firebase/firestore';
 import moment from 'moment';
 import emailjs from '@emailjs/browser';
 import './ReservationForm.css';
+import isoDate from './ISOdate';
 
 
 
@@ -101,19 +102,19 @@ function ReservationForm(props){
     }
 
     // Passed a date and returns it in ISO format
-    function isoDate(oldDate) {
-        const year = oldDate.getFullYear();
-        let month = oldDate.getMonth()+1;
-        let dt = oldDate.getDate();
+    // function isoDate(oldDate) {
+    //     const year = oldDate.getFullYear();
+    //     let month = oldDate.getMonth()+1;
+    //     let dt = oldDate.getDate();
 
-        if (dt < 10) {
-            dt = '0' + dt;
-        }
-        if (month < 10) {
-            month = '0' + month;
-        }
-        return year+'-' + month + '-'+ dt;
-    }
+    //     if (dt < 10) {
+    //         dt = '0' + dt;
+    //     }
+    //     if (month < 10) {
+    //         month = '0' + month;
+    //     }
+    //     return year+'-' + month + '-'+ dt;
+    // }
 
     function dateForEmail(oldDate) {
         const year = new Date(oldDate).getFullYear();

@@ -10,6 +10,7 @@ import { uploadBytes, ref } from '@firebase/storage';
 import { useAuth } from "./contexts/AuthContext"
 import { useNavigate } from 'react-router-dom';
 import Categories from './Categories';
+import isoDate from './components/ISOdate';
 
 function AdminPortal() {
     const navigate = useNavigate();
@@ -377,43 +378,80 @@ function AdminPortal() {
                         <h2>Reservations</h2>
 
                         <fieldset>
-                            <legend>All Reservations</legend>
+                            <legend>Reservations scheduled for today</legend>
                             <div className="reservation_Test" >
-            {reservation.map((item) => 
-            { return <div className='admin_res_container' key={item.id}> 
-            <Table responsive striped bordered hover key={item.id}>
-                <thead>
-                    <tr>
-                    <th>Date </th>
-                    <th>Time </th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Email / Phone number </th>
-                    <th>Guests </th>
-                    <th>Notes: </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                    <td> {item.date}</td>
-                    <td> {item.time}</td>
-                    <td> {item.fname} </td>
-                    <td>{item.lname}</td>
-                    <td>{item.email +" / "+ item.phoneNum}</td>
-                    <td>{item.guests}</td>
-                    <td>{item.notes}</td>
-                    </tr>
-                </tbody>
-                <Button className='res_delete_button' variant='danger'
-                    onClick={() => {
-                        deleteReservation(item, reloadReservation);
-                    }}
-                >
-                    Delete
-                </Button>
-            </Table>
-            </div>})}
-        </div>
+                                {reservation.map((item) => {
+                                    const today = new Date();
+                                    if (item.date === isoDate(today)) {
+                                        return <Table responsive striped bordered hover key={item.id}>
+                                            <thead>
+                                                <tr>
+                                                <th>Date </th>
+                                                <th>Time </th>
+                                                <th>First Name</th>
+                                                <th>Last Name</th>
+                                                <th>Email / Phone number </th>
+                                                <th>Guests </th>
+                                                <th>Notes: </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                <td> {item.date}</td>
+                                                <td> {item.time}</td>
+                                                <td> {item.fname} </td>
+                                                <td>{item.lname}</td>
+                                                <td>{item.email +" / "+ item.phoneNum}</td>
+                                                <td>{item.guests}</td>
+                                                <td>{item.notes}</td>
+                                                </tr>
+                                            </tbody>
+                                            <Button className='res_delete_button' variant='danger'
+                                                onClick={() => {
+                                                    deleteReservation(item, reloadReservation);
+                                                }}
+                                            >
+                                                Delete
+                                            </Button>
+                                        </Table>
+                                    }}
+                                )}
+                                <legend>All Reservations</legend>
+                                {reservation.map((item) => 
+                                { return <div className='admin_res_container' key={item.id}> 
+                                <Table responsive striped bordered hover key={item.id}>
+                                    <thead>
+                                        <tr>
+                                        <th>Date </th>
+                                        <th>Time </th>
+                                        <th>First Name</th>
+                                        <th>Last Name</th>
+                                        <th>Email / Phone number </th>
+                                        <th>Guests </th>
+                                        <th>Notes: </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                        <td> {item.date}</td>
+                                        <td> {item.time}</td>
+                                        <td> {item.fname} </td>
+                                        <td>{item.lname}</td>
+                                        <td>{item.email +" / "+ item.phoneNum}</td>
+                                        <td>{item.guests}</td>
+                                        <td>{item.notes}</td>
+                                        </tr>
+                                    </tbody>
+                                    <Button className='res_delete_button' variant='danger'
+                                        onClick={() => {
+                                            deleteReservation(item, reloadReservation);
+                                        }}
+                                    >
+                                        Delete
+                                    </Button>
+                                </Table>
+                                </div>})}
+                            </div>
    
                         </fieldset>
 
