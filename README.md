@@ -19,7 +19,6 @@
 
         The last issue is the menu. Our client wanted to showcase what Asian N Cajun 2 has to offer to their customers. The best way is to display their menu items through the Menu section of the webapp. The webapp pulls information from our Firebase Database to get the item prices and information with their respective menu photos. 
 
-    What did you learn?
     
 ### Environment Setup/Requirements:
     NodeJS
