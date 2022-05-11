@@ -16,35 +16,22 @@ const firebaseConfig = {
   measurementId: "G-K7J5DR7H62"
 };
 
-// Initialize app 
 const app = initializeApp(firebaseConfig);
-
-// Initialize authentication
 const auth = getAuth(app)
 
 // Get a reference to the database service
 const db = getFirestore(app);
 const storage = getStorage(app);
 
-// Create a reference to the food_test collection
+// Create a reference to database collections
 const food_db = collection(db, 'food_test');
-
-// Create a reference to the food_test collection
-const reservation_db = collection(db, 'reservation_Test');
-
-// Create a reference to the applications collection
+const reservation_db = collection(db, 'reservations');
 const applications_db = collection(db, 'applications');
-
-// Reference to Chow Mein Portion of Menu
 const menu_Chow_Mein = collection(db, "menu_Chow_Mein");
-
 const menu_Add_Ins = collection(db, "menu_Add_Ins");
-
-const job_listings = collection(db, "job_listings");
-
-const careerInfo = collection(db, "careerInfo");
-
-const storeInfo = collection(db, "storeInfo");
+const jobListings_db = collection(db, "job_listings");
+const careerInfo_db = collection(db, "careerInfo");
+const storeInfo_db = collection(db, "storeInfo");
 const googleProvider = new GoogleAuthProvider();
 
 // Saul's Implementation
@@ -64,6 +51,7 @@ const menu_Sides = collection(db, "menu_Sides");
 const menu_Vegetable = collection(db, "menu_Vegetable");
 const menu_Whats_Cooking = collection(db, "menu_Whats_Cooking");
 const menu_Wing = collection(db, "menu_Wing");
+const Full_Menu = collection(db, "Full_Menu");
 
 // Handles onClick event for signing in with Google
 const signInWithGoogle = async () => {
@@ -90,7 +78,5 @@ const logout = () => {
   signOut(auth);
 };
 
-
 // Gather files for export
-// Gather files for export
-export {db, auth, signInWithGoogle, logout, food_db, reservation_db, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, job_listings, careerInfo, storeInfo};
+export {db, auth, all_Day_Special, signInWithGoogle, logout, food_db, reservation_db, Full_Menu, menu_Add_Ins, menu_Chow_Mein, applications_db, storage, jobListings_db, careerInfo_db, storeInfo_db};
