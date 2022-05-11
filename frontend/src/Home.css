@@ -357,8 +357,7 @@ button.filter-btn:hover {
 }
 
 .services .icons:hover{
-    background-color: var(--blue);
-    border-radius: 20%;
+    filter: drop-shadow(2px 2px 2px var(--blue));
 }
 
 .hours{
@@ -383,6 +382,7 @@ button.filter-btn:hover {
 .service-select .orderService{
     height: 5vw;
     min-height: 5vh;
+    max-width: 100%;
 }
 
 .hypertext{

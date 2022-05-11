@@ -7,6 +7,7 @@ import Map from './components/Map';
 import grubhub from './img/grubhub_icon.svg'
 import ubereats from './img/ubereats_icon.svg'
 import postmates from './img/postmates_icon.svg'
+import doordash from './img/doordash_icon.svg'
 import yelp from './img/yelp_icon.svg'
 
 function Footer() {
@@ -42,6 +43,7 @@ function Footer() {
               <li className="list-inline-item"><a href="https://www.grubhub.com/restaurant/new-asian-n-cajun-2-greenback-ln-8121-greenback-ln-fair-oaks/3048809" target="_blank" rel="noreferrer"><img src={grubhub} className="icons" alt="Grubhub icon"/></a></li>
               <li className="list-inline-item"><a href="https://www.ubereats.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank" rel="noreferrer"><img src={ubereats} className="icons" alt="Ubereats icon"/></a></li>
               <li className="list-inline-item"><a href="https://postmates.com/store/asian-n-cajun-2/m7JzYDLnRESi966_6EHoSg" target="_blank" rel="noreferrer"><img src={postmates} className="icons" alt="Postmates icon"/></a></li>
+              <li className="list-inline-item"><a href="https://www.doordash.com/store/asian-n-cajun-2-fair-oaks-2500327" target="_blank" rel="noreferrer"><img src={doordash} className="icons" alt="Doordash icon"/></a></li>
               <li className="list-inline-item"><a href="https://www.yelp.com/biz/asian-n-cajun-2-fair-oaks-2" target="_blank" rel="noreferrer"><img src={yelp} className="icons" alt="Yelp icon"/></a></li>
             </ul>
           </div>
