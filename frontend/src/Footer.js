@@ -73,6 +73,16 @@ function Footer() {
               </li>
             </ul>
           </div>
+          <div className="col-lg-1 col-md-2 col-4 mb-lg-0 mx-auto col phoneNum">
+            <h6 className="footer-title text-uppercase font-weight-bold mb-4">Phone Number</h6>
+            <ul className="list-unstyled mb-0 phoneNum">
+              <li>
+              <a href="tel:916-242-0596">
+                916-242-0596
+              </a>
+              </li>
+            </ul>
+          </div>
           <div className="col-lg-1 col-md-2 col-4 mb-lg-0 mx-auto col sitemap">
             <h6 className="footer-title text-uppercase font-weight-bold mb-4">Sitemap</h6>
             <ul className="list-unstyled mb-0">
