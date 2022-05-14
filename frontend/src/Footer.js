@@ -81,6 +81,10 @@ function Footer() {
               <li className="mb-2"><a href="./menu" className="">Menu</a></li>
               <li className="mb-2 text-muted"><ReservationButton/></li>
             </ul>
+            <h6 className="footer-title text-uppercase font-weight-bold mb-4">Phone Number</h6>
+            <ul className="list-unstyled mb-2 phoneNum">
+              <li><a href="tel:916-242-0596">916-242-0596</a></li>
+            </ul>
           </div>
         </div>
         <div className="container text-center">
