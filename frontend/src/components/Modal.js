@@ -62,17 +62,6 @@ export default class CustomModal extends Component {
                 placeholder="Enter Todo description"
               />
             </FormGroup>
-            {/* <FormGroup check>
-              <Label check>
-                <Input
-                  type="checkbox"
-                  name="completed"
-                  checked={this.state.activeItem.completed}
-                  onChange={this.handleChange}
-                />
-                Completed
-              </Label>
-            </FormGroup> */}
           </Form>
         </ModalBody>
         <ModalFooter>

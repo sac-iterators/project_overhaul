@@ -22,24 +22,25 @@ function ReservationForm(props){
     const [notes, setNotes] = useState("");
     const [date, setDate] = useState();
     const [reservationComplete, setReservationComplete] = useState(false);
-    const [validated, setValidated] = useState(false);
 
+    
     // * Define variables for data fetching/manipulation/validation
     const [reservations, setReservations] = useState([]);
     const [openReservations, setOpenReservations] = useState([]);
     const [fetchReservation, setFetchReservations] = useState(true);
+    const [validated, setValidated] = useState(false);
     const today = new Date();
     const timeBlocks = [];      // Array to store the time slots
     const times = new Date(today);
     const maxReservationDate = new Date(today);
     const delReservationDate = new Date(today);
     
-    times.setTime(times.setSeconds(0));     // Times seconds/milleseconds set to 0 because they are irrelevant to reservations
+    // Times seconds/milleseconds set to 0 because they are irrelevant to reservations
+    times.setTime(times.setSeconds(0));
     times.setTime(times.setMinutes(0));
     maxReservationDate.setDate(maxReservationDate.getDate() + 7);
     delReservationDate.setDate(delReservationDate.getDate() - 7);
 
-    // TODO: * 12 and 20 can be replaced so not hardcoded for API calls
     for (let time_init = 12; time_init <= 20; time_init++) {
         timeBlocks.push(new Date(times.setHours(time_init)));
     }
@@ -81,18 +82,12 @@ function ReservationForm(props){
 
     function reservationCheck(reservationDate) {
         const bookedReservations = [];
-        console.log("DEBUG | Clicked date: " + reservationDate.toDateString()); // Debug message
-
-        reservations.forEach(item => { // Loops through all reservations 
+        reservations.forEach(item => { 
             if (item.date === isoDate(reservationDate)) {
-                console.log("DEBUG | Reservation found on this date")
                 bookedReservations.push(item.time);
             } 
         });
 
-        console.log("DEBUG | Booked Reservations: " + bookedReservations);
-
-        // TODO: Possible redundency
         // * Uses the reservation array to remove from timeblocks and store it to openreservations
         timeBlocks.forEach(slot => {
             if (!bookedReservations.includes(slot.toLocaleTimeString())) {
@@ -100,21 +95,6 @@ function ReservationForm(props){
             }
         });
     }
-
-    // Passed a date and returns it in ISO format
-    // function isoDate(oldDate) {
-    //     const year = oldDate.getFullYear();
-    //     let month = oldDate.getMonth()+1;
-    //     let dt = oldDate.getDate();
-
-    //     if (dt < 10) {
-    //         dt = '0' + dt;
-    //     }
-    //     if (month < 10) {
-    //         month = '0' + month;
-    //     }
-    //     return year+'-' + month + '-'+ dt;
-    // }
 
     function dateForEmail(oldDate) {
         const year = new Date(oldDate).getFullYear();
