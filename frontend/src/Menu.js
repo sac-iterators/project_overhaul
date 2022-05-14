@@ -1,63 +1,24 @@
 import './Home.css';
 
 import React from "react";
-//import Categories from "./Categories";
-//import items from "./data";
 import { Full_Menu } from './firebase/firebaseConfig';
 import { useState, useEffect } from 'react';
 import { getDocs } from 'firebase/firestore';
 import Navigate from './Navigation';
 import Categories from "./Categories";
 import Footer from "./Footer";
-import items from "./data";
 
 
 
 function Menu() {
 
- // Variable used to store items/information from the database
   const [food, setFood] = useState([]);
-
-  const [menuItems, setMenuItems] = useState(items)
   const [activeCategory, setActiveCategory] = useState("All");
 
   function categorySwitch(cat) {
     setActiveCategory(cat);
     console.log(cat)
   }
-
-  const filterItems = items?.filter(item => {
-        switch (activeCategory) {
-          case 'all':
-            return true
-            /*
-          case 'allDaySpecials':
-            break
-            */
-          case 'appetizers':
-              break
-          case 'addIns':
-              break
-          case 'beef':
-          case 'chicken':
-          case 'chowMein':
-          case 'combinations':
-          case 'deepFriedGoodiness':
-          case 'dessert':
-          case 'flavor':
-          case 'friedRice':
-          case 'hot':
-          case 'pork':
-          case 'seafoodPlatter':
-          case 'sides':
-          case 'vegetable':
-          case 'whatsCooking':
-          case 'wing':
-                return item.category === activeCategory
-            default:
-                return true
-        }
-    });
 
  // This function runs when the page is loaded
  useEffect(() => {
