@@ -1,8 +1,7 @@
 import Modal from 'react-bootstrap/Modal'
-import { useState, ReactDOM} from 'react';
+import { useState } from 'react';
 import ReservationForm from './ReservationForm';
 import React from 'react';
-import {Button} from 'react-bootstrap';
 
 
 function ReservationButton(props) {
@@ -13,10 +12,7 @@ function ReservationButton(props) {
     
     return (
       <>
-        {/* <a href='#' onClick={handleShow}>
-          Reserve
-        </a>  */}
-        <div  onClick={handleShow}>Reserve</div>
+        <div id="reservationButton" onClick={handleShow}>Reserve</div>
   
         <Modal show={show} onHide={handleClose}>
           <Modal.Header closeButton>
@@ -34,5 +30,4 @@ function ReservationButton(props) {
     text: "Reservations",
   };
   
-// render(<ReservationButton />);
 export default ReservationButton;

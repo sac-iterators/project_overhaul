@@ -1,44 +1,119 @@
-.top-section {
-    width: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Koulen&family=Radio+Canada:wght@500&display=swap');
 
-    height: 100%;
+:root {
+    --blue: #64C9CF;
+    --darker-blue: #2984ce;
+    --dark-orange: #DF711B;
+    --sandy-orange: #FF7A00;
+    --orange: #FFB740;
+    --beige: #FDE49C;
+    --tan: #FFC77F;
+    --off-white: #f3f0e2;
 }
 
+/*Page x-Padding******************************************************************************************/
+.home .intro, 
+.home .food_imgs, 
+.home .menu_options,
+footer{
+    padding: 50px 60px
+}
+@media only screen and (max-width: 576px){
+    .home .intro, 
+    .home .food_imgs, 
+    .home .menu_options,
+    footer{
+        padding: 5% 5%;
+    }
+}
 
+/*Navigation********************************************************************************/
+.navbar{
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.nav_title{
+    font-size: 24px;
+    color: #f3f0e2 !important;
+}
+
+.navbar-toggler{
+    font-size: 18px;
+    border: none;
+    color: #f3f0e2 !important;
+}
+
+.navbar-nav .nav-link{
+    padding: 0 30px !important;
+}
+.navbar-nav .nav-link>.active{
+    color: var(--blue);
+    background-color: transparent;
+}
+.navbar-nav .nav-link>.active:hover{
+    color: var(--blue);
+}
+
+@media only screen and (max-width: 991px){
+    .navbar-nav .nav-link{
+        padding: 10px 0 !important;
+    }
+}
+
+.nav_list{
+    height: auto;
+    color: var(--off-white);
+    opacity: 0.7;
+    font-size: 1.3rem;
+}
+.nav_list:hover{
+    color: var(--blue);
+
+}
+@media only screen and (max-width: 576px){
+    .nav_list{ font-size: 18px; }
+    .navbar-toggler{ font-size: 14px; }
+}
+/*******************************************************************************************/
 .cover-img {
     object-fit: cover;
     width: 100%;
     height: 50vh;
 }
 
-.logo{
-    width: 100%;
-}
-
 .intro {
-
-    /* margin-top:20px ; */
-    padding: 100px 0px;
-    font-family: 'Montagu Slab', serif;
-    text-align: center;
-    color: #f3f0e2;
-    background-color: black;
+    padding: 40px 60px;
+    font-family: Verdana;
+    color: white;
+    background-color: var(--sandy-orange);
 }
 .intro h1{
-    color: #dfc984;
-
+    color: var(--beige);
+    font-family: 'Koulen', cursive;
 }
-.intro p{
-    font-family: "Lato",sans-serif,Times,Serif;
-    line-height: 1.7;
-    font-size: 17px;
+.intro .info{
+    white-space: pre-wrap;
+    font-family: 'Radio Canada', sans-serif;
+    line-height: 2.5;
+    font-size: 1.5rem;
     height: 100%;
-    font-weight: normal;
+    font-weight: 550;
     position: relative;
-
-    color: #f3f0e2;
+    color: var(--off-white);
+    background-color: var(--dark-orange);
+    border-radius: 2rem;
+    opacity: .9;
+    padding: 10px;
+    margin-top: 2.5rem;
 }
-
+@media only screen and (max-width: 576px){
+    .intro .info { 
+        font-size: 16px; 
+        line-height: 1.8;
+        font-weight: lighter;
+        margin-top: 0;
+    }
+}
 
 .news {
 
@@ -64,15 +139,12 @@
 }
 
 .map{
-    height: 500px;
-    background: black;
-    padding: 10px;
-    
+    height: 300px;
+    width: 100%;
 }
 
-.map .leaflet-container{
+.leaflet-container{
     height: 100%;
-    
 }
 
 
@@ -87,44 +159,121 @@
     padding: 10px;
 }
 
-footer div:nth-child(4){
+footer div:nth-child(3){
     text-align: right;
 }
 
+footer .copyright{
+    margin: 0;
+}
+
+.footer-title {
+    color: var(--sandy-orange);
+}
+
 a{
-    color: gray;
+    color: rgba(180, 180, 180, 1);
     text-decoration: none;
 }
 
 a:hover{
-    //color: black;
+   color: var(--blue);
+}
+
+main {
+    color: var(--dark-orange);
+    background-color: var(--dark-orange);
+}
+section {
+    background-color: var(--off-white);
+}
+
+.btn-outline-light {
+    font-size: 1.4rem;
+    color: #64C9CF;
+    border-color: #64C9CF;
+    border-width: 0.3rem;
+    border-radius: 0.6rem;
+}
+.btn-outline-light:hover {
+    color: white;
+    background-color: #64C9CF;
+    border-color: #64C9CF;
+}
+
+
+button.filter-btn:hover {
+    color: var(--blue);
+    background-color: var(--off-white);
+}
+
+.card-link{
+    color: var(--off-white);
+    font-size: 18px;
+    font-family: sans-serif;
+    text-decoration: underline;
+}
+
+.card {
+    background-color: var(--sandy-orange);
+}
+.card-button {
+    background-color: var(--blue);
+    border-color: var(--blue);
+    font-size: 18px;
+    font-family: 'Radio Canada', sans-serif;
+}
+.card-button:hover {
+    background-color: var(--dark-orange);
+    color: var(--off-white);
+    border-color: var(--blue);
+}
+
+.home-card-title {
+    color: var(--beige);
+    font-size: 28px;
+    font-family: 'Koulen', cursive;
+    padding: 5px 0px 10px 0px;
+}
+.home-card-body {
+    width: 14.5rem;
+    padding: 10px 0px 15px 0px;
 }
 
 .menu_options{
-    padding: 80px 60px;
+    padding: 40px 60px;
     font-family: 'Montagu Slab', serif;
-    text-align: center;
     color: black;
-    background-color: #dfc984;
+    background-color: var(--tan);
+    display: flex;
+    justify-content: center;
+    
 
 }
 
-.intro h3 {}
+.food_imgs{
+    padding: 40px 60px;
+    background-color: var(--sandy-orange);
+}
 
-.question {
+.food_imgs .card{
+    background-color: inherit;
+}
+
+.item {
   border: 2px solid rgb(240, 240, 240);
   padding: 7px;
 }
-.question h6 {
+.item h6 {
   text-transform: none;
   margin: 0;
 }
-.question p {
+.item p {
   color: var(--clr-grey-3);
   margin-top: 5px;
   margin-bottom: 0;
 }
-.question header {
+.item header {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -132,32 +281,69 @@ a:hover{
 }
 
 .about .top-section{
-    background: url('./img/img-1.jpeg');
-    height: 92vh;
+    background: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FaboutBackgroundImage.jpg?alt=media');
+    height: 100vh;
+}
+
+.about-intro {
+    font-family: 'Koulen', cursive;
 }
 
 .about .top-section .panel{
-    width: 50vw;
-    height: 80vh;
-    background-color: rgba(255, 255, 255, 0.5);
+    width: 60vw;
+    max-height: 80vh;
+    background-color: var(--dark-orange);
+    opacity: 0.95;
     position: relative;
     left: 50%;
-    top: 50%;
+    top: 55%;
     transform: translate(-50%, -50%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+@media only screen and (max-width: 767px){
+    .about .top-section .panel{ width: 80vw; }
 }
 
-.panel .intro{
-    position: relative;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+.panel .info{
+    color: black;
+    white-space: pre-wrap;
+    overflow-y: auto;
 }
 
-.about .top-section .panel .intro h2{
+.about .top-section .panel h2{
     text-align: center;
+    color: var(--off-white) !important;
+    font-size: 2.5rem;
+
+}
+.about .top-section .panel  p{
+    color: var(--off-white) ;
+    text-align: center;
+    font-size: 1.4rem;
+    font-family: 'Radio Canada', sans-serif;
+}
+
+.hero-img{ 
+    width: 100%; 
+    max-width: 100%;
+    object-fit: contain;
+    content: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FhomeSlideImage.jpg?alt=media');
+}
+@media only screen and (max-width: 576px){
+    .hero-img{
+        content: url('https://firebasestorage.googleapis.com/v0/b/asian-n-cajun-db.appspot.com/o/site_images%2FhomeSlideImage_small.jpg?alt=media');
+        object-fit: cover;
+        height: 100vh;
+        min-height: 100vh;
+    }
 }
 
 .services{
+    text-align: center;
     display: flex;
     text-align: center;
     justify-content: space-between;
@@ -167,16 +353,25 @@ a:hover{
 
 .services .icons{
     width: 50px;
+    margin: 0 5px;
 }
 
 .services .icons:hover{
-    filter: drop-shadow(0 10px 10px black);
+    filter: drop-shadow(2px 2px 2px var(--blue));
 }
 
 .hours{
     white-space: pre;
 }
-
+.hours li p{
+    display: inline-block;
+}
+.hours p.days{
+    width: 120px;
+}
+@media only screen and (max-width: 991px){
+    .hours p.days{ width: 80px; }
+}
 .service-select li{
     text-align: center;
 }
@@ -184,8 +379,237 @@ a:hover{
 .service-select li:hover{
     filter: drop-shadow(0 10px 10px gray);
 }
+.service-select .orderService{
+    height: 5vw;
+    min-height: 5vh;
+    max-width: 100%;
+}
 
-.obviousLink{
+.hypertext{
     text-decoration: underline;
     font-weight: 500;
 }
+
+/* Saul's Implementation */
+
+
+.menu {
+    width: 100%;
+    
+    
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+
+
+
+}
+.menu .menu-items {
+    width: 30%;
+    height: auto;
+    margin: 10px;
+}
+
+.menu-categories {
+    font-family: 'Koulen', cursive;
+}
+
+@media screen and (max-width: 700px) {
+    .menu .top-section {
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+    
+    }
+
+    .menu .menu-items {
+        width: 300px;
+        margin: 5px;
+    }
+}
+
+
+
+
+.menu .underline {
+    width: 50%;
+    height: 0.25rem;
+    background: #c59d5f;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .menu .btn-container {
+    margin-bottom: 4rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+  }
+
+  .nav-tabs {
+    overflow-x: auto;
+    overflow-y: hidden;
+    flex-wrap: nowrap;
+  }
+
+  .nav-item ,.nav-link{
+    white-space: nowrap;
+  }
+
+.menu .photo {
+    object-fit: cover;
+    height: 300px;
+    width: 100%;
+    border: 0.25rem solid hsl(360, 71%, 66%);
+    border-radius: 0.25rem;
+    display: block;
+    grid: center;
+  }
+/*********************************************************************************************************/
+/******************************************Admin Portal Styling*******************************************/
+.login #b_login{
+    margin-top: 20px;
+}
+.admin .sidenav {
+    height: 100%;
+    width: 15%;
+    min-width: 130px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: rgb(36, 35, 27);
+    overflow-x: hidden;
+    padding: 20px 10px;
+}
+    .admin .sidenav .header, hr{
+        color: white;
+        text-align: center;
+        width: 100%;
+    }
+    .admin .sidenav .tabs {
+        padding: 10px 0;
+        margin: 3px 0;
+        text-decoration: none;
+        font-size: 18px;
+        background-color: inherit;
+        color: white;
+        display: block;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        transition: all 0.3s;
+    }
+
+        .admin .sidenav .tabs:hover, .admin .sidenav .tabs.active {
+            background-color: rgb(255, 255, 255, 0.1);
+        }
+
+    .admin .sidenav #b_logout{
+        margin-top: 100%;
+    }
+
+.admin .main {
+    margin-left: max(15%, 130px); /* Same as the width of the sidenav */
+    padding: 20px 30px;
+}
+
+.admin .main section{
+    padding: 50px 20px;
+}
+
+.admin .main fieldset{
+    margin: 20px;
+}
+
+.admin .main .b_save{
+    float: right;
+}
+
+@media only screen and (max-height: 450px) {
+    .admin .sidenav {padding-top: 15px;}
+    .admin .sidenav a {font-size: 18px;}
+}
+
+.hide{
+    display: none;
+} 
+
+/***************************************************************************************************/
+/*Custom Scroll bar*********************************************************************************/
+.vertical-scroll::-webkit-scrollbar {
+    width: 10px;
+    height: 1em;
+  }
+  
+  .vertical-scroll::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 100vw;
+  }
+  
+  .vertical-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100vw;
+  }
+  
+  .vertical-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+  .horizontal-scroll::-webkit-scrollbar {
+    width: 1em;
+    height: 10px;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 100vw;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(0, 0, 0, 0.4);
+    border-radius: 100vw;
+  }
+  
+  .horizontal-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+
+/********************************************************************************************/
+
+  .btn>#reservationButton{ color: white; }
+
+  .nav_list#reservationButton, 
+  li>#reservationButton{ 
+      color: rgba(180, 180, 180, 1);
+      cursor: pointer; 
+  }
+  .nav_list#reservationButton:hover,
+  li>#reservationButton:hover{ 
+      color: var(--blue); 
+  }
+
+  .banner{
+      z-index: 5;
+      width: 90%;
+      top: 10%;
+      left: 50%;
+      transform: translate(-50%, 0);
+  }
+  .banner p{
+    margin: 0;
+}
+
+.admin_res_container {
+    padding-bottom: 1.75rem;
+}
+
+.res_delete_button {
+    margin-top: 5px;
+    border-top: 0px !important;
+}
+
+  
